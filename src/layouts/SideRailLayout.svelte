@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
-	import { Settings, Book, Person } from 'carbon-icons-svelte';
+	import { AppRail, AppRailAnchor, AppRailTile, Avatar } from '@skeletonlabs/skeleton';
+	import { Settings, Book, Person, ExpandAll } from 'carbon-icons-svelte';
 	import type { Route } from '../libs/types';
+	import { courseMenuStates } from '../libs/store';
 	let currentTile: number = 0;
 	let mainRoute: Route[] = [
 		{
@@ -25,23 +26,34 @@
 	];
 </script>
 
-<AppRail class="text-surface-100" background="bg-surface-900">
+<AppRail
+	spacing="space-x-3"
+	active="bg-tertiary-400 rounded-3xl"
+	class="text-surface-100"
+	regionLead="rounded-lg"
+	background="bg-tertiary-900"
+>
+	<svelte:fragment slot="lead">
+		<AppRailAnchor href="/">
+			<div class="flex justify-center">
+				<ExpandAll size={24} />
+			</div>
+		</AppRailAnchor>
+	</svelte:fragment>
 	<!-- --- -->
-	{#each mainRoute as route, i}
+	{#each $courseMenuStates as course, i (course.courseId)}
 		<AppRailTile
 			class="flex"
 			bind:group={currentTile}
-			name={route.name}
+			name={course.label}
 			value={i}
-			title={route.label}
+			title={course.label}
 		>
 			<svelte:fragment slot="lead">
 				<div class="flex justify-center">
-					<svelte:component this={route.carbonIcon.icon} size={route.carbonIcon.size} />
+					<Avatar src={course.imgSrc} width="w-14" rounded="rounded-full" />
 				</div>
 			</svelte:fragment>
-
-			<span>{route.label}</span>
 		</AppRailTile>
 	{/each}
 	<!-- --- -->

@@ -15,7 +15,7 @@
 			label: 'Menu',
 			name: 'menuPanel',
 			path: '/menu'
-		}
+		},
 		{
 			carbonIcon: {
 				icon: UserAvatar,
