@@ -36,8 +36,12 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@floating-ui/dom": "^1.4.4",
 		"sass": "^1.63.6",
 		"scss": "^0.2.4",
 		"zod": "^3.21.4"
+	},
+	"peerDependencies": {
+		"svelte": "^3.55.0 || ^4.0.0"
 	}
 }

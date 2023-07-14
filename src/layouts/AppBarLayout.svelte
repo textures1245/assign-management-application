@@ -1,31 +1,20 @@
 <script lang="ts">
+	import { popup, type PopupSettings } from '@skeletonlabs/skeleton';
 	import { AppBar } from '@skeletonlabs/skeleton';
-	import { Menu, UserAvatar, Workspace } from 'carbon-icons-svelte';
-	import type { Route } from '../libs/types';
+	import { Workspace } from 'carbon-icons-svelte';
+	import { panelGroup } from './states/layoutState';
+	import NotificationPopup from '../components/slots/์NotificationPopup.svelte';
+	import MenuPopup from '../components/slots/MenuPopup.svelte';
+	import { popupFeatured } from '../components/slots/popupConfig';
 	let config = {
 		appName: 'Assign Management'
 	};
 
-	let panelGroup: Route[] = [
-		{
-			carbonIcon: {
-				icon: Menu,
-				size: 24
-			},
-			label: 'Menu',
-			name: 'menuPanel',
-			path: '/menu'
-		},
-		{
-			carbonIcon: {
-				icon: UserAvatar,
-				size: 24
-			},
-			label: 'Account',
-			name: 'accountPanel',
-			path: '/account'
-		}
-	];
+	const popupResponse = (target: string) => {
+		let newPopupConfig: PopupSettings;
+		newPopupConfig = { ...popupFeatured, target: target };
+		return newPopupConfig;
+	};
 </script>
 
 <section class="text-surface-100">
@@ -35,9 +24,19 @@
 		</svelte:fragment>
 		<span class="text-xl">{config.appName}</span>
 		<svelte:fragment slot="trail">
-			{#each panelGroup as panel}
-				<svelte:component this={panel.carbonIcon.icon} size={panel.carbonIcon.size} />
+			{#each $panelGroup as panel, i (panel.name)}
+				{#if panel.path}
+					<a href={panel.path}>
+						<svelte:component this={panel.carbonIcon.icon} size={panel.carbonIcon.size} />
+					</a>
+				{:else}
+					<button use:popup={popupResponse(panel.name)}>
+						<svelte:component this={panel.carbonIcon.icon} size={panel.carbonIcon.size} />
+					</button>
+				{/if}
 			{/each}
 		</svelte:fragment>
+		<NotificationPopup />
+		<MenuPopup />
 	</AppBar>
 </section>

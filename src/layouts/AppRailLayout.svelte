@@ -1,34 +1,18 @@
 <script lang="ts">
 	import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
-	import { Settings, Book, Person } from 'carbon-icons-svelte';
-	import type { Route } from '../libs/types';
+
+	import DrawerLayout from '../components/DrawerApp.svelte';
+	import { openDrawerObs } from './states/layoutState';
+	import { appRoutes } from './states/layoutState';
+
 	let currentTile: number = 0;
-	let mainRoute: Route[] = [
-		{
-			carbonIcon: { icon: Settings, size: 24 },
-			label: 'Setting',
-			name: 'appSetting',
-			path: '/setting'
-		},
-		{
-			carbonIcon: { icon: Book, size: 24 },
-			label: 'Assignment',
-			name: 'appAssignment',
-			path: '/assignments'
-		},
-		{
-			carbonIcon: { icon: Person, size: 24 },
-			label: 'Instructors',
-			name: 'appInstructors',
-			path: '/instructors'
-		}
-	];
 </script>
 
-<AppRail class="text-surface-100" background="bg-surface-900">
+<AppRail active={''} class="text-surface-100" background="bg-surface-900">
 	<!-- --- -->
-	{#each mainRoute as route, i}
+	{#each $appRoutes as route, i}
 		<AppRailTile
+			on:click={() => openDrawerObs.set({ open: true, drawerId: route.name })}
 			class="flex"
 			bind:group={currentTile}
 			name={route.name}
@@ -49,3 +33,4 @@
 		<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
 	</svelte:fragment>
 </AppRail>
+<DrawerLayout />

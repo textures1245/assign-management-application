@@ -20,7 +20,7 @@ export type Route = {
 	carbonIcon: { icon: typeof CarbonIcon; size: 16 | 20 | 24 | 32; title?: string };
 	label: string;
 	name: string;
-	path: string;
+	path?: string;
 };
 
 //-interface

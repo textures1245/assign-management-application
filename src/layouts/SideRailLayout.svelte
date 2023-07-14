@@ -1,58 +1,48 @@
 <script lang="ts">
+	import { courseMenuLeads } from './states/layoutState';
 	import { AppRail, AppRailAnchor, AppRailTile, Avatar } from '@skeletonlabs/skeleton';
-	import { Settings, Book, Person, ExpandAll } from 'carbon-icons-svelte';
-	import type { Route } from '../libs/types';
+	import { page } from '$app/stores';
 	import { courseMenuStates } from '../libs/store';
 	let currentTile: number = 0;
-	let mainRoute: Route[] = [
-		{
-			carbonIcon: { icon: Settings, size: 24 },
-			label: 'Setting',
-			name: 'appSetting',
-			path: '/setting'
-		},
-		{
-			carbonIcon: { icon: Book, size: 24 },
-			label: 'Assignment',
-			name: 'appAssignment',
-			path: '/assignments'
-		},
-		{
-			carbonIcon: { icon: Person, size: 24 },
-			label: 'Instructors',
-			name: 'appInstructors',
-			path: '/instructors'
-		}
-	];
 </script>
 
 <AppRail
 	spacing="space-x-3"
-	active="bg-tertiary-400 rounded-3xl"
-	class="text-surface-100"
-	regionLead="rounded-lg"
+	active="bg-tertiary-400 rounded-xl"
+	class="text-surface-100 "
 	background="bg-tertiary-900"
 >
 	<svelte:fragment slot="lead">
-		<AppRailAnchor href="/">
-			<div class="flex justify-center">
-				<ExpandAll size={24} />
+		{#each $courseMenuLeads as leadMenu}
+			<div class={$page.url.pathname === `/${leadMenu.name}` ? 'bg-secondary-800' : ''}>
+				<AppRailAnchor active="bg-surface-600" href={`/${leadMenu.name}`}>
+					<div class="flex justify-center">
+						<svelte:component this={leadMenu.carbonIcon.icon} size={leadMenu.carbonIcon.size} />
+					</div>
+				</AppRailAnchor>
 			</div>
-		</AppRailAnchor>
+		{/each}
 	</svelte:fragment>
 	<!-- --- -->
 	{#each $courseMenuStates as course, i (course.courseId)}
 		<AppRailTile
-			class="flex"
+			class="flex p-1"
 			bind:group={currentTile}
 			name={course.label}
 			value={i}
 			title={course.label}
 		>
 			<svelte:fragment slot="lead">
-				<div class="flex justify-center">
-					<Avatar src={course.imgSrc} width="w-14" rounded="rounded-full" />
-				</div>
+				<a href={`/${course.courseId}`}>
+					<div class="flex justify-center">
+						<Avatar
+							src={course.imgSrc}
+							width="w-14"
+							rounded={$page.url.pathname === `/${course.courseId}` ? 'rounded-md' : 'rounded-full'}
+							class="expand-image-hover-animation"
+						/>
+					</div>
+				</a>
 			</svelte:fragment>
 		</AppRailTile>
 	{/each}
