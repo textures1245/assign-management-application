@@ -24,9 +24,33 @@ export type Route = {
 };
 
 //-interface
-export interface CourseMenuInterface {
+export interface ICourse {
 	courseId: string;
 	imgSrc: string;
 	label: string;
+	curd: {
+		created: Date;
+		updated: Date;
+		deleted: Date;
+	};
 	detail?: string;
+	group?: string[];
+}
+
+interface Assignment {
+	assignmentId: number;
+	title: string;
+	description: string;
+	courseId: number; // The ID of the course to which this assignment belongs
+	deadline: Date;
+	priority: 'MOST' | 'DECENT' | 'LOW'[];
+	isCompleted: boolean;
+	curd: {
+		created: Date;
+		updated: Date;
+		deleted: Date;
+	};
+	fileAttached?: File | File[];
+	grade?: number; // Optional property for the assignment grade
+	submission?: string; // Optional property for the submission details
 }

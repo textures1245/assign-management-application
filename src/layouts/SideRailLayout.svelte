@@ -2,7 +2,7 @@
 	import { courseMenuLeads } from './states/layoutState';
 	import { AppRail, AppRailAnchor, AppRailTile, Avatar } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
-	import { courseMenuStates } from '../libs/state/store';
+	import { courseStates } from '../libs/state/courseStore';
 	let currentTile: number = 0;
 </script>
 
@@ -24,7 +24,7 @@
 		{/each}
 	</svelte:fragment>
 	<!-- --- -->
-	{#each $courseMenuStates as course, i (course.courseId)}
+	{#each $courseStates as course, i (course.courseId)}
 		<AppRailTile
 			class="flex p-1"
 			bind:group={currentTile}

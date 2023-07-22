@@ -20,18 +20,18 @@
 	</div>
 	<hr />
 	{#if data}
-		<div class="grid md:grid-cols-2 place-items-center">
+		<div class="grid md:grid-cols-2 gap-y-14 place-items-center">
 			<div class="flex flex-col gap-5">
 				<Chart config={data.assignments} />
 				<span class="chip variant-filled-primary">Assignments Progression</span>
 			</div>
 			<div class="flex flex-col gap-5">
 				<Chart config={data.doneAssignments} />
-				<span class="chip variant-filled-secondary">Work Progression</span>
+				<span class="chip variant-filled-secondary">Done Assignments Progression</span>
 			</div>
 			<div class="flex col-span-full flex-col gap-5">
 				<Chart size={{ width: 500, height: 400 }} config={data.diaryProgression} />
-				<span class="chip variant-filled-secondary">Work Progression</span>
+				<span class="chip variant-filled-secondary">Diary Assignments Progression</span>
 			</div>
 		</div>
 	{/if}

@@ -6,6 +6,7 @@ import type {
 	ChartTypeRegistry,
 	BubbleDataPoint
 } from 'chart.js';
+
 import type { PageServerLoad } from '../$types';
 
 type AssignmentDataVisualize = {
@@ -14,13 +15,18 @@ type AssignmentDataVisualize = {
 	diaryProgression: ChartConfiguration;
 };
 
+interface CustomPoints {
+	x: string | number;
+	y: number;
+}
+
 class AssignmentData implements ChartData {
 	constructor(
 		public datasets: ChartDataset<
 			keyof ChartTypeRegistry,
-			(number | [number, number] | Point | BubbleDataPoint | null)[]
+			(number | [number, number] | CustomPoints | BubbleDataPoint | null)[]
 		>[],
-		public labels: unknown[]
+		public labels?: unknown[] | undefined
 	) {}
 
 	toPOJO() {
@@ -70,20 +76,23 @@ export const load: PageServerLoad = async () => {
 		}
 	};
 
-	const doneAssignmentData = {
-		type: 'doughnut',
-		data: new AssignmentData(
-			[
-				{
-					label: 'Done Assignment Data Visualization',
-					data: [300, 50, 100],
-					backgroundColor: ['#7000e1', '#fc8800', '#00b0e8'],
-					// hoverOffset: 4,
-					borderWidth: 0
-				}
-			],
-			['Subject 1', 'Subject 2', 'Subject 3']
-		).toPOJO(),
+	const diaryAssignmentData = {
+		type: 'line',
+		data: new AssignmentData([
+			{
+				label: 'Diary Assignment Data Visualization',
+				data: [
+					{ x: '2016-12-25', y: 20 },
+					{ x: '2016-12-26', y: 10 },
+					{ x: '2016-12-26', y: 10 },
+					{ x: '2016-12-26', y: 10 },
+					{ x: '2016-12-26', y: 10 }
+				],
+				backgroundColor: ['#7000e1', '#fc8800', '#00b0e8'],
+				// hoverOffset: 4,
+				borderWidth: 2
+			}
+		]).toPOJO(),
 		options: {
 			borderRadius: '30',
 			responsive: true,
@@ -103,14 +112,14 @@ export const load: PageServerLoad = async () => {
 				},
 				title: {
 					display: true,
-					text: 'Done Assignment Data Visualization'
+					text: 'Diary Assignment Data Visualization'
 				}
 			}
 		}
 	};
 
-	const diaryAssignmentData = {
-		type: 'line',
+	const doneAssignmentData = {
+		type: 'doughnut',
 		data: new AssignmentData(
 			[
 				{
