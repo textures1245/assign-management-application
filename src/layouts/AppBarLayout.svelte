@@ -3,8 +3,6 @@
 	import { AppBar } from '@skeletonlabs/skeleton';
 	import { Workspace } from 'carbon-icons-svelte';
 	import { panelGroup } from './states/layoutState';
-	import NotificationPopup from '../components/slots/์NotificationPopup.svelte';
-	import MenuPopup from '../components/slots/MenuPopup.svelte';
 	import { popupFeatured } from '../components/slots/popupConfig';
 	let config = {
 		appName: 'Assign Management'
@@ -36,7 +34,7 @@
 				{/if}
 			{/each}
 		</svelte:fragment>
-		<NotificationPopup />
-		<MenuPopup />
+		<!-- <NotificationPopup />
+		<MenuPopup /> -->
 	</AppBar>
 </section>

@@ -13,7 +13,6 @@
 		padding: 'p-4',
 		rounded: 'rounded-xl'
 	};
-
 	openDrawerObs.subscribe((drawer) => {
 		if (drawer.open) {
 			drawerStore.open();

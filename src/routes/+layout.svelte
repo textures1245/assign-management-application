@@ -18,13 +18,24 @@
 		<AppBarLayout />
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
+		<SideRailLayout />
+	</svelte:fragment>
+	<svelte:fragment slot="sidebarRight">
 		<AppRailLayout />
 	</svelte:fragment>
-	<SideRailLayout />
+
+	<div class="flex place-content-center">
+		<div class="container my-10 primary-font">
+			<slot />
+		</div>
+	</div>
+
+	.
+
 	<!-- (sidebarRight) -->
 	<!-- (pageHeader) -->
+
 	<!-- Router Slot -->
-	<slot />
 	<!-- ---- / ---- -->
 	<!-- <svelte:fragment slot="pageFooter">Page Footer</svelte:fragment> -->
 	<!-- (footer) -->

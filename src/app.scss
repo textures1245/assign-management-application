@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
 
 @layer components {
 	html,
@@ -9,6 +10,10 @@
 	}
 
 	.expand-image-hover-animation {
-		@apply transition ease-in-out delay-100 hover:-translate-y-1 hover:rounded-md hover:scale-110 duration-300
+		@apply transition ease-in-out delay-100 hover:-translate-y-1 hover:rounded-md hover:scale-110 duration-300;
 	}
+}
+
+.primary-font {
+	font-family: 'Nanum Gothic', sans-serif;
 }
