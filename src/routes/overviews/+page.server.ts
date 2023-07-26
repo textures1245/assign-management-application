@@ -1,41 +1,6 @@
-import type {
-	Point,
-	ChartConfiguration,
-	ChartData,
-	ChartDataset,
-	ChartTypeRegistry,
-	BubbleDataPoint
-} from 'chart.js';
+import { AssignmentData, type AssignmentDataVisualize } from '../../libs/state/assignmentStore';
+import type { PageServerLoad } from './$types';
 
-import type { PageServerLoad } from '../$types';
-
-type AssignmentDataVisualize = {
-	assignments: ChartConfiguration;
-	doneAssignments: ChartConfiguration;
-	diaryProgression: ChartConfiguration;
-};
-
-interface CustomPoints {
-	x: string | number;
-	y: number;
-}
-
-class AssignmentData implements ChartData {
-	constructor(
-		public datasets: ChartDataset<
-			keyof ChartTypeRegistry,
-			(number | [number, number] | CustomPoints | BubbleDataPoint | null)[]
-		>[],
-		public labels?: unknown[] | undefined
-	) {}
-
-	toPOJO() {
-		return {
-			datasets: this.datasets,
-			labels: this.labels
-		};
-	}
-}
 export const load: PageServerLoad = async () => {
 	const assignmentData = {
 		type: 'doughnut',

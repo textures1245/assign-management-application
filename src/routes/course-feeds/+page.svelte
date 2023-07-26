@@ -1,15 +1,13 @@
 <script lang="ts">
 	import CourseCard from './../../components/CourseCard.svelte';
+	import { courseStates } from '../../libs/state/courseStore';
 	import type { PageData } from './$types';
-	import { Course } from '../../libs/state/courseStore';
-	import type { Writable } from 'svelte/store';
 
 	export let data: PageData;
-	let courses: Writable<Course[]>;
-	$: courses = data.courses;
 </script>
 
-{#each $courses as course (courses.courseId)}
-	<!-- content here -->
-	<CourseCard {course} />
-{/each}
+<div class="flex flex-wrap gap-6 justify-evenly">
+	{#each data.courses as course (course.courseId)}
+		<CourseCard {course} />
+	{/each}
+</div>

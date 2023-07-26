@@ -26,31 +26,46 @@ export type Route = {
 //-interface
 export interface ICourse {
 	courseId: string;
+	teacherId: string;
 	imgSrc: string;
 	label: string;
 	curd: {
-		created: Date;
-		updated: Date;
-		deleted: Date;
+		created: number | string;
+		updated: number | string;
+		deleted: number | string;
 	};
 	detail?: string;
 	group?: string[];
 }
 
-interface Assignment {
-	assignmentId: number;
+export interface IAssignment {
+	assignmentId: string;
+	teacherId: string;
+	courseId: string; // The ID of the course to which this assignment belongs
 	title: string;
 	description: string;
-	courseId: number; // The ID of the course to which this assignment belongs
-	deadline: Date;
-	priority: 'MOST' | 'DECENT' | 'LOW'[];
+	deadline: number;
+	priority: 'MOST' | 'DECENT' | 'LOW';
 	isCompleted: boolean;
 	curd: {
-		created: Date;
-		updated: Date;
-		deleted: Date;
+		created: number;
+		updated: number;
+		deleted: number;
 	};
 	fileAttached?: File | File[];
 	grade?: number; // Optional property for the assignment grade
 	submission?: string; // Optional property for the submission details
+}
+export interface ITeacher {
+	teacherId: string;
+	courseId: string;
+	name: string;
+	curd: {
+		created: number;
+		updated: number;
+		deleted: number;
+	};
+	imgAvatar?: string;
+	info?: string;
+	rank?: string;
 }

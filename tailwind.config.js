@@ -18,7 +18,11 @@ module.exports = {
 				'2xl': '6rem'
 			}
 		},
-		extend: {}
+		extend: {
+			typography: {
+				quoteless: {}
+			}
+		}
 	},
 	plugins: [
 		// 3. Append the Skeleton plugin to the end of this list
