@@ -52,7 +52,7 @@
 
 <!-- The canvas element -->
 <div class="flex place-self-center">
-	<div class="chart-container w-56 px-1">
+	<div class="chart-container m-2">
 		<canvas bind:this={chart} width={size.width} height={size.height} />
 	</div>
 </div>

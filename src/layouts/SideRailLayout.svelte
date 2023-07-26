@@ -24,7 +24,7 @@
 		{/each}
 	</svelte:fragment>
 	<!-- --- -->
-	{#each $courseStates as course, i (course.courseId)}
+	{#each courseStates as course, i (course.courseId)}
 		<AppRailTile
 			class="flex p-1"
 			bind:group={currentTile}

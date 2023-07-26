@@ -8,10 +8,22 @@ export class Teacher implements ITeacher {
 		public courseId: string,
 		public name: string,
 		public curd: { created: number; updated: number; deleted: number },
-		public imgAvatar?: string | undefined,
-		public info?: string | undefined,
-		public rank?: string | undefined
+		public imgAvatar?: string,
+		public info?: string,
+		public rank?: string
 	) {}
+
+	public toPOJO(): ITeacher {
+		return {
+			teacherId: this.teacherId,
+			courseId: this.courseId,
+			name: this.name,
+			curd: this.curd,
+			imgAvatar: this.imgAvatar,
+			info: this.info,
+			rank: this.rank
+		};
+	}
 }
 
 export const teacherStates = [

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import type { IAssignment } from '../types';
+import type { IAssignment, ICourse, ITeacher } from '../types';
 import type {
 	BubbleDataPoint,
 	ChartConfiguration,
@@ -9,11 +9,11 @@ import type {
 	Point
 } from 'chart.js';
 
-export type AssignmentWithChartData = IAssignment & {
+export type AssignmentProp = IAssignment & {
 	config: ChartConfiguration;
-} ;
-
-
+	teacher: ITeacher;
+	course: ICourse;
+};
 
 export class Assignment implements IAssignment {
 	constructor(
@@ -80,7 +80,7 @@ export class AssignmentData implements ChartData {
 		public labels?: unknown[] | undefined
 	) {}
 
-	toPOJO() {
+	toPOJO(): ChartData {
 		return {
 			datasets: this.datasets,
 			labels: this.labels

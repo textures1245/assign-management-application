@@ -1,4 +1,3 @@
-import { writable, type Writable } from 'svelte/store';
 import moment from 'moment';
 
 import type { ICourse } from '../types';
@@ -14,7 +13,7 @@ export class Course implements ICourse {
 		public group?: string[]
 	) {}
 
-	public getCourse(): ICourse {
+	public toPOJO(): ICourse {
 		return {
 			courseId: this.courseId,
 			teacherId: this.teacherId,
@@ -46,8 +45,8 @@ export class Course implements ICourse {
 		);
 	}
 }
-export const courseStates: Writable<Course[]> = writable([
+export const courseStates: Course[] = [
 	Course.createInstance('Subject 1', 'Subject Details'),
 	Course.createInstance('Course 1 ', 'Course Details 2'),
 	Course.createInstance('Course 2', 'Course Details 3')
-]);
+];

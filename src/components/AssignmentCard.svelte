@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
-	import type { AssignmentWithChartData } from '../libs/state/assignmentStore';
 	import type { Teacher } from '../libs/state/teacherStore';
 	import Chart from './Chart.svelte';
-	export let assignment: AssignmentWithChartData;
+	import type { AssignmentProp } from '../libs/state/assignmentStore';
+	export let assignment: AssignmentProp;
 
 	let tabSet: number = 0;
 </script>
@@ -22,7 +22,7 @@
 	<svelte:fragment slot="panel">
 		<div class="grid md:grid-cols-5 gap-y-6 lg:grid-cols-7">
 			<div class="md:col-span-2 flex place-content-center lg:grid-cols-2">
-				<Chart config={assignment.config} />
+				<Chart size={{ width: 218, height: 400 }} config={assignment.config} />
 			</div>
 			<div class="md:col-span-2 lg:grid-cols-2">
 				{#if tabSet === 0}

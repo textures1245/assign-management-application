@@ -69,3 +69,53 @@ export interface ITeacher {
 	info?: string;
 	rank?: string;
 }
+
+// Zod object for ICourse interface
+export const courseSchema = z.object({
+	courseId: z.string(),
+	teacherId: z.string(),
+	imgSrc: z.string(),
+	label: z.string(),
+	curd: z.object({
+		created: z.union([z.number(), z.string()]),
+		updated: z.union([z.number(), z.string()]),
+		deleted: z.union([z.number(), z.string()])
+	}),
+	detail: z.string().optional(),
+	group: z.array(z.string()).optional()
+});
+
+// Zod object for IAssignment interface
+export const assignmentSchema = z.object({
+	assignmentId: z.string(),
+	teacherId: z.string(),
+	courseId: z.string(),
+	title: z.string(),
+	description: z.string(),
+	deadline: z.number(),
+	priority: z.enum(['MOST', 'DECENT', 'LOW']),
+	isCompleted: z.boolean(),
+	curd: z.object({
+		created: z.number(),
+		updated: z.number(),
+		deleted: z.number()
+	}),
+	fileAttached: z.union([z.instanceof(File), z.array(z.instanceof(File))]).optional(),
+	grade: z.number().optional(),
+	submission: z.string().optional()
+});
+
+// Zod object for ITeacher interface
+export const teacherSchema = z.object({
+	teacherId: z.string(),
+	courseId: z.string(),
+	name: z.string(),
+	curd: z.object({
+		created: z.number(),
+		updated: z.number(),
+		deleted: z.number()
+	}),
+	imgAvatar: z.string().optional(),
+	info: z.string().optional(),
+	rank: z.string().optional()
+});
