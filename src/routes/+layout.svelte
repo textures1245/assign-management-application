@@ -22,8 +22,6 @@
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarRight">
 		<AppRailLayout />
-		<section class="invisible md:visible">
-		</section>
 	</svelte:fragment>
 
 	<div class="flex place-content-center">
@@ -32,7 +30,7 @@
 		</div>
 	</div>
 
-	.
+	
 
 	<!-- (sidebarRight) -->
 	<!-- (pageHeader) -->

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AssignmentCard from '../../components/AssignmentCard.svelte';
 	import type { PageData } from './$types';
-
+	
 	export let data: PageData;
 </script>
 

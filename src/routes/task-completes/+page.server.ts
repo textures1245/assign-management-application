@@ -4,8 +4,7 @@ import {
 	assignmentStates,
 	type AssignmentProp
 } from '../../libs/state/assignmentStore';
-import type { IAssignment } from '../../libs/types';
-import type { ChartConfiguration, ChartData } from 'chart.js';
+import type { ChartConfiguration } from 'chart.js';
 import { initialChartConfig } from '../../libs/functions/chart.util';
 import { Teacher, teacherStates } from '../../libs/state/teacherStore';
 import moment from 'moment';
@@ -18,7 +17,7 @@ export const load: PageServerLoad = async () => {
 				{
 					label: 'Assignment Data Visualization',
 					data: [300, 50],
-					backgroundColor: ['#F1C93B', '#1A5D1A'],
+					backgroundColor: ['#F1C93B', '#fff'],
 					hoverOffset: 4,
 					borderWidth: 0
 				}
@@ -34,7 +33,7 @@ export const load: PageServerLoad = async () => {
 			plugins: {
 				centerText: {
 					text: `${datasets.datasets[0].data[1]} Days left`, // You can change this to any desired text
-					color: '#000', // Text color
+					color: '#fff', // Text color
 					fontStyle: 'bold', // Font style (normal, italic, etc.)
 					backgroundColor: '#fff', // Background color
 					fontSize: 12, // Font size

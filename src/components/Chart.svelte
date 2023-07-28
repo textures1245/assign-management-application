@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Chart, {
 		type ChartConfiguration,
+		type ChartOptions,
 		type ChartTypeRegistry,
 		type Plugin
 	} from 'chart.js/auto';
@@ -21,12 +22,20 @@
 		width: 300,
 		height: 400
 	};
+	export let extraOpt: ChartOptions = {
+		responsive: true
+	};
+
+	const updatedConfig: ChartConfiguration = {
+		...config,
+		options: { ...config.options, ...extraOpt }
+	};
 
 	onMount(() => {
 		const ctx = chart.getContext('2d');
 
 		// Initialize chart using default config set
-		var myChart = new Chart(ctx!, config);
+		var myChart = new Chart(ctx!, updatedConfig);
 		const centerTextPlugin: Plugin<keyof ChartTypeRegistry, unknown[]> = {
 			id: 'centerText',
 			afterDraw: (chart, args, options) => {
@@ -54,7 +63,7 @@
 <!-- The canvas element -->
 <div class="flex place-self-center">
 	<div class="chart-container">
-		<canvas width="{size.width}" bind:this={chart} />
+		<canvas width={size.width} bind:this={chart} />
 	</div>
 </div>
 
