@@ -8,7 +8,7 @@
 	let currentTile: number = 0;
 </script>
 
-<AppRail active={''} class="text-surface-100" background="bg-surface-900">
+<AppRail active={''} class="text-surface-100 hidden md:block" background="bg-surface-900">
 	<!-- --- -->
 	{#each $appRoutes as route, i}
 		<AppRailTile

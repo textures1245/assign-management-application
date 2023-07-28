@@ -21,6 +21,7 @@
 		width: 300,
 		height: 400
 	};
+
 	onMount(() => {
 		const ctx = chart.getContext('2d');
 
@@ -52,8 +53,8 @@
 
 <!-- The canvas element -->
 <div class="flex place-self-center">
-	<div class="chart-container m-2">
-		<canvas bind:this={chart} width={size.width} height={size.height} />
+	<div class="chart-container">
+		<canvas width="{size.width}" bind:this={chart} />
 	</div>
 </div>
 

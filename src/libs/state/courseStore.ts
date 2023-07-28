@@ -6,6 +6,7 @@ export class Course implements ICourse {
 	constructor(
 		public courseId: string,
 		public teacherId: string,
+		public courseCode: string,
 		public imgSrc: string,
 		public label: string,
 		public curd: { created: number | string; updated: number | string; deleted: number | string },
@@ -16,6 +17,7 @@ export class Course implements ICourse {
 	public toPOJO(): ICourse {
 		return {
 			courseId: this.courseId,
+			courseCode: this.courseCode,
 			teacherId: this.teacherId,
 			imgSrc: this.imgSrc,
 			label: this.label,
@@ -26,7 +28,9 @@ export class Course implements ICourse {
 	}
 
 	public static createInstance(label: string, detail?: string, imgSrc?: string): Course {
-		const [genCourseId, genTeacherId] = crypto.randomUUID();
+		const genCourseId = crypto.randomUUID();
+		const genTeacherId = crypto.randomUUID();
+		const genCourseCode = crypto.randomUUID();
 		const imageSrc = imgSrc
 			? imgSrc
 			: 'https://myviewboard.com/blog/wp-content/uploads/2020/08/MP0027-01-scaled.jpg';
@@ -34,6 +38,7 @@ export class Course implements ICourse {
 		return new Course(
 			genCourseId,
 			genTeacherId,
+			genCourseCode,
 			imageSrc,
 			label,
 			{

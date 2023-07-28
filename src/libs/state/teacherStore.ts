@@ -1,4 +1,3 @@
-import { writable } from 'svelte/store';
 import type { ITeacher } from '../types';
 import moment from 'moment';
 
@@ -31,5 +30,5 @@ export const teacherStates = [
 		created: moment().valueOf(),
 		updated: moment().valueOf(),
 		deleted: moment().valueOf()
-	})
+	}, 'https://www.jamsadr.com/images/neutrals/person-donald-900x1080.jpg')
 ];

@@ -28,6 +28,7 @@
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.10.1",
 		"svelte": "^4.0.0",
+		"svelte-calendar": "^3.1.6",
 		"svelte-check": "^3.4.3",
 		"tailwindcss": "^3.3.2",
 		"tslib": "^2.4.1",
@@ -41,10 +42,12 @@
 		"@kurkle/color": "^0.3.2",
 		"chart.js": "^4.3.0",
 		"chartjs-adapter-luxon": "^1.3.1",
+		"dayjs": "^1.11.9",
 		"luxon": "^3.3.0",
 		"moment": "^2.29.4",
 		"sass": "^1.63.6",
 		"scss": "^0.2.4",
+		"svelte-calendar-resurrected": "1.0.0-alpha.2",
 		"zod": "^3.21.4"
 	},
 	"peerDependencies": {

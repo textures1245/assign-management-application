@@ -26,6 +26,7 @@ export type Route = {
 //-interface
 export interface ICourse {
 	courseId: string;
+	courseCode: string;
 	teacherId: string;
 	imgSrc: string;
 	label: string;

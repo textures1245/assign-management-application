@@ -7,8 +7,8 @@
 </script>
 
 <section class="flex flex-col gap-10">
-	<div id="heading" class="flex justify-between items-center">
-		<article class="prose prose-neutral">
+	<div id="heading" class="flex flex-col md:flex-row justify-between gap-10  items-center">
+		<article class="prose prose-sm md:prose-md prose-neutral ">
 			<h1>Welcome Back, Phakh</h1>
 			<blockquote class="">Last Online: 21/5/2022</blockquote>
 		</article>

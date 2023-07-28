@@ -56,22 +56,29 @@ export const load: PageServerLoad = async () => {
 
 		// it should take from database but now we just find on our local state
 		const teacherData =
-			teacherStates.find((t) => (t.teacherId === assign.teacherId ? t.toPOJO() : null)) ??
-			new Teacher('0', '0', 'Teacher 1', {
-				created: moment().valueOf(),
-				updated: moment().valueOf(),
-				deleted: moment().valueOf()
-			}).toPOJO();
+			teacherStates.find((t) => t.teacherId === assign.teacherId) ??
+			new Teacher(
+				'0',
+				'0',
+				'Teacher 1',
+				{
+					created: moment().valueOf(),
+					updated: moment().valueOf(),
+					deleted: moment().valueOf()
+				},
+				'https://www.jamsadr.com/images/neutrals/person-donald-900x1080.jpg'
+			);
+
 		// it should take from database but now we just find on our local state
 		const courseData =
-			courseStates.find((c) => (c.courseId === assign.courseId ? c.toPOJO() : null)) ??
-			Course.createInstance('Subject dummy', 'Subject Details').toPOJO();
+			courseStates.find((c) => c.courseId === assign.courseId) ??
+			Course.createInstance('Subject dummy', 'Subject Details');
 
 		return {
 			...assign,
 			config: config as ChartConfiguration,
-			teacher: teacherData,
-			course: courseData
+			teacher: teacherData.toPOJO(),
+			course: courseData.toPOJO()
 		};
 	});
 

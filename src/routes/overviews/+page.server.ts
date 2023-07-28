@@ -1,3 +1,4 @@
+import { TemperatureMax } from 'carbon-icons-svelte';
 import { AssignmentData, type AssignmentDataVisualize } from '../../libs/state/assignmentStore';
 import type { PageServerLoad } from './$types';
 
@@ -19,6 +20,7 @@ export const load: PageServerLoad = async () => {
 		options: {
 			borderRadius: '30',
 			responsive: true,
+			maintainAspectRatio: true,
 			cutout: '95%',
 			spacing: 2,
 			plugins: {
@@ -62,7 +64,9 @@ export const load: PageServerLoad = async () => {
 			borderRadius: '30',
 			responsive: true,
 			cutout: '95%',
-			spacing: 2,
+			aspectRatio: 2,
+
+			spacing: 1,
 			plugins: {
 				legend: {
 					position: 'bottom',
