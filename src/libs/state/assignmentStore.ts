@@ -1,5 +1,5 @@
 import moment from 'moment';
-import type { IAssignment, ICourse, ITeacher } from '../types';
+import type { IAssignment } from '../types';
 import type {
 	BubbleDataPoint,
 	ChartConfiguration,
@@ -8,11 +8,11 @@ import type {
 	ChartTypeRegistry,
 	Point
 } from 'chart.js';
+import type { ITeacher } from '../types';
 
 export type AssignmentProp = IAssignment & {
 	config: ChartConfiguration;
 	teacher: ITeacher;
-	course: ICourse;
 };
 
 export class Assignment implements IAssignment {
@@ -27,8 +27,8 @@ export class Assignment implements IAssignment {
 		public isCompleted: boolean,
 		public curd: { created: number; updated: number; deleted: number },
 		public fileAttached?: File | File[] | undefined,
-		public grade?: number | undefined,
-		public submission?: string | undefined
+		public score?: number | undefined,
+		public submissionDetail?: string | undefined
 	) {}
 
 	toPOJO(): IAssignment {
@@ -44,8 +44,8 @@ export class Assignment implements IAssignment {
 			isCompleted: this.isCompleted,
 			curd: this.curd,
 			fileAttached: this.fileAttached,
-			grade: this.grade,
-			submission: this.submission
+			score: this.score,
+			submissionDetail: this.submissionDetail
 		};
 	}
 }
@@ -80,7 +80,7 @@ export class AssignmentData implements ChartData {
 		public labels?: unknown[] | undefined
 	) {}
 
-	toPOJO(): ChartData {
+	toPOJO() {
 		return {
 			datasets: this.datasets,
 			labels: this.labels

@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model AccountUser {
+  id            String         @id @default(uuid())
+  username      String
+  email         String         @unique
+  password      String
+  courses       Course[] // Relationship with Course model
+  teachers      Teacher[] // Relationship with Teacher model
+  notifications Notification[] // Relationship with Notification model
+  enrollments   Enrollment[] // Relationship with Enrollment model
+  created       Int
+  updated       Int
+  deleted       Int
+}
+
+model Course {
+  id            String       @id @default(uuid())
+  courseCode    String
+  teacherId     String       @unique
+  imgSrc        String
+  label         String
+  detail        String?
+  group         String[]
+  teacher       Teacher      @relation(fields: [teacherId], references: [id])
+  assignments   Assignment[] // One-to-many relationship with Assignment model
+  accountUser   AccountUser? @relation(fields: [accountUserId], references: [id])
+  accountUserId String
+  enrollments   Enrollment[]
+  created       Int
+  updated       Int
+  deleted       Int
+}
+
+model Assignment {
+  id               String   @id @default(uuid())
+  teacherId        String
+  courseId         String
+  title            String
+  description      String
+  deadline         Int
+  priority         String
+  isCompleted      Boolean
+  fileAttached     String[]
+  score            Int?
+  submissionDetail String?
+  course           Course   @relation(fields: [courseId], references: [id])
+  created          Int
+  updated          Int
+  deleted          Int
+}
+
+model Teacher {
+  id            String       @id @default(uuid())
+  courseId      String
+  name          String
+  imgAvatar     String?
+  info          String?      @default("NONE")
+  rank          String?      @default("NONE")
+  accountUser   AccountUser? @relation(fields: [accountUserId], references: [id])
+  accountUserId String
+  courses       Course[] // One-to-many relationship with Course model
+  created       Int
+  updated       Int
+  deleted       Int
+}
+
+model Enrollment {
+  id             String      @id @default(uuid())
+  userId         String
+  courseId       String
+  enrollmentDate Int
+  user           AccountUser @relation(fields: [userId], references: [id])
+  course         Course      @relation(fields: [courseId], references: [id])
+  created        Int
+  updated        Int
+  deleted        Int
+}
+
+model Notification {
+  id        String      @id @default(uuid())
+  userId    String
+  message   String
+  timestamp Int
+  isRead    Boolean
+  user      AccountUser @relation(fields: [userId], references: [id])
+}

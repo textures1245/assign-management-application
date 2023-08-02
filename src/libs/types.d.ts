@@ -24,6 +24,17 @@ export type Route = {
 };
 
 //-interface
+export interface IAccountUser {
+	userId: string; // Unique identifier for the user
+	username: string; // User's username
+	email: string; // User's email address
+	password: string; // User's hashed password (for simplicity, use hashed passwords in production)
+	created: number;
+}
+export interface IWebpageConfig {
+	configId: string;
+}
+
 export interface ICourse {
 	courseId: string;
 	courseCode: string;
@@ -54,8 +65,8 @@ export interface IAssignment {
 		deleted: number;
 	};
 	fileAttached?: File | File[];
-	grade?: number; // Optional property for the assignment grade
-	submission?: string; // Optional property for the submission details
+	score?: number; // Optional property for the assignment grade
+	submissionDetail?: string; // Optional property for the submission details
 }
 export interface ITeacher {
 	teacherId: string;
@@ -70,6 +81,31 @@ export interface ITeacher {
 	info?: string;
 	rank?: string;
 }
+
+export interface IEnrollment {
+	enrollmentId: string; // Unique identifier for the enrollment
+	userId: string; // ID of the student who is enrolled
+	courseId: string; // ID of the course in which the student is enrolled
+	enrollmentDate: number; // Timestamp indicating when the student was enrolled
+}
+
+export interface INotification {
+	notificationId: string; // Unique identifier for the notification
+	userId: string; // ID of the user who receives the notification
+	message: string; // The content of the notification message
+	timestamp: number; // Timestamp indicating when the notification was created
+	isRead: boolean; // Flag to indicate whether the user has read the notification
+}
+
+const AccountUserSchema = z.object({
+	userId: z.string().nonempty(), // Unique identifier for the user
+	username: z.string().nonempty(), // User's username
+	email: z.string().email(), // User's email address
+	password: z.string(), // User's hashed password
+	created: z.number() // Timestamp representing when the user was created
+});
+
+export type AccountUser = z.infer<typeof AccountUserSchema>;
 
 // Zod object for ICourse interface
 export const courseSchema = z.object({

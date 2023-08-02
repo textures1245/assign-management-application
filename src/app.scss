@@ -13,6 +13,22 @@
 	.expand-image-hover-animation {
 		@apply transition ease-in-out delay-100 hover:-translate-y-1 hover:rounded-md hover:scale-110 duration-300;
 	}
+
+	.gradient-text {
+		@apply bg-clip-text font-bold text-transparent box-decoration-clone;
+		/* Direction */
+		@apply bg-gradient-to-br;
+		/* Color Stops */
+		@apply from-primary-700 via-tertiary-500 to-secondary-600;
+	}
+
+	.gradient-bg {
+		@apply bg-clip-text bg-transparent box-decoration-clone;
+		/* Direction */
+		@apply bg-gradient-to-br;
+
+		@apply from-primary-500 via-tertiary-500 to-secondary-500;
+	}
 }
 
 /* Overwrite the default to keep the scrollbar always visible */

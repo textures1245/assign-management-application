@@ -22,7 +22,7 @@
 </script>
 
 <TabGroup
-	class="primary-thai-font bg-secondary-600 text-white shadow-lg   border-r-8 border-b-8 border-secondary-800  p-4  rounded-xl"
+	class="primary-thai-font bg-surface-500 text-white shadow-surface-lg   border-r-8 border-b-8 border-surface-900  p-4  rounded-xl"
 >
 	<Tab bind:group={tabSet} active="bg-secondary-800" name="tab1" value={0}>
 		<svelte:fragment slot="lead" />

@@ -9,18 +9,27 @@ import {
 	TaskComplete,
 	Home,
 	TaskSettings,
-	Notification
+	Notification,
+	OpenPanelLeft
 } from 'carbon-icons-svelte';
 export const openDrawerObs = writable({ open: false, drawerId: '' });
 
 export const panelGroup: Readable<Route[]> = readable([
 	{
 		carbonIcon: {
+			icon: OpenPanelLeft,
+			size: 24
+		},
+		label: 'SideRail',
+		name: 'side-rail-opener'
+	},
+	{
+		carbonIcon: {
 			icon: Menu,
 			size: 24
 		},
 		label: 'Menu',
-		name: 'menu-panel',
+		name: 'menu-panel'
 	},
 	{
 		carbonIcon: {
@@ -28,7 +37,7 @@ export const panelGroup: Readable<Route[]> = readable([
 			size: 24
 		},
 		label: 'Notification',
-		name: 'notification-panel',
+		name: 'notification-panel'
 	},
 	{
 		carbonIcon: {
