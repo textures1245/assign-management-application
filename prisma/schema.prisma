@@ -9,8 +9,8 @@ datasource db {
 }
 
 model AccountUser {
-  id            String         @id @default(uuid())
-  username      String
+  id            String         @id @unique @default(uuid())
+  name      String
   email         String         @unique
   password      String
   courses       Course[] // Relationship with Course model
@@ -20,6 +20,32 @@ model AccountUser {
   created       Int
   updated       Int
   deleted       Int
+  Session       Session[]
+  Key           Key[]
+
+  @@map("accountUser")
+}
+
+model Session {
+  id            String      @id @unique
+  acountUserId  String
+  activeExpires BigInt
+  idleExpires   BigInt
+  acountUser    AccountUser @relation(references: [id], fields: [acountUserId], onDelete: Cascade)
+
+  @@index([acountUserId])
+  @@map("session")
+}
+
+model Key {
+  id            String      @id @unique
+  hashedPasword String?
+  acountUserId  String
+  primary       Boolean
+  acountUser    AccountUser @relation(references: [id], fields: [acountUserId], onDelete: Cascade)
+
+  @@index([acountUserId])
+  @@map("key")
 }
 
 model Course {
@@ -38,6 +64,8 @@ model Course {
   created       Int
   updated       Int
   deleted       Int
+
+  @@map("course")
 }
 
 model Assignment {
@@ -56,6 +84,8 @@ model Assignment {
   created          Int
   updated          Int
   deleted          Int
+
+  @@map("assignment")
 }
 
 model Teacher {
