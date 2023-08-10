@@ -13,7 +13,7 @@ dependencies:
     version: 0.3.2
   '@lucia-auth/adapter-prisma':
     specifier: ^3.0.0
-    version: 3.0.0(@prisma/client@5.0.0)(lucia@2.0.0)
+    version: 3.0.0(@prisma/client@5.0.0)(lucia@2.2.0)
   '@lucia-auth/sveltekit':
     specifier: ^0.6.11
     version: 0.6.11(lucia-auth@1.8.0)(svelte@4.0.1)
@@ -438,14 +438,14 @@ packages:
     resolution: {integrity: sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==}
     dev: false
 
-  /@lucia-auth/adapter-prisma@3.0.0(@prisma/client@5.0.0)(lucia@2.0.0):
+  /@lucia-auth/adapter-prisma@3.0.0(@prisma/client@5.0.0)(lucia@2.2.0):
     resolution: {integrity: sha512-qrFA5IID4AulINQbLQLQPIXqE9+M3zjmN558VDhrS3Y7Fdn5dyObPbHijUWw7lGYgOrhxDox9UUG8oyZ3+D1MA==}
     peerDependencies:
       '@prisma/client': ^4.2.0 || ^5.0.0
       lucia: ^2.0.0
     dependencies:
       '@prisma/client': 5.0.0(prisma@5.0.0)
-      lucia: 2.0.0
+      lucia: 2.2.0
     dev: false
 
   /@lucia-auth/sveltekit@0.6.11(lucia-auth@1.8.0)(svelte@4.0.1):
@@ -1728,8 +1728,8 @@ packages:
     resolution: {integrity: sha512-zI8gT2AOpxTPIxYzToEdgoht+GOflrduZiHPsOEmg4/2pThOyCW3o3lXh+Uwh20tJ9QoXwQe9/Omn6PlUG6efw==}
     dev: false
 
-  /lucia@2.0.0:
-    resolution: {integrity: sha512-WRBMoZIgTHH6y2bAEHZWgWcMH6tDsQ+wf45juUgmn3ycjipn/e6OGpWki4XSjEuRm50WXghH+2EF9LCjCHUsUw==}
+  /lucia@2.2.0:
+    resolution: {integrity: sha512-bCKSbWGpUQl+YbWaIy4t9eqqZQwKa5XKTBMTAjhAWwg9rEgPWu6L7vH55SueRsvB+2XNa2NA71ASdBUyS2fwLA==}
     dev: false
 
   /luxon@3.3.0:

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { TabGroup, Tab, TabAnchor, Avatar } from '@skeletonlabs/skeleton';
-	import Datepicker from 'svelte-calendar-resurrected';
+	import * as Datepicker from 'svelte-calendar-resurrected';
 	import Chart from './Chart.svelte';
 	import type { AssignmentProp } from '../libs/state/assignmentStore';
 	import dayjs from 'dayjs';
@@ -22,7 +22,7 @@
 </script>
 
 <TabGroup
-	class="primary-thai-font bg-surface-500 text-white shadow-surface-lg   border-r-8 border-b-8 border-surface-900  p-4  rounded-xl"
+	class="primary-thai-font bg-secondary-600 text-white shadow-lg   border-r-8 border-b-8 border-secondary-800  p-4  rounded-xl"
 >
 	<Tab bind:group={tabSet} active="bg-secondary-800" name="tab1" value={0}>
 		<svelte:fragment slot="lead" />
@@ -55,7 +55,7 @@
 								</blockquote>
 								<blockquote class="!text-surface-50">
 									{prefixConfig.overview.courseCode}
-									{assignment.course.courseCode}
+									{assignment.courseId}
 								</blockquote>
 							</div>
 							<blockquote class="!text-surface-50">
@@ -90,22 +90,6 @@
 							>
 						</div>
 						<div class="!text-xs shadow-xl border-4 rounded-lg">
-							<!-- <Datepicker
-								style="font-size: 6px;"
-								alwaysOpen
-								format={dateFormat}
-								buttonBackgroundColor="#e20074"
-								buttonTextColor="white"
-								highlightColor="#e20074"
-								dayBackgroundColor="#374b5e"
-								dayTextColor="#fff"
-								dayBorderColor="#5f75ce"
-								dayHighlightedBackgroundColor="#d93856"
-								dayHighlightedTextColor="#fff"
-								backgroundColor="#2a3048"
-								textColor="#fff"
-							/> -->
-
 							<Datepicker
 								end={new Date(assignment.deadline)}
 								style="border-radius: 10rem; font-size: 2px !important;"

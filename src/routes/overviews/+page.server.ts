@@ -1,4 +1,3 @@
-import { TemperatureMax } from 'carbon-icons-svelte';
 import { AssignmentData, type AssignmentDataVisualize } from '../../libs/state/assignmentStore';
 import type { PageServerLoad } from './$types';
 
