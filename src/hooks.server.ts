@@ -16,6 +16,9 @@ export const handle = async ({ event, resolve }) => {
 					id: true,
 					name: true,
 					courses: true,
+					teachers: true,
+					assignments: true,
+					enrollments: true,
 					email: true
 				}
 			});

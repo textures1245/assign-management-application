@@ -9,7 +9,8 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
-	var __prisma: PrismaClient;
+	// eslint-disable-next-line no-var
+	var _prisma: PrismaClient;
 
 	/// <reference types="lucia-auth" />
 	declare namespace Lucia {
