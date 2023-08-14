@@ -1,12 +1,11 @@
 -- CreateTable
 CREATE TABLE "AccountUser" (
     "id" TEXT NOT NULL,
-    "username" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "created" INTEGER NOT NULL,
-    "updated" INTEGER NOT NULL,
-    "deleted" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "AccountUser_pkey" PRIMARY KEY ("id")
 );
@@ -21,9 +20,8 @@ CREATE TABLE "Course" (
     "detail" TEXT,
     "group" TEXT[],
     "accountUserId" TEXT NOT NULL,
-    "created" INTEGER NOT NULL,
-    "updated" INTEGER NOT NULL,
-    "deleted" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Course_pkey" PRIMARY KEY ("id")
 );
@@ -41,9 +39,9 @@ CREATE TABLE "Assignment" (
     "fileAttached" TEXT[],
     "score" INTEGER,
     "submissionDetail" TEXT,
-    "created" INTEGER NOT NULL,
-    "updated" INTEGER NOT NULL,
-    "deleted" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "accountUserId" TEXT,
 
     CONSTRAINT "Assignment_pkey" PRIMARY KEY ("id")
 );
@@ -57,9 +55,8 @@ CREATE TABLE "Teacher" (
     "info" TEXT DEFAULT 'NONE',
     "rank" TEXT DEFAULT 'NONE',
     "accountUserId" TEXT NOT NULL,
-    "created" INTEGER NOT NULL,
-    "updated" INTEGER NOT NULL,
-    "deleted" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Teacher_pkey" PRIMARY KEY ("id")
 );
@@ -70,9 +67,8 @@ CREATE TABLE "Enrollment" (
     "userId" TEXT NOT NULL,
     "courseId" TEXT NOT NULL,
     "enrollmentDate" INTEGER NOT NULL,
-    "created" INTEGER NOT NULL,
-    "updated" INTEGER NOT NULL,
-    "deleted" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Enrollment_pkey" PRIMARY KEY ("id")
 );
@@ -89,6 +85,9 @@ CREATE TABLE "Notification" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "AccountUser_id_key" ON "AccountUser"("id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "AccountUser_email_key" ON "AccountUser"("email");
 
 -- CreateIndex
@@ -102,6 +101,9 @@ ALTER TABLE "Course" ADD CONSTRAINT "Course_accountUserId_fkey" FOREIGN KEY ("ac
 
 -- AddForeignKey
 ALTER TABLE "Assignment" ADD CONSTRAINT "Assignment_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Assignment" ADD CONSTRAINT "Assignment_accountUserId_fkey" FOREIGN KEY ("accountUserId") REFERENCES "AccountUser"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Teacher" ADD CONSTRAINT "Teacher_accountUserId_fkey" FOREIGN KEY ("accountUserId") REFERENCES "AccountUser"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

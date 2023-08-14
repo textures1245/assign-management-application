@@ -3,49 +3,23 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 model AccountUser {
   id            String         @id @unique @default(uuid())
-  name      String
+  name          String
   email         String         @unique
   password      String
   courses       Course[] // Relationship with Course model
   teachers      Teacher[] // Relationship with Teacher model
   notifications Notification[] // Relationship with Notification model
+  assignments   Assignment[]
   enrollments   Enrollment[] // Relationship with Enrollment model
-  created       Int
-  updated       Int
-  deleted       Int
-  Session       Session[]
-  Key           Key[]
-
-  @@map("accountUser")
-}
-
-model Session {
-  id            String      @id @unique
-  acountUserId  String
-  activeExpires BigInt
-  idleExpires   BigInt
-  acountUser    AccountUser @relation(references: [id], fields: [acountUserId], onDelete: Cascade)
-
-  @@index([acountUserId])
-  @@map("session")
-}
-
-model Key {
-  id            String      @id @unique
-  hashedPasword String?
-  acountUserId  String
-  primary       Boolean
-  acountUser    AccountUser @relation(references: [id], fields: [acountUserId], onDelete: Cascade)
-
-  @@index([acountUserId])
-  @@map("key")
+  created       DateTime       @default(now())
+  updated       DateTime       @updatedAt
 }
 
 model Course {
@@ -61,15 +35,12 @@ model Course {
   accountUser   AccountUser? @relation(fields: [accountUserId], references: [id])
   accountUserId String
   enrollments   Enrollment[]
-  created       Int
-  updated       Int
-  deleted       Int
-
-  @@map("course")
+  created       DateTime     @default(now())
+  updated       DateTime     @updatedAt
 }
 
 model Assignment {
-  id               String   @id @default(uuid())
+  id               String       @id @default(uuid())
   teacherId        String
   courseId         String
   title            String
@@ -80,12 +51,11 @@ model Assignment {
   fileAttached     String[]
   score            Int?
   submissionDetail String?
-  course           Course   @relation(fields: [courseId], references: [id])
-  created          Int
-  updated          Int
-  deleted          Int
-
-  @@map("assignment")
+  course           Course       @relation(fields: [courseId], references: [id])
+  created          DateTime     @default(now())
+  updated          DateTime     @updatedAt
+  AccountUser      AccountUser? @relation(fields: [accountUserId], references: [id])
+  accountUserId    String?
 }
 
 model Teacher {
@@ -98,9 +68,8 @@ model Teacher {
   accountUser   AccountUser? @relation(fields: [accountUserId], references: [id])
   accountUserId String
   courses       Course[] // One-to-many relationship with Course model
-  created       Int
-  updated       Int
-  deleted       Int
+  created       DateTime     @default(now())
+  updated       DateTime     @updatedAt
 }
 
 model Enrollment {
@@ -110,9 +79,8 @@ model Enrollment {
   enrollmentDate Int
   user           AccountUser @relation(fields: [userId], references: [id])
   course         Course      @relation(fields: [courseId], references: [id])
-  created        Int
-  updated        Int
-  deleted        Int
+  created        DateTime    @default(now())
+  updated        DateTime    @updatedAt
 }
 
 model Notification {

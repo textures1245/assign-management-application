@@ -1,8 +1,14 @@
 import { TemperatureMax } from 'carbon-icons-svelte';
 import { AssignmentData, type AssignmentDataVisualize } from '../../libs/state/assignmentStore';
 import type { PageServerLoad } from './$types';
+import { fail, redirect } from '@sveltejs/kit';
+import type { AccountUserProp } from '../../libs/state/accountUser';
+import type { IAccountUser } from '../../libs/types';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ locals }) => {
+	const userData: AccountUserProp = locals.userData;
+	if (!userData) throw fail(401, { message: 'Unauthorized' });
+
 	const assignmentData = {
 		type: 'doughnut',
 		data: new AssignmentData(
@@ -126,9 +132,12 @@ export const load: PageServerLoad = async () => {
 		}
 	};
 
-	return <AssignmentDataVisualize>{
-		assignments: assignmentData,
-		doneAssignments: doneAssignmentData,
-		diaryProgression: diaryAssignmentData
+	return {
+		user: <IAccountUser>{ ...userData },
+		dataset: <AssignmentDataVisualize>{
+			assignments: assignmentData,
+			doneAssignments: doneAssignmentData,
+			diaryProgression: diaryAssignmentData
+		}
 	};
 };

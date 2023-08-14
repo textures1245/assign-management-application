@@ -1,25 +1,19 @@
 import type { PrismaClient } from '@prisma/client';
+import type { AccountUserPayload } from './libs/types';
 
 declare global {
 	namespace App {
 		// interface Error {}
-		interface Locals {
-			auth: import('lucia-auth').AuthRequest;
-		}
 		// interface PageData {}
+		interface Locals {
+			userData: AccountUserPayload;
+		}
 		// interface Platform {}
 	}
 	// eslint-disable-next-line no-var
 	var _prisma: PrismaClient;
 
 	/// <reference types="lucia-auth" />
-	declare namespace Lucia {
-		type Auth = import('$lib/server/lucia').Auth;
-		type UserAttributes = {
-			email: string;
-			name: string;
-		};
-	}
 }
 
 export {};

@@ -7,9 +7,9 @@
 </script>
 
 <section class="flex flex-col gap-10">
-	<div id="heading" class="flex flex-col md:flex-row justify-between gap-10  items-center">
-		<article class="prose prose-sm md:prose-md prose-neutral ">
-			<h1>Welcome Back, Phakh</h1>
+	<div id="heading" class="flex flex-col md:flex-row justify-between gap-10 items-center">
+		<article class="prose prose-sm md:prose-md prose-neutral">
+			<h1>Welcome Back, {data.user?.name}</h1>
 			<blockquote class="">Last Online: 21/5/2022</blockquote>
 		</article>
 		<Avatar
@@ -19,18 +19,18 @@
 		/>
 	</div>
 	<hr />
-	{#if data}
+	{#if data.dataset}
 		<div class="grid md:grid-cols-2 gap-y-14 place-items-center">
 			<div class="flex flex-col gap-5">
-				<Chart config={data.assignments} />
+				<Chart config={data.dataset.assignments} />
 				<span class="chip variant-filled-primary">Assignments Progression</span>
 			</div>
 			<div class="flex flex-col gap-5">
-				<Chart config={data.doneAssignments} />
+				<Chart config={data.dataset.doneAssignments} />
 				<span class="chip variant-filled-secondary">Done Assignments Progression</span>
 			</div>
 			<div class="flex col-span-full flex-col gap-5">
-				<Chart size={{ width: 500, height: 400 }} config={data.diaryProgression} />
+				<Chart size={{ width: 500, height: 400 }} config={data.dataset.diaryProgression} />
 				<span class="chip variant-filled-secondary">Diary Assignments Progression</span>
 			</div>
 		</div>

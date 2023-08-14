@@ -1,4 +1,5 @@
 import type { CarbonIcon } from 'carbon-icons-svelte';
+import type { Prisma } from 'prisma';
 import * as z from 'zod';
 
 export const RouteAppSchema = z.object({
@@ -25,11 +26,12 @@ export type Route = {
 
 //-interface
 export interface IAccountUser {
-	userId: string; // Unique identifier for the user
+	name: string;
+	id: string; // Unique identifier for the user
 	username: string; // User's username
 	email: string; // User's email address
-	password: string; // User's hashed password (for simplicity, use hashed passwords in production)
 	created: number;
+	updated: number;
 }
 export interface IWebpageConfig {
 	configId: string;
@@ -96,6 +98,18 @@ export interface INotification {
 	timestamp: number; // Timestamp indicating when the notification was created
 	isRead: boolean; // Flag to indicate whether the user has read the notification
 }
+
+export type AccountUserPayload = Prisma.AccountUserGetPayload<{
+	include: {
+		id: true;
+		name: true;
+		courses: true;
+		teachers: true;
+		assignments: true;
+		enrollments: true;
+		email: true;
+	};
+}>;
 
 const AccountUserSchema = z.object({
 	userId: z.string().nonempty(), // Unique identifier for the user

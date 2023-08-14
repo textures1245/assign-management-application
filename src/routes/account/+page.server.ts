@@ -5,15 +5,7 @@ import { Prisma } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import { HASH_KEY, JWT_ACCESS_SECRET } from '$env/static/private';
 import jwt from 'jsonwebtoken';
-
-export const load: PageServerLoad = async ({ locals }) => {
-	const user = locals.user;
-
-	if (!user) {
-		return redirect(304, 'account');
-	}
-	return { user };
-};
+import { prisma } from '../../libs/servers/prisma';
 
 export const actions: Actions = {
 	signIn: async ({ request, cookies }) => {
@@ -23,7 +15,7 @@ export const actions: Actions = {
 		};
 
 		try {
-			const user = await _prisma.accountUser.findUnique({
+			const user = await prisma.accountUser.findUnique({
 				where: {
 					email
 				}
@@ -31,7 +23,9 @@ export const actions: Actions = {
 
 			if (user) {
 				const valid = await bcrypt.compare(password, user?.password);
-				const token = jwt.sign(user, JWT_ACCESS_SECRET, { expiresIn: `${15 * 60 * 1000}` });
+				const token = jwt.sign(user, JWT_ACCESS_SECRET, {
+					expiresIn: '1d'
+				});
 
 				if (!valid) {
 					return fail(400, { message: 'Invalid password' });
@@ -47,11 +41,11 @@ export const actions: Actions = {
 			}
 
 			//- set token
-			throw redirect(302, '/overviews');
 		} catch (err) {
 			console.error(err);
 			return fail(400, { message: 'Could not login user.' });
 		}
+		throw redirect(302, '/overviews');
 	},
 
 	signUp: async ({ request, cookies }) => {
@@ -61,15 +55,23 @@ export const actions: Actions = {
 			password: string;
 		};
 
+		console.log(HASH_KEY);
 		try {
-			const user = await _prisma.accountUser.create({
+			const user = await prisma.accountUser.create({
 				data: {
 					name,
 					email,
-					password: await bcrypt.hash(password, HASH_KEY)
+					password: await bcrypt.genSalt(13).then(async (salt) => {
+						return bcrypt.hash(password, salt).then((hash) => {
+							console.log(`info: hash generated: ${hash}`);
+							return hash;
+						});
+					})
 				}
 			});
-			const token = jwt.sign(user, JWT_ACCESS_SECRET, { expiresIn: `${15 * 60 * 1000}` });
+			const token = jwt.sign(user, JWT_ACCESS_SECRET, {
+				expiresIn: '1d'
+			});
 
 			//- set token
 			cookies.set('AuthorizationToken', `Bearer ${token}`, {
@@ -79,10 +81,10 @@ export const actions: Actions = {
 				maxAge: 60 * 60 * 24,
 				path: '/'
 			});
-			throw redirect(302, '/account');
 		} catch (err) {
 			console.error(err);
 			return fail(400, { message: 'Could not register account user' });
 		}
+		throw redirect(302, '/account');
 	}
 };
