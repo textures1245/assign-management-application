@@ -1,5 +1,6 @@
-import type { CarbonIcon } from 'carbon-icons-svelte';
+import type { CarbonIcon, Course } from 'carbon-icons-svelte';
 import type { Prisma } from 'prisma';
+import m from 'moment';
 import * as z from 'zod';
 
 export const RouteAppSchema = z.object({
@@ -58,13 +59,13 @@ export interface IAssignment {
 	courseId: string; // The ID of the course to which this assignment belongs
 	title: string;
 	description: string;
-	deadline: number;
+	deadline: Date;
 	priority: 'MOST' | 'DECENT' | 'LOW';
 	isCompleted: boolean;
 	curd: {
-		created: number;
-		updated: number;
-		deleted: number;
+		created: Date;
+		updated: Date;
+		deleted: Date;
 	};
 	fileAttached?: File | File[];
 	score?: number; // Optional property for the assignment grade
@@ -72,12 +73,11 @@ export interface IAssignment {
 }
 export interface ITeacher {
 	teacherId: string;
-	courseId: string;
 	name: string;
 	curd: {
-		created: number;
-		updated: number;
-		deleted: number;
+		created: Date;
+		updated: Date;
+		deleted: Date;
 	};
 	imgAvatar?: string;
 	info?: string;

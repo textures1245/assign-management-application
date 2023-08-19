@@ -60,7 +60,6 @@ model Assignment {
 
 model Teacher {
   id            String       @id @default(uuid())
-  courseId      String
   name          String
   imgAvatar     String?
   info          String?      @default("NONE")

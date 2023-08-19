@@ -19,7 +19,7 @@
 		/>
 	</div>
 	<hr />
-	{#if data.dataset}
+	{#if data.dataset.assignments.data.datasets.length <= 1}
 		<div class="grid md:grid-cols-2 gap-y-14 place-items-center">
 			<div class="flex flex-col gap-5">
 				<Chart config={data.dataset.assignments} />
@@ -33,6 +33,24 @@
 				<Chart size={{ width: 500, height: 400 }} config={data.dataset.diaryProgression} />
 				<span class="chip variant-filled-secondary">Diary Assignments Progression</span>
 			</div>
+		</div>
+	{:else}
+		<div class="flex flex-col place-items-center">
+			<h1 class="text-md md:text-2xl text-center font-extrabold">
+				You don't have any assignments, So we can't analyzed data for you
+			</h1>
+			<script
+				src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+			></script>
+
+			<lottie-player
+				src="https://lottie.host/b8f5c0d5-4bde-432b-ba4f-3be4d3af7941/oS09xwokQp.json"
+				background="transparent"
+				speed="1"
+				style="width: 300px; height: 300px;"
+				loop
+				autoplay
+			/>
 		</div>
 	{/if}
 </section>

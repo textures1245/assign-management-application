@@ -20,7 +20,11 @@
 	});
 </script>
 
-<Drawer class="text-surface-100">
+<Drawer
+	bgBackdrop=""
+	bgDrawer="bg-surface-500/80"
+	class=" backdrop-blur-sm   border-gray-100  text-surface-100"
+>
 	{#if $openDrawerObs.drawerId === 'setting-route-app'}
 		<p class="text-white">asdsd</p>
 		<SettingView />

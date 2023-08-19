@@ -1,5 +1,5 @@
 import moment from 'moment';
-import type { IAssignment } from '../types';
+import type { IAssignment, ICourse } from '../types';
 import type {
 	BubbleDataPoint,
 	ChartConfiguration,
@@ -12,7 +12,11 @@ import type { ITeacher } from '../types';
 
 export type AssignmentProp = IAssignment & {
 	config: ChartConfiguration;
-	teacher: ITeacher;
+	courses: ICourse;
+	teachers: ITeacher;
+};
+export type AssignmentDataset = IAssignment & {
+	config: ChartConfiguration;
 };
 
 export class Assignment implements IAssignment {
@@ -22,10 +26,10 @@ export class Assignment implements IAssignment {
 		public courseId: string,
 		public title: string,
 		public description: string,
-		public deadline: number,
+		public deadline: Date,
 		public priority: 'MOST' | 'DECENT' | 'LOW',
 		public isCompleted: boolean,
-		public curd: { created: number; updated: number; deleted: number },
+		public curd: { created: Date; updated: Date; deleted: Date },
 		public fileAttached?: File | File[] | undefined,
 		public score?: number | undefined,
 		public submissionDetail?: string | undefined
@@ -89,14 +93,14 @@ export class AssignmentData implements ChartData {
 }
 
 export const assignmentStates: Assignment[] = [
-	new Assignment('0', '0', '0', 'homework 1', 'asasdw', moment().valueOf(), 'MOST', false, {
-		created: moment().valueOf(),
-		updated: moment().valueOf(),
-		deleted: moment().valueOf()
+	new Assignment('0', '0', '0', 'homework 1', 'asasdw', new Date(), 'MOST', false, {
+		created: new Date(),
+		updated: new Date(),
+		deleted: new Date()
 	}),
-	new Assignment('1', '0', '1', 'homework 1', 'asasdw', moment().valueOf(), 'MOST', false, {
-		created: moment().valueOf(),
-		updated: moment().valueOf(),
-		deleted: moment().valueOf()
+	new Assignment('1', '0', '1', 'homework 1', 'asasdw', new Date(), 'MOST', false, {
+		created: new Date(),
+		updated: new Date(),
+		deleted: new Date()
 	})
 ];
