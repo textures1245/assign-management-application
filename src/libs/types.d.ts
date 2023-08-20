@@ -45,9 +45,9 @@ export interface ICourse {
 	imgSrc: string;
 	label: string;
 	curd: {
-		created: number | string;
-		updated: number | string;
-		deleted: number | string;
+		created: Date;
+		updated: Date;
+		deleted: Date;
 	};
 	detail?: string;
 	group?: string[];

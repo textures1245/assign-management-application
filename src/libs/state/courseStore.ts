@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import type { ICourse } from '../types';
 
 export class Course implements ICourse {
@@ -9,7 +7,7 @@ export class Course implements ICourse {
 		public courseCode: string,
 		public imgSrc: string,
 		public label: string,
-		public curd: { created: number | string; updated: number | string; deleted: number | string },
+		public curd: { created: Date; updated: Date; deleted: Date },
 		public detail?: string,
 		public group?: string[]
 	) {}
@@ -34,7 +32,7 @@ export class Course implements ICourse {
 		const imageSrc = imgSrc
 			? imgSrc
 			: 'https://myviewboard.com/blog/wp-content/uploads/2020/08/MP0027-01-scaled.jpg';
-		const currentUnixTimestamp = moment().valueOf();
+		const currentDate = new Date();
 		return new Course(
 			genCourseId,
 			genTeacherId,
@@ -42,9 +40,9 @@ export class Course implements ICourse {
 			imageSrc,
 			label,
 			{
-				created: currentUnixTimestamp,
-				updated: currentUnixTimestamp,
-				deleted: currentUnixTimestamp
+				created: currentDate,
+				updated: currentDate,
+				deleted: currentDate
 			},
 			detail
 		);

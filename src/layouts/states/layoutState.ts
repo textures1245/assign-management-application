@@ -1,6 +1,7 @@
 import { type Readable, readable, writable } from 'svelte/store';
 import type { Route } from '../../libs/types';
 import {
+	Course,
 	Menu,
 	UserAvatar,
 	Settings,
@@ -89,5 +90,11 @@ export const appRoutes: Readable<Route[]> = readable([
 		label: 'Create Task',
 		name: 'task-creator-route-app',
 		path: '/task-creator'
+	},
+	{
+		carbonIcon: { icon: Course, size: 24 },
+		label: 'Create Course',
+		name: 'course-creator-route-app',
+		path: '/course-creator'
 	}
 ]);
