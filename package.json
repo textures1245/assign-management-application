@@ -58,6 +58,8 @@
 		"sass": "^1.63.6",
 		"scss": "^0.2.4",
 		"svelte-calendar-resurrected": "1.0.0-alpha.2",
+		"svelte-forms-lib": "^2.0.1",
+		"yup": "^1.2.0",
 		"zod": "^3.21.4"
 	},
 	"peerDependencies": {

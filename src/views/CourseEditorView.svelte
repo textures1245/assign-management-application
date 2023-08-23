@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { AppRail, AppRailAnchor, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
-	import { Course, FolderAdd } from 'carbon-icons-svelte';
+	import { Course, FolderAdd, GroupAccess, TagEdit, TagGroup } from 'carbon-icons-svelte';
 	import CourseEditor from '../components/CourseEditor.svelte';
 	import type { Route } from '../libs/types';
+	import GroupEditor from '../components/GroupEditor.svelte';
 
 	const routeMenus: Route[] = [
 		{
@@ -12,10 +13,18 @@
 			},
 			label: 'Instructor Editor',
 			name: 'instructor-editor-action'
+		},
+		{
+			carbonIcon: {
+				icon: TagEdit,
+				size: 24
+			},
+			label: 'Group/Tag Editor',
+			name: 'group-editor-action'
 		}
 	];
 
-	let headers = ['Course Editor'];
+	let headers = ['Course Editor', 'Group / Tag Editor'];
 	$: currentTile = 0;
 </script>
 
@@ -50,7 +59,9 @@
 
 		{#if currentTile === 0}
 			<CourseEditor />
-		{:else if currentTile === 1}{:else}
+		{:else if currentTile === 1}
+			<GroupEditor />
+		{:else}
 			<!-- else content here -->
 		{/if}
 	</div>

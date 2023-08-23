@@ -1,40 +1,14 @@
 <script lang="ts">
-	import { Course } from './../libs/state/courseStore.ts';
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
 	import type { ITeacher, ICourse } from '../libs/types';
 	import { courseMenuLeads } from '../layouts/states/layoutState';
 	import { teacherStates } from '../libs/state/teacherStore';
-	import { Add } from 'carbon-icons-svelte';
-	import * as yup from 'yup';
-	import { createForm } from 'svelte-forms-lib'
 
 	function onCompleteHandler(e: Event): void {}
 
 	function onStepHandler(e: {
 		detail: { state: { current: number; total: number }; step: number };
 	}): void {}
-
-	const { form, errors, state, handleChange, handleSubmit, handleReset } = createForm({
-		initialValues: {
-			users: [
-				{
-					name: '',
-					email: ''
-				}
-			]
-		},
-		validationSchema: yup.object().shape({
-			users: yup.array().of(
-				yup.object().shape({
-					name: yup.string().required(),
-					email: yup.string().email().required()
-				})
-			)
-		}),
-		onSubmit: (values) => {
-			alert(JSON.stringify(values));
-		}
-	});
 
 	// courseId: string;
 	// courseCode: string;
@@ -57,7 +31,7 @@
 				<span class="chip variant-filled-primary text-sm"> Course Details </span>
 			</svelte:fragment>
 			<div class="space-y-2 text-sm">
-				<label for="name"> Course Label </label>
+				<label for="name"> Add new Group/Tag </label>
 				<input
 					class="input text-sm"
 					name="label"
@@ -94,23 +68,6 @@
 				<span class="chip variant-filled-primary text-sm"> Course Additional Information </span>
 				<span class="chip variant-filled-warning">Optional</span>
 			</svelte:fragment>
-			<div class="space-y-2 text-sm">
-				<label for="imgAvatar">Course Avatar Image </label>
-				<input class="input" title="imgSrc" name="imgSrc" type="text" placeholder="Image URL" />
-			</div>
-			<div class="space-y-2 text-sm">
-				<label for="info">Detail</label>
-				<input class="input" name="detail" title="detail" type="text" placeholder="Input here" />
-			</div>
-			<div class="space-y-2 text-sm">
-				<div class="flex justify-between">
-					<label for="group">Group/Tag</label>
-					<span class="chip variant-filled-secondary text-md">
-						<Add size="12" />
-					</span>
-				</div>
-				<input class="input" name="group" title="group" type="text" placeholder="Input here" />
-			</div>
 		</Step>
 	</form>
 </Stepper>
