@@ -1,40 +1,51 @@
 <script lang="ts">
-	import { Course } from './../libs/state/courseStore.ts';
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
 	import type { ITeacher, ICourse } from '../libs/types';
 	import { courseMenuLeads } from '../layouts/states/layoutState';
 	import { teacherStates } from '../libs/state/teacherStore';
 	import { Add } from 'carbon-icons-svelte';
 	import * as yup from 'yup';
-	import { createForm } from 'svelte-forms-lib'
-
-	function onCompleteHandler(e: Event): void {}
+	import { createForm } from 'svelte-forms-lib';
 
 	function onStepHandler(e: {
 		detail: { state: { current: number; total: number }; step: number };
 	}): void {}
 
-	const { form, errors, state, handleChange, handleSubmit, handleReset } = createForm({
-		initialValues: {
-			users: [
-				{
-					name: '',
-					email: ''
-				}
-			]
-		},
-		validationSchema: yup.object().shape({
-			users: yup.array().of(
-				yup.object().shape({
-					name: yup.string().required(),
-					email: yup.string().email().required()
-				})
-			)
-		}),
-		onSubmit: (values) => {
-			alert(JSON.stringify(values));
-		}
-	});
+	export let form;
+
+	// const { form, errors, state, handleChange, handleSubmit, handleReset } = createForm({
+	// 	initialValues: <ICourse>{
+	// 		courseId: '',
+	// 		teacherId: '',
+	// 		courseCode: '',
+	// 		imgSrc: '',
+	// 		label: '',
+	// 		curd: {
+	// 			created: new Date(),
+	// 			updated: new Date(),
+	// 			deleted: new Date()
+	// 		},
+	// 		detail: '',
+	// 		group: []
+	// 	},
+	// 	validationSchema: yup.object().shape({
+	// 		courseId: yup.string().required(),
+	// 		courseCode: yup.string().required(),
+	// 		teacherId: yup.string().required(),
+	// 		label: yup.string().required(),
+	// 		curd: yup.object().shape({
+	// 			created: yup.date().required(),
+	// 			updated: yup.date().required()
+	// 		}),
+	// 		detail: yup.string(),
+	// 		imgSrc: yup.string(),
+	// 		group: yup.array().of(yup.string())
+	// 	}),
+	// 	onSubmit: (values) => {
+	// 		alert(JSON.stringify(values));
+	// 		console.log(values);
+	// 	}
+	// });
 
 	// courseId: string;
 	// courseCode: string;
@@ -50,8 +61,8 @@
 	// group?: string[];
 </script>
 
-<Stepper on:step={onStepHandler} buttonCompleteType="submit">
-	<form action="" class="space-y-4">
+<Stepper buttonCompleteType={'submit'} su on:step={onStepHandler}>
+	<form class="space-y-4">
 		<Step>
 			<svelte:fragment slot="header">
 				<span class="chip variant-filled-primary text-sm"> Course Details </span>
@@ -100,7 +111,14 @@
 			</div>
 			<div class="space-y-2 text-sm">
 				<label for="info">Detail</label>
-				<input class="input" name="detail" title="detail" type="text" placeholder="Input here" />
+				<input
+					bind:value={$form.detail}
+					class="input"
+					name="detail"
+					title="detail"
+					type="text"
+					placeholder="Input here"
+				/>
 			</div>
 			<div class="space-y-2 text-sm">
 				<div class="flex justify-between">
@@ -109,7 +127,14 @@
 						<Add size="12" />
 					</span>
 				</div>
-				<input class="input" name="group" title="group" type="text" placeholder="Input here" />
+				<input
+					bind:value={$form.group}
+					class="input"
+					name="group"
+					title="group"
+					type="text"
+					placeholder="Input here"
+				/>
 			</div>
 		</Step>
 	</form>
