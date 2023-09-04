@@ -1,10 +1,12 @@
 <script lang="ts">
+	import type { SuperForm } from 'sveltekit-superforms/client';
 	import SettingView from '../views/SettingView.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings } from '@skeletonlabs/skeleton';
 	import { openDrawerObs } from '../layouts/states/layoutState';
 	import InstructorView from '../views/InstructorView.svelte';
 	import CourseEditorView from '../views/CourseEditorView.svelte';
+	import type { courseSchema } from '../libs/types';
 	const drawerSettings: DrawerSettings = {
 		id: 'example-3',
 		// Provide your property overrides:
@@ -19,6 +21,8 @@
 			drawerStore.open();
 		}
 	});
+
+	export let courseValidator: SuperForm<typeof courseSchema>;
 </script>
 
 <Drawer
@@ -32,7 +36,7 @@
 	{:else if $openDrawerObs.drawerId === 'instructors-route-app'}
 		<InstructorView />
 	{:else if $openDrawerObs.drawerId === 'course-creator-route-app'}
-		<CourseEditorView />
+		<CourseEditorView {courseValidator} />
 		<!-- (show 'example-2' contents) -->
 	{:else}{/if}
 </Drawer>

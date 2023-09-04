@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
-	import type { ITeacher, ICourse } from '../libs/types';
+	import type { ITeacher, ICourse, courseSchema } from '../libs/types';
 	import { courseMenuLeads } from '../layouts/states/layoutState';
 	import { teacherStates } from '../libs/state/teacherStore';
 	import { Add } from 'carbon-icons-svelte';
-	import * as yup from 'yup';
-	import { createForm } from 'svelte-forms-lib';
+	import type { SuperForm } from 'sveltekit-superforms/client';
 
 	function onStepHandler(e: {
 		detail: { state: { current: number; total: number }; step: number };
 	}): void {}
 
-	export let form;
+	export let courseValidator: SuperForm<typeof courseSchema>;
+	const { form } = courseValidator;
 
 	// const { form, errors, state, handleChange, handleSubmit, handleReset } = createForm({
 	// 	initialValues: <ICourse>{
@@ -61,7 +61,7 @@
 	// group?: string[];
 </script>
 
-<Stepper buttonCompleteType={'submit'} su on:step={onStepHandler}>
+<Stepper buttonCompleteType={'submit'} on:step={onStepHandler}>
 	<form class="space-y-4">
 		<Step>
 			<svelte:fragment slot="header">
@@ -111,14 +111,7 @@
 			</div>
 			<div class="space-y-2 text-sm">
 				<label for="info">Detail</label>
-				<input
-					bind:value={$form.detail}
-					class="input"
-					name="detail"
-					title="detail"
-					type="text"
-					placeholder="Input here"
-				/>
+				<input class="input" name="detail" title="detail" type="text" placeholder="Input here" />
 			</div>
 			<div class="space-y-2 text-sm">
 				<div class="flex justify-between">
@@ -127,14 +120,7 @@
 						<Add size="12" />
 					</span>
 				</div>
-				<input
-					bind:value={$form.group}
-					class="input"
-					name="group"
-					title="group"
-					type="text"
-					placeholder="Input here"
-				/>
+				<input class="input" name="group" title="group" type="text" placeholder="Input here" />
 			</div>
 		</Step>
 	</form>

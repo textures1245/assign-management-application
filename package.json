@@ -31,6 +31,7 @@
 		"svelte": "^4.0.0",
 		"svelte-calendar": "^3.1.6",
 		"svelte-check": "^3.4.3",
+		"sveltekit-superforms": "^1.6.1",
 		"tailwindcss": "^3.3.2",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
@@ -58,8 +59,6 @@
 		"sass": "^1.63.6",
 		"scss": "^0.2.4",
 		"svelte-calendar-resurrected": "1.0.0-alpha.2",
-		"svelte-forms-lib": "^2.0.1",
-		"yup": "^1.2.0",
 		"zod": "^3.21.4"
 	},
 	"peerDependencies": {

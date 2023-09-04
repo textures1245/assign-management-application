@@ -2,8 +2,9 @@
 	import { AppRail, AppRailAnchor, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
 	import { Course, FolderAdd, GroupAccess, TagEdit, TagGroup } from 'carbon-icons-svelte';
 	import CourseEditor from '../components/CourseEditor.svelte';
-	import type { Route } from '../libs/types';
+	import type { Route, courseSchema } from '../libs/types';
 	import GroupEditor from '../components/GroupEditor.svelte';
+	import type { SuperForm } from 'sveltekit-superforms/client';
 
 	const routeMenus: Route[] = [
 		{
@@ -26,6 +27,8 @@
 
 	let headers = ['Course Editor', 'Group / Tag Editor'];
 	$: currentTile = 0;
+
+	export let courseValidator: SuperForm<typeof courseSchema>;
 </script>
 
 <AppShell>
@@ -58,7 +61,7 @@
 		<hr />
 
 		{#if currentTile === 0}
-			<CourseEditor />
+			<CourseEditor {courseValidator} />
 		{:else if currentTile === 1}
 			<GroupEditor />
 		{:else}

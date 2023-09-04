@@ -1,11 +1,16 @@
 <script lang="ts">
+	import type { courseSchema } from './../libs/types';
 	import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
 
 	import DrawerLayout from '../components/DrawerApp.svelte';
 	import { openDrawerObs } from './states/layoutState';
 	import { appRoutes } from './states/layoutState';
 
+	import type { SuperForm,} from 'sveltekit-superforms/client';\
+
 	let currentTile: number = 0;
+
+	export let courseValidator: SuperForm<typeof courseSchema>;
 </script>
 
 <AppRail active={''} class="text-surface-100 hidden md:block" background="bg-surface-900">
@@ -33,4 +38,4 @@
 		<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
 	</svelte:fragment>
 </AppRail>
-<DrawerLayout />
+<DrawerLayout {courseValidator}/>
