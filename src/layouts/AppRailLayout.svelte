@@ -6,7 +6,7 @@
 	import { openDrawerObs } from './states/layoutState';
 	import { appRoutes } from './states/layoutState';
 
-	import type { SuperForm,} from 'sveltekit-superforms/client';\
+	import type { SuperForm,} from 'sveltekit-superforms/client';
 
 	let currentTile: number = 0;
 

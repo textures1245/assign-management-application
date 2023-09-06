@@ -5,13 +5,15 @@
 	import { teacherStates } from '../libs/state/teacherStore';
 	import { Add } from 'carbon-icons-svelte';
 	import type { SuperForm } from 'sveltekit-superforms/client';
+	import { applyAction, deserialize } from '$app/forms';
+	import { invalidateAll } from '$app/navigation';
 
 	function onStepHandler(e: {
 		detail: { state: { current: number; total: number }; step: number };
 	}): void {}
 
 	export let courseValidator: SuperForm<typeof courseSchema>;
-	const { form } = courseValidator;
+	const { form, errors } = courseValidator;
 
 	// const { form, errors, state, handleChange, handleSubmit, handleReset } = createForm({
 	// 	initialValues: <ICourse>{
@@ -61,8 +63,9 @@
 	// group?: string[];
 </script>
 
+<span>{$errors.label}</span>
 <Stepper buttonCompleteType={'submit'} on:step={onStepHandler}>
-	<form class="space-y-4">
+	<form method="POST" action="/?/addCourse" class="space-y-4">
 		<Step>
 			<svelte:fragment slot="header">
 				<span class="chip variant-filled-primary text-sm"> Course Details </span>
@@ -70,6 +73,7 @@
 			<div class="space-y-2 text-sm">
 				<label for="name"> Course Label </label>
 				<input
+					bind:value={$form.label}
 					class="input text-sm"
 					name="label"
 					title="label"

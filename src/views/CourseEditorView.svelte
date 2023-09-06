@@ -27,8 +27,6 @@
 
 	let headers = ['Course Editor', 'Group / Tag Editor'];
 	$: currentTile = 0;
-
-	export let courseValidator: SuperForm<typeof courseSchema>;
 </script>
 
 <AppShell>
@@ -61,7 +59,7 @@
 		<hr />
 
 		{#if currentTile === 0}
-			<CourseEditor {courseValidator} />
+			<CourseEditorMenu />
 		{:else if currentTile === 1}
 			<GroupEditor />
 		{:else}

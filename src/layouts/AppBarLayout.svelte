@@ -33,9 +33,9 @@
 						<svelte:component this={panel.carbonIcon.icon} size={panel.carbonIcon.size} />
 					</button>
 				{:else}
-					<button use:popup={popupResponse(panel.name)}>
+					<!-- <button use:popup={popupResponse(panel.name)}>
 						<svelte:component this={panel.carbonIcon.icon} size={panel.carbonIcon.size} />
-					</button>
+					</button> -->
 				{/if}
 			{/each}
 		</svelte:fragment>
