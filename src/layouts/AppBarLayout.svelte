@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { popup, type PopupSettings } from '@skeletonlabs/skeleton';
+	import type { PopupSettings } from '@skeletonlabs/skeleton';
 	import { AppBar } from '@skeletonlabs/skeleton';
 	import { Workspace } from 'carbon-icons-svelte';
 	import { panelGroup } from './states/layoutState';

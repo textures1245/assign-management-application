@@ -1,5 +1,6 @@
 import type { ICourse } from '../types';
 
+
 export class Course implements ICourse {
 	constructor(
 		public courseId: string,
@@ -48,7 +49,7 @@ export class Course implements ICourse {
 		);
 	}
 }
-export const courseStates: Course[] = [
+export const courseStates: Course[] =  [
 	Course.createInstance('Subject 1', 'Subject Details'),
 	Course.createInstance('Course 1 ', 'Course Details 2'),
 	Course.createInstance('Course 2', 'Course Details 3')

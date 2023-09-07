@@ -1,5 +1,4 @@
 import type { ITeacher } from '../types';
-import moment from 'moment';
 
 export class Teacher implements ITeacher {
 	constructor(

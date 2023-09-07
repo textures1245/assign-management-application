@@ -2,9 +2,6 @@
 	import { AppRail, AppRailAnchor, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
 	import { Add, PersonFavorite, Settings, TwoPersonLift } from 'carbon-icons-svelte';
 	import type { Route } from '../libs/types';
-	import AppBarLayout from '../layouts/AppBarLayout.svelte';
-	import AppRailLayout from '../layouts/AppRailLayout.svelte';
-	import SideRailLayout from '../layouts/SideRailLayout.svelte';
 	import InstuctorEditor from '../components/InstuctorEditor.svelte';
 	import InstuctorList from '../components/InstuctorList.svelte';
 

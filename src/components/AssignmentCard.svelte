@@ -5,7 +5,6 @@
 	import type { AssignmentProp } from '../libs/state/assignmentStore';
 	import dayjs from 'dayjs';
 	export let assignment: AssignmentProp;
-	import { InlineCalendar } from 'svelte-calendar';
 
 	const prefixConfig = {
 		overview: {
