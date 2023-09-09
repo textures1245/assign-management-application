@@ -1,10 +1,11 @@
 <script lang="ts">
-	import SettingView from '../views/SettingView.svelte';
+	import SettingView from '../../views/SettingView.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings } from '@skeletonlabs/skeleton';
-	import { openDrawerObs } from '../layouts/states/layoutState';
-	import InstructorView from '../views/InstructorView.svelte';
-	import CourseEditorView from '../views/CourseEditorView.svelte';
+	import { openDrawerObs } from '../../layouts/states/layoutState';
+	import InstructorView from '../../views/InstructorView.svelte';
+	import CourseEditorView from '../../views/CourseEditorView.svelte';
+	import TaskEditorView from '../../views/TaskEditorView.svelte';
 	const drawerSettings: DrawerSettings = {
 		id: 'example-3',
 		// Provide your property overrides:
@@ -33,6 +34,7 @@
 		<InstructorView />
 	{:else if $openDrawerObs.drawerId === 'course-creator-route-app'}
 		<CourseEditorView />
-		<!-- (show 'example-2' contents) -->
+	{:else if $openDrawerObs.drawerId === 'task-creator-route-app'}
+		<TaskEditorView />
 	{:else}{/if}
 </Drawer>

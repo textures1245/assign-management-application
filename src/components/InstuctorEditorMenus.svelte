@@ -1,8 +1,20 @@
 <script lang="ts">
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import { teacherStates } from '$lib/state/teacherStore';
-	import { RowDelete, EditOff } from 'carbon-icons-svelte';
+	import { RowDelete, EditOff, Add } from 'carbon-icons-svelte';
 </script>
+
+<section class="flex flex-col md:flex-row gap-2 justify-between">
+	<div class="flex gap-2 items-center">
+		<span class="chip p-2 variant-filled-secondary w-full">Number Of Teachers
+		</span>
+		|
+		<span class="chip px-3 variant-filled-success w-full"> {teacherStates.length} </span>
+	</div>
+	<button class="chip variant-filled-primary p-2">
+		Add New Teacher <Add />
+	</button>
+</section>
 
 <!-- Responsive Container (recommended) -->
 <div class="table-container text-sm">
@@ -25,10 +37,10 @@
 			<tbody>
 				{#each teacherStates as t, i (t.teacherId)}
 					<tr>
-						<td class="grid place-content-center">
+						<td class="grid place-content-center ">
 							<Avatar src={t.imgAvatar} width="w-12" />
 						</td>
-						<td class="h-full px-auto">{t.name}</td>
+						<td class="h-full px-auto ">{t.name}</td>
 						<td class="my-auto">{t.rank ?? '-'}</td>
 						<td class="my-auto">{t.info ?? '-'}</td>
 						<td class="space-y-2"
@@ -39,12 +51,7 @@
 				{/each}
 			</tbody>
 			<tfoot>
-				<tr class="bg-secondary-900">
-					<th class="flex justify-center" colspan="3">Amount of Instructors</th>
-					<td colspan="4" class=" text-center"
-						><span class="chip variant-filled-secondary w-full">{teacherStates.length}</span>
-					</td>
-				</tr>
+				<tr class="bg-secondary-900" />
 			</tfoot>
 		</table>
 	{/if}

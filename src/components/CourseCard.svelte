@@ -3,6 +3,8 @@
 	import type { Course } from '$lib/state/courseStore';
 
 	export let course: ICourse;
+
+	
 </script>
 
 <a class="card bg-initial w-80 card-hover overflow-hidden" href="/elements/cards"

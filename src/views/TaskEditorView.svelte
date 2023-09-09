@@ -1,21 +1,21 @@
 <script lang="ts">
 	import { AppRail, AppRailAnchor, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
-	import { Add, PersonFavorite, Settings, TwoPersonLift } from 'carbon-icons-svelte';
+	import { Course, FolderAdd, GroupAccess, TagEdit, TagGroup } from 'carbon-icons-svelte';
 	import type { Route } from '$lib/types';
-	import InstuctorEditorMenus from '../components/InstuctorEditorMenus.svelte';
+	import TaskEditorMenus from '../components/TaskEditorMenus.svelte';
 
 	const routeMenus: Route[] = [
 		{
 			carbonIcon: {
-				icon: TwoPersonLift,
+				icon: FolderAdd,
 				size: 24
 			},
-			label: 'Instructors',
-			name: 'instructor-list'
+			label: 'Task Editor Menu',
+			name: 'instructor-editor-route'
 		}
 	];
 
-	let headers = ['Instructor Editor', 'Instructor List'];
+	let headers = ['Assignment Editor Menu'];
 	$: currentTile = 0;
 </script>
 
@@ -25,7 +25,7 @@
 			<svelte:fragment slot="lead">
 				<AppRailAnchor>
 					<div class="grid place-items-center">
-						<Settings size="22" />
+						<Course size="22" />
 					</div>
 				</AppRailAnchor>
 			</svelte:fragment>
@@ -49,9 +49,7 @@
 		<hr />
 
 		{#if currentTile === 0}
-			<InstuctorEditorMenus />
-		{:else if currentTile === 1}{:else}
-			<!-- else content here -->
+			<TaskEditorMenus />
 		{/if}
 	</div>
 </AppShell>

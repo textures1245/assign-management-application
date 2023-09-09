@@ -83,18 +83,18 @@ export const appRoutes: Readable<Route[]> = readable([
 		carbonIcon: { icon: Person, size: 24 },
 		label: 'Instructors',
 		name: 'instructors-route-app',
-		path: '/instructors'
+		path: '/instructor-editor'
 	},
 	{
 		carbonIcon: { icon: TaskSettings, size: 24 },
 		label: 'Create Task',
 		name: 'task-creator-route-app',
-		path: '/task-creator'
+		path: '/task-editor'
 	},
 	{
 		carbonIcon: { icon: Course, size: 24 },
 		label: 'Create Course',
 		name: 'course-creator-route-app',
-		path: '/course-creator'
+		path: '/course-editor'
 	}
 ]);

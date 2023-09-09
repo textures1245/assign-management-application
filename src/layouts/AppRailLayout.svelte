@@ -2,14 +2,13 @@
 	import type { courseSchema } from '$lib/types';
 	import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
 
-	import DrawerLayout from '../components/DrawerApp.svelte';
+	import DrawerLayout from '../components/slots/DrawerApp.svelte';
 	import { openDrawerObs } from './states/layoutState';
 	import { appRoutes } from './states/layoutState';
 
-	import type { SuperForm,} from 'sveltekit-superforms/client';
+	import type { SuperForm } from 'sveltekit-superforms/client';
 
 	let currentTile: number = 0;
-
 </script>
 
 <AppRail active={''} class="text-surface-100 hidden md:block" background="bg-surface-900">
