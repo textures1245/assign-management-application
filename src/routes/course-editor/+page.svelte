@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
-	import type { ITeacher, ICourse, courseSchema } from '../../libs/types';
+	import { type ITeacher, type ICourse, courseSchema } from '../../libs/types';
 	import { teacherStates } from '../../libs/state/teacherStore';
 	import { Add } from 'carbon-icons-svelte';
 	import { superForm, type SuperForm } from 'sveltekit-superforms/client';
