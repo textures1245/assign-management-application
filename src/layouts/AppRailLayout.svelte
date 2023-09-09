@@ -10,7 +10,6 @@
 
 	let currentTile: number = 0;
 
-	export let courseValidator: SuperForm<typeof courseSchema>;
 </script>
 
 <AppRail active={''} class="text-surface-100 hidden md:block" background="bg-surface-900">
@@ -38,4 +37,4 @@
 		<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
 	</svelte:fragment>
 </AppRail>
-<DrawerLayout {courseValidator}/>
+<DrawerLayout />

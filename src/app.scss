@@ -28,6 +28,14 @@
 
 		@apply from-primary-500 via-tertiary-500 to-secondary-500;
 	}
+
+	.warning-text {
+		@apply text-warning-500 text-sm;
+	}
+
+	.error-text {
+		@apply text-error-500 text-sm;
+	}
 }
 
 /* Overwrite the default to keep the scrollbar always visible */

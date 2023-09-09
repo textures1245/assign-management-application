@@ -5,29 +5,31 @@ import { z } from 'zod';
 
 //covert ICourse to z.object
 const courseSchema = z.object({
-	courseId: z.string(),
+	courseId: z.string(), // will assigned later
 	teacherId: z.string(),
 	courseCode: z.string(),
-	imgSrc: z.string(),
 	label: z.string(),
-	curd: z.object({
-		created: z.union([z.number(), z.string()]),
-		updated: z.union([z.number(), z.string()]),
-		deleted: z.union([z.number(), z.string()])
-	}),
+	curd: z
+		.object({
+			created: z.union([z.number(), z.string()]),
+			updated: z.union([z.number(), z.string()]),
+			deleted: z.union([z.number(), z.string()])
+		})
+		.optional(),
+	imgSrc: z.string().optional(),
 	detail: z.string().optional(),
 	group: z.array(z.string()).optional()
 });
 
-export const load: PageServerLoad = async () => {
-	const form = await superValidate(courseSchema);
+export const load: PageServerLoad = async (event) => {
+	const form = await superValidate(event, courseSchema);
 
 	// Always return { form } in load and form actions.
 	return { form };
 };
 
 export const actions: Actions = {
-	addCourse: async ({ request }) => {
+	default: async ({ request }) => {
 		const form = await superValidate(request, courseSchema);
 		console.log('POST', form.data);
 

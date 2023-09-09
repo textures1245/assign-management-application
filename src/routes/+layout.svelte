@@ -6,15 +6,6 @@
 	import AppBarLayout from '../layouts/AppBarLayout.svelte';
 	import AppRailLayout from '../layouts/AppRailLayout.svelte';
 	import SideRailLayout from '../layouts/SideRailLayout.svelte';
-
-	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
-	import { storePopup } from '@skeletonlabs/skeleton';
-	import type { PageData } from './$types';
-	import { superForm } from 'sveltekit-superforms/client';
-
-	export let data: PageData;
-
-	const courseValidator = superForm(data.courseValidator);
 </script>
 
 <!-- <DrawerLayout /> -->
@@ -27,7 +18,7 @@
 			<SideRailLayout />
 		</svelte:fragment>
 		<svelte:fragment slot="sidebarRight">
-			<AppRailLayout {courseValidator} />
+			<AppRailLayout />
 		</svelte:fragment>
 
 		<div class="flex bg-surface-100 h-full place-content-center">
