@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Avatar } from '@skeletonlabs/skeleton';
-	import { courseStates } from '../libs/state/courseStore';
+	import { courseStates } from '$lib/state/courseStore';
 	import { RowDelete, EditOff, Add } from 'carbon-icons-svelte';
 </script>
 

@@ -1,4 +1,4 @@
-import type { ITeacher } from '../types';
+import type { ITeacher } from '$lib/types';
 
 export class Teacher implements ITeacher {
 	constructor(

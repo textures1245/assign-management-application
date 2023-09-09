@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
-	import type { ITeacher, ICourse } from '../libs/types';
 	import { courseMenuLeads } from '../layouts/states/layoutState';
-	import { teacherStates } from '../libs/state/teacherStore';
+	import { teacherStates } from '$lib/state/teacherStore';
 
 	function onCompleteHandler(e: Event): void {}
 

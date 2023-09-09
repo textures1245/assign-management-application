@@ -1,9 +1,9 @@
 import { TemperatureMax } from 'carbon-icons-svelte';
-import { AssignmentData, type AssignmentDataVisualize } from '../../libs/state/assignmentStore';
+import { AssignmentData, type AssignmentDataVisualize } from '$lib/state/assignmentStore';
 import type { PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
-import type { AccountUserProp } from '../../libs/state/accountUser';
-import type { IAccountUser } from '../../libs/types';
+import type { AccountUserProp } from '$lib/state/accountUser';
+import type { IAccountUser } from '$lib/types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const userData: AccountUserProp = locals.userData;

@@ -4,13 +4,13 @@ import {
 	assignmentStates,
 	type AssignmentDataset,
 	type AssignmentProp
-} from '../../libs/state/assignmentStore';
-import type { IAssignment } from '../../libs/types';
+} from '$lib/state/assignmentStore';
+import type { IAssignment } from '$lib/types';
 import type { ChartConfiguration, ChartData } from 'chart.js';
-import type { AccountUserProp } from '../../libs/state/accountUser';
+import type { AccountUserProp } from '$lib/state/accountUser';
 import { fail } from '@sveltejs/kit';
-import { teacherStates } from '../../libs/state/teacherStore';
-import { courseStates } from '../../libs/state/courseStore';
+import { teacherStates } from '$lib/state/teacherStore';
+import { courseStates } from '$lib/state/courseStore';
 export const load: PageServerLoad = async ({ locals }) => {
 	const userData: AccountUserProp = locals.userData;
 	if (!userData) throw fail(401, { message: 'Unauthorized' });

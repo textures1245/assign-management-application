@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Stepper, Step } from '@skeletonlabs/skeleton';
-	import type { ITeacher } from '../libs/types';
+	import type { ITeacher } from '$lib/types';
 
 	function onCompleteHandler(e: Event): void {}
 
@@ -22,7 +22,7 @@
 </script>
 
 <Stepper on:step={onStepHandler} on:complete={onCompleteHandler}>
-	<form action="" class="space-y-4">
+	<form  action="" class="space-y-4">
 		<Step>
 			<svelte:fragment slot="header">
 				<span class="chip variant-filled-primary text-lg"> Personal Information </span>

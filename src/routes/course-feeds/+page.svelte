@@ -1,6 +1,6 @@
 <script lang="ts">
 	import CourseCard from './../../components/CourseCard.svelte';
-	import { courseStates } from '../../libs/state/courseStore';
+	import { courseStates } from '$lib/state/courseStore';
 	import type { PageData } from './$types';
 	import StateNotFound from '../../components/StateNotFound.svelte';
 

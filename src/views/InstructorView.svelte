@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AppRail, AppRailAnchor, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
 	import { Add, PersonFavorite, Settings, TwoPersonLift } from 'carbon-icons-svelte';
-	import type { Route } from '../libs/types';
+	import type { Route } from '$lib/types';
 	import InstuctorEditor from '../components/InstuctorEditor.svelte';
 	import InstuctorList from '../components/InstuctorList.svelte';
 

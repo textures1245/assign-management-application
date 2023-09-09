@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import { HASH_KEY, JWT_ACCESS_SECRET } from '$env/static/private';
 import jwt from 'jsonwebtoken';
-import { prisma } from '../../libs/servers/prisma';
+import { prisma } from '$lib/servers/prisma';
 
 export const actions: Actions = {
 	signIn: async ({ request, cookies }) => {

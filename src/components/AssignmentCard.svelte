@@ -2,7 +2,7 @@
 	import { TabGroup, Tab, TabAnchor, Avatar } from '@skeletonlabs/skeleton';
 	import Datepicker from 'svelte-calendar-resurrected';
 	import Chart from './Chart.svelte';
-	import type { AssignmentProp } from '../libs/state/assignmentStore';
+	import type { AssignmentProp } from '$lib/state/assignmentStore';
 	import dayjs from 'dayjs';
 	export let assignment: AssignmentProp;
 

@@ -52,6 +52,21 @@ export interface ICourse {
 	detail?: string;
 	group?: string[];
 }
+//covert ICourse to z.object
+export const courseSchema = z.object({
+	courseId: z.string(),
+	teacherId: z.string(),
+	courseCode: z.string(),
+	imgSrc: z.string(),
+	label: z.string(),
+	curd: z.object({
+		created: z.union([z.number(), z.string()]),
+		updated: z.union([z.number(), z.string()]),
+		deleted: z.union([z.number(), z.string()])
+	}),
+	detail: z.string().optional(),
+	group: z.array(z.string()).optional()
+});
 
 export interface IAssignment {
 	assignmentId: string;
@@ -122,19 +137,6 @@ const AccountUserSchema = z.object({
 export type AccountUser = z.infer<typeof AccountUserSchema>;
 
 // Zod object for ICourse interface
-export const courseSchema = z.object({
-	courseId: z.string(),
-	teacherId: z.string(),
-	imgSrc: z.string(),
-	label: z.string(),
-	curd: z.object({
-		created: z.union([z.number(), z.string()]),
-		updated: z.union([z.number(), z.string()]),
-		deleted: z.union([z.number(), z.string()])
-	}),
-	detail: z.string().optional(),
-	group: z.array(z.string()).optional()
-});
 
 // Zod object for IAssignment interface
 export const assignmentSchema = z.object({

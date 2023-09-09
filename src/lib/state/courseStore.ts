@@ -1,4 +1,4 @@
-import type { ICourse } from '../types';
+import type { ICourse } from '$lib/types';
 
 
 export class Course implements ICourse {

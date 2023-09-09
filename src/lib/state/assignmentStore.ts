@@ -1,5 +1,4 @@
-import moment from 'moment';
-import type { IAssignment, ICourse } from '../types';
+import type { IAssignment, ICourse, ITeacher } from '$lib/types';
 import type {
 	BubbleDataPoint,
 	ChartConfiguration,
@@ -8,12 +7,11 @@ import type {
 	ChartTypeRegistry,
 	Point
 } from 'chart.js';
-import type { ITeacher } from '../types';
 
 export type AssignmentProp = IAssignment & {
 	config: ChartConfiguration;
-	courses: ICourse;
-	teachers: ITeacher;
+	course: ICourse;
+	teacher: ITeacher;
 };
 export type AssignmentDataset = IAssignment & {
 	config: ChartConfiguration;

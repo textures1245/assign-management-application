@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { courseSchema } from './../libs/types';
+	import type { courseSchema } from '$lib/types';
 	import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
 
 	import DrawerLayout from '../components/DrawerApp.svelte';

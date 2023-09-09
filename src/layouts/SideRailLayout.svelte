@@ -7,7 +7,7 @@
 	import { courseMenuLeads } from './states/layoutState';
 	import { AppRail, AppRailAnchor, AppRailTile, Avatar } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
-	import { courseStates } from '../libs/state/courseStore';
+	import { courseStates } from '$lib/state/courseStore';
 	let currentTile: number = 0;
 </script>
 

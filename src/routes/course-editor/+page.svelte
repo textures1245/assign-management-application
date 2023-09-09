@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
-	import { type ITeacher, type ICourse, courseSchema } from '../../libs/types';
-	import { teacherStates } from '../../libs/state/teacherStore';
+	import { teacherStates } from '$lib/state/teacherStore';
 	import { Add } from 'carbon-icons-svelte';
 	import { superForm, type SuperForm } from 'sveltekit-superforms/client';
 	import { page } from '$app/stores';
@@ -60,6 +59,7 @@
 					<div class="space-y-2 text-sm">
 						<label for="name"> Course Code </label>
 						<input
+							bind:value={$form.courseCode}
 							class="input text-sm"
 							name="courseCode"
 							title="courseCode"

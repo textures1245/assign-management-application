@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ICourse } from '../libs/types';
-	import type { Course } from './../libs/state/courseStore';
+	import type { ICourse } from '$lib/types';
+	import type { Course } from '$lib/state/courseStore';
 
 	export let course: ICourse;
 </script>

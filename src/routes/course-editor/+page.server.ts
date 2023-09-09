@@ -3,9 +3,11 @@ import type { PageServerLoad } from './$types';
 import { fail, type Actions } from '@sveltejs/kit';
 import { z } from 'zod';
 
+//covert ICourse to z.object
 const courseSchema = z.object({
 	courseId: z.string(),
 	teacherId: z.string(),
+	courseCode: z.string(),
 	imgSrc: z.string(),
 	label: z.string(),
 	curd: z.object({

@@ -1,8 +1,8 @@
 import { JWT_ACCESS_SECRET } from '$env/static/private';
 import jwt from 'jsonwebtoken';
 
-import type { AccountUserPayload } from './libs/types';
-import { prisma } from './libs/servers/prisma';
+import type { AccountUserPayload } from '$lib/types';
+import { prisma } from '$lib/servers/prisma';
 import { fail } from '@sveltejs/kit';
 
 export const handle = async ({ event, resolve }) => {

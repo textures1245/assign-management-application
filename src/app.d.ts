@@ -1,5 +1,5 @@
 import type { PrismaClient } from '@prisma/client';
-import type { AccountUserPayload } from './libs/types';
+import type { AccountUserPayload } from '$lib/types';
 
 declare global {
 	namespace App {
