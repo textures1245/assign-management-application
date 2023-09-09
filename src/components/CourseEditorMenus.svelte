@@ -10,9 +10,9 @@
 		|
 		<span class="chip px-3 variant-filled-success w-full"> {courseStates.length} </span>
 	</div>
-	<button class="chip variant-filled-primary p-2">
+	<a href="/course-editor" class="chip variant-filled-primary p-2">
 		Add New Course <Add />
-	</button>
+	</a>
 </section>
 <div class="table-container text-sm">
 	<!-- Native Table Element -->

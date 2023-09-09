@@ -6,14 +6,13 @@
 
 <section class="flex flex-col md:flex-row gap-2 justify-between">
 	<div class="flex gap-2 items-center">
-		<span class="chip p-2 variant-filled-secondary w-full">Number Of Teachers
-		</span>
+		<span class="chip p-2 variant-filled-secondary w-full">Number Of Teachers </span>
 		|
 		<span class="chip px-3 variant-filled-success w-full"> {teacherStates.length} </span>
 	</div>
-	<button class="chip variant-filled-primary p-2">
+	<a href="instructor-editor" class="chip variant-filled-primary p-2">
 		Add New Teacher <Add />
-	</button>
+	</a>
 </section>
 
 <!-- Responsive Container (recommended) -->
@@ -37,10 +36,10 @@
 			<tbody>
 				{#each teacherStates as t, i (t.teacherId)}
 					<tr>
-						<td class="grid place-content-center ">
+						<td class="grid place-content-center">
 							<Avatar src={t.imgAvatar} width="w-12" />
 						</td>
-						<td class="h-full px-auto ">{t.name}</td>
+						<td class="h-full px-auto">{t.name}</td>
 						<td class="my-auto">{t.rank ?? '-'}</td>
 						<td class="my-auto">{t.info ?? '-'}</td>
 						<td class="space-y-2"

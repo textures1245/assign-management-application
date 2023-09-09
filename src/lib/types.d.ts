@@ -161,12 +161,11 @@ export const assignmentSchema = z.object({
 // Zod object for ITeacher interface
 export const teacherSchema = z.object({
 	teacherId: z.string(),
-	courseId: z.string(),
 	name: z.string(),
 	curd: z.object({
-		created: z.number(),
-		updated: z.number(),
-		deleted: z.number()
+		created: z.date(),
+		updated: z.date().optional(),
+		deleted: z.date().optional()
 	}),
 	imgAvatar: z.string().optional(),
 	info: z.string().optional(),
