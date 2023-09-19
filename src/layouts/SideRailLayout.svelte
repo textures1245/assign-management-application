@@ -17,7 +17,7 @@
 		spacing="space-x-3"
 		active="bg-tertiary-400 rounded-xl"
 		class="text-surface-100 "
-		background="bg-tertiary-900"
+		background="bg-surface-700"
 	>
 		<svelte:fragment slot="lead">
 			{#each $courseMenuLeads as leadMenu}

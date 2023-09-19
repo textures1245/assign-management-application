@@ -13,7 +13,7 @@
 	}): void {}
 
 	export let data: PageData;
-	const { form, errors, constraints } = superForm(data.form, { dataType: 'json' });
+	const { form, errors, constraints } = superForm(data.form);
 </script>
 
 <FormEditor pathname="instructor-editor" formName="Instructor">
@@ -32,10 +32,12 @@
 						bind:value={$form.name}
 						class="input"
 						title="name"
+						name="name"
 						{...$constraints.name}
 						type="text"
 						placeholder="Input here"
 					/>
+					<p class="error-text">{$errors.name ?? ''}</p>
 				</div>
 				<div class="flex justify-center gap-4 items-center">
 					<span class="chip variant-filled-secondary text-sm">
@@ -55,6 +57,7 @@
 						{...$constraints.imgAvatar}
 						placeholder="Input here"
 					/>
+					<p class="error-text">{$errors.imgAvatar ?? ''}</p>
 				</div>
 				<div class="space-y-2 text-sm">
 					<label for="info">About</label>
@@ -67,6 +70,7 @@
 						type="text"
 						placeholder="Input here"
 					/>
+					<p class="error-text">{$errors.info ?? ''}</p>
 				</div>
 				<div class="space-y-2 text-sm">
 					<label for="rank">Rank</label>
@@ -79,6 +83,7 @@
 						type="text"
 						placeholder="Input here"
 					/>
+					<p class="error-text">{$errors.rank ?? ''}</p>
 				</div>
 				<button class="float-right chip variant-filled-primary px-5 py-2" type="submit"
 					>Submit</button

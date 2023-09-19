@@ -36,6 +36,11 @@
 	.error-text {
 		@apply text-error-500 text-sm;
 	}
+
+	* {
+		@apply text-white;
+	}
+	
 }
 
 /* Overwrite the default to keep the scrollbar always visible */
@@ -62,3 +67,4 @@
 .primary-thai-font {
 	font-family: 'Noto Sans Thai', sans-serif;
 }
+

@@ -7,6 +7,7 @@ import type {
 	ChartTypeRegistry,
 	Point
 } from 'chart.js';
+import { writable, type Writable } from 'svelte/store';
 
 export type AssignmentProp = IAssignment & {
 	config: ChartConfiguration;
@@ -90,7 +91,7 @@ export class AssignmentData implements ChartData {
 	}
 }
 
-export const assignmentStates: Assignment[] = [
+export const assignmentStates: Writable<Assignment[]> = writable([
 	new Assignment('0', '0', '0', 'homework 1', 'asasdw', new Date(), 'MOST', false, {
 		created: new Date(),
 		updated: new Date(),
@@ -100,5 +101,20 @@ export const assignmentStates: Assignment[] = [
 		created: new Date(),
 		updated: new Date(),
 		deleted: new Date()
-	})
-];
+	}),
+	new Assignment('1', '0', '1', 'homework 1', 'asasdw', new Date(), 'MOST', false, {
+		created: new Date(),
+		updated: new Date(),
+		deleted: new Date()
+	}),
+	new Assignment('1', '0', '1', 'homework 1', 'asasdw', new Date(), 'MOST', false, {
+		created: new Date(),
+		updated: new Date(),
+		deleted: new Date()
+	}),
+	new Assignment('1', '0', '1', 'homework 1', 'asasdw', new Date(), 'MOST', false, {
+		created: new Date(),
+		updated: new Date(),
+		deleted: new Date()
+	}),
+]);

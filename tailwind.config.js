@@ -1,3 +1,5 @@
+import { skeleton } from '@skeletonlabs/tw-plugin';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	// 1. Apply the dark mode class setting:
@@ -35,6 +37,16 @@ module.exports = {
 		// 3. Append the Skeleton plugin to the end of this list
 		require('@tailwindcss/typography'),
 		require('@tailwindcss/forms'),
-		...require('@skeletonlabs/skeleton/tailwind/skeleton.cjs')()
+		...require('@skeletonlabs/skeleton/tailwind/skeleton.cjs')(),
+		skeleton({
+			themes: {
+				preset: [
+					// Enable 'enhancements' per each registered theme:
+					{ name: 'gold-nouveau', enhancements: true },
+					{ name: 'crimson', enhancements: true },
+					{ name: 'modern', enhancements: true }
+				]
+			}
+		})
 	]
 };

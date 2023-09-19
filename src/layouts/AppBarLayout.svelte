@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { PopupSettings } from '@skeletonlabs/skeleton';
-	import { AppBar } from '@skeletonlabs/skeleton';
+	import { AppBar, Avatar } from '@skeletonlabs/skeleton';
 	import { Workspace } from 'carbon-icons-svelte';
 	import { panelGroup } from './states/layoutState';
 	import { popupFeatured } from '../components/slots/popupConfig';
 	import { openSideRail } from './SideRailLayout.svelte';
+	import type { IAccountUser } from '$lib/types';
 	let config = {
 		appName: 'Assign Management'
 	};
@@ -14,6 +15,8 @@
 		newPopupConfig = { ...popupFeatured, target: target };
 		return newPopupConfig;
 	};
+
+	export let user: IAccountUser;
 </script>
 
 <section class="text-surface-100">
@@ -38,6 +41,13 @@
 					</button> -->
 				{/if}
 			{/each}
+			<div class="chip variant-filled-surface rounded-full">
+				<span>{user?.name ?? ''}</span>
+				<Avatar
+					width="w-8"
+					src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200'}
+				/>
+			</div>
 		</svelte:fragment>
 		<!-- <NotificationPopup />
 		<MenuPopup /> -->

@@ -6,11 +6,13 @@ import type { PageServerLoad } from './$types';
 const teacherSchema = z.object({
 	teacherId: z.string(),
 	name: z.string(),
-	curd: z.object({
-		created: z.date(),
-		updated: z.date().optional(),
-		deleted: z.date().optional()
-	}),
+	curd: z
+		.object({
+			created: z.date(),
+			updated: z.date().optional(),
+			deleted: z.date().optional()
+		})
+		.optional(),
 	imgAvatar: z.string().url().optional(),
 	info: z.string().optional(),
 	rank: z.string().optional()
@@ -26,16 +28,32 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
 		const form = await superValidate(request, teacherSchema);
 		console.log('POST', form.data);
 
 		if (!form.valid) {
+			console.log('Failed');
 			return fail(400, { form });
 		}
 
-		// TODO: Do something with the validated data
+		const { name, imgAvatar, info, rank } = form.data;
 
-		return { form };
+		try {
+			await _prisma.teacher.create({
+				data: {
+					name,
+					imgAvatar,
+					info,
+					rank,
+					accountUserId: locals.userData.id
+				}
+			});
+		} catch (err) {
+			console.error(err);
+			return fail(500, { message: "Could't create instructor." });
+		}
+
+		return { form, status: 201 };
 	}
 };

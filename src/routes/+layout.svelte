@@ -6,13 +6,16 @@
 	import AppBarLayout from '../layouts/AppBarLayout.svelte';
 	import AppRailLayout from '../layouts/AppRailLayout.svelte';
 	import SideRailLayout from '../layouts/SideRailLayout.svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 </script>
 
 <!-- <DrawerLayout /> -->
 {#if $page.url.pathname !== '/account'}
 	<AppShell>
 		<svelte:fragment slot="header">
-			<AppBarLayout />
+			<AppBarLayout user={data.user} />
 		</svelte:fragment>
 		<svelte:fragment slot="sidebarLeft">
 			<SideRailLayout />
@@ -21,7 +24,7 @@
 			<AppRailLayout />
 		</svelte:fragment>
 
-		<div class="flex bg-surface-100 h-full place-content-center">
+		<div class="flex bg-surface-900 h-full place-content-center">
 			<div class="container my-10 primary-font">
 				<slot />
 			</div>

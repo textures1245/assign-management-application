@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AppRail, AppRailAnchor, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
 	import { Course, FolderAdd, GroupAccess, TagEdit, TagGroup } from 'carbon-icons-svelte';
-	import type { Route } from '$lib/types';
+	import type { Route, courseSchema } from '$lib/types';
 	import GroupEditor from '../components/GroupEditor.svelte';
 	import CourseEditorMenus from '../components/CourseEditorMenus.svelte';
 
