@@ -11,12 +11,12 @@
 	let currentTile: number = 0;
 </script>
 
-<AppRail active={''} class="text-surface-100 hidden md:block" background="bg-surface-700">
+<AppRail active={''} class="text-surface-100 hidden md:block !z-10" background="bg-gradient-to-l to-secondary-800 from-secondary-900">
 	<!-- --- -->
 	{#each $appRoutes as route, i}
 		<AppRailTile
 			on:click={() => openDrawerObs.set({ open: true, drawerId: route.name })}
-			class="flex"
+			class="flex !z-20"
 			bind:group={currentTile}
 			name={route.name}
 			value={i}

@@ -1,14 +1,15 @@
 import type { PageServerLoad } from './$types';
-import { courseStates } from '$lib/state/courseStore';
 import { fail } from '@sveltejs/kit';
 import type { AccountUserProp } from '$lib/state/accountUser';
+import type { ICourseTeacher } from '$lib/types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const userData: AccountUserProp = locals.userData;
 	if (!userData) throw fail(401, { message: 'Unauthorized' });
 
-	const courses = userData.course ?? [];
+	const courses: ICourseTeacher[] = [{ ...userData.course, teacher: userData.teachers[0] }];
+
 	return {
-		courses: courses
+		courses
 	};
 };

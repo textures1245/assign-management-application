@@ -21,7 +21,7 @@
 
 <AppShell>
 	<svelte:fragment slot="sidebarLeft">
-		<AppRail background="bg-surface-600" class="shadow-lg ring-8 ring-primary-400">
+		<AppRail background="bg-gradient-to-br from-surface-500 to-60%" class="shadow-lg ring-8 ring-primary-400">
 			<svelte:fragment slot="lead">
 				<AppRailAnchor>
 					<div class="grid place-items-center">

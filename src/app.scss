@@ -4,6 +4,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anuphan&family=Bebas+Neue&family=Chakra+Petch&family=Itim&family=Kanit:wght@200&family=Mitr&family=Noto+Sans+Thai:wght@300;400&family=Pattaya&family=Prompt&family=Taviraj&display=swap');
 @layer components {
+	/* Chrome, Safari and Opera */
+	::-webkit-scrollbar {
+		@apply hidden;
+	}
+
+	::-webkit-scrollbar-track:hover {
+		@apply block;
+	}
+
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
 	html,
 	body {
 		@apply h-full overflow-hidden;
@@ -40,21 +53,20 @@
 	* {
 		@apply text-white;
 	}
-	
 }
 
 /* Overwrite the default to keep the scrollbar always visible */
 
-::-webkit-scrollbar {
-	-webkit-appearance: none;
-	width: 7px;
-}
+// ::-webkit-scrollbar {
+// 	-webkit-appearance: none;
+// 	width: 7px;
+// }
 
-::-webkit-scrollbar-thumb {
-	border-radius: 4px;
-	background-color: rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-}
+// ::-webkit-scrollbar-thumb {
+// 	border-radius: 4px;
+// 	background-color: rgba(0, 0, 0, 0.5);
+// 	-webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+// }
 
 .primary-font {
 	font-family: 'Nanum Gothic', sans-serif;
@@ -67,4 +79,3 @@
 .primary-thai-font {
 	font-family: 'Noto Sans Thai', sans-serif;
 }
-

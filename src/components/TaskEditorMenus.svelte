@@ -34,7 +34,7 @@
 <!-- Responsive Container (recommended) -->
 <div class="table-container text-sm">
 	<!-- Native Table Element -->
-	{#if assignmentStates.length < 0}
+	{#if $assignmentStates.length < 0}
 		<table class="table table-hover">
 			<p class="text-lg p-10 text-center">State not found</p>
 		</table>
@@ -51,7 +51,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each assignmentStates as a, i (a.assignmentId)}
+				{#each $assignmentStates as a, i}
 					<tr>
 						<td class="px-auto">{a.title}</td>
 						<td class="px-auto">{a.description}</td>

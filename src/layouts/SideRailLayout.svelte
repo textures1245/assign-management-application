@@ -17,12 +17,12 @@
 		spacing="space-x-3"
 		active="bg-tertiary-400 rounded-xl"
 		class="text-surface-100 "
-		background="bg-surface-700"
+		background="bg-surface-900"
 	>
 		<svelte:fragment slot="lead">
 			{#each $courseMenuLeads as leadMenu}
 				<div class={$page.url.pathname === `/${leadMenu.name}` ? 'bg-secondary-800' : ''}>
-					<AppRailAnchor active="bg-surface-600" href={`/${leadMenu.name}`}>
+					<AppRailAnchor active="bg-surface-600" href={`${leadMenu.path}`}>
 						<div class="flex justify-center">
 							<svelte:component this={leadMenu.carbonIcon.icon} size={leadMenu.carbonIcon.size} />
 						</div>
@@ -31,7 +31,7 @@
 			{/each}
 		</svelte:fragment>
 		<!-- --- -->
-		{#each courseStates as course, i (course.courseId)}
+		{#each $courseStates as course, i (course.courseId)}
 			<AppRailTile
 				class="flex p-1"
 				bind:group={currentTile}

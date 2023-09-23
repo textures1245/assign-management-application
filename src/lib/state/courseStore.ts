@@ -1,17 +1,42 @@
 import type { ICourse } from '$lib/types';
-
+import { writable, type Writable } from 'svelte/store';
+import type { Teacher } from './teacherStore';
+import { teacherStates } from './teacherStore';
 
 export class Course implements ICourse {
+	protected teacherProp: Teacher = {} as Teacher;
 	constructor(
-		public courseId: string,
-		public teacherId: string,
-		public courseCode: string,
-		public imgSrc: string,
-		public label: string,
-		public curd: { created: Date; updated: Date; deleted: Date },
+		public courseId: string = '',
+		public teacherId: string = '',
+		public courseCode: string = '',
+		public imgSrc: string = '',
+		public label: string = '',
+		public curd: { created: Date; updated?: Date; deleted?: Date } = {
+			created: new Date()
+		},
 		public detail?: string,
 		public group?: string[]
-	) {}
+	) {
+		// const t = teacherStates.subscribe((t) => {));
+		// const t = teachers.find((t) => {
+		// 	t.teacherId === teacherId;
+		// });
+		// if (!t) throw new Error('Teacher not found');
+		// this.setTeacherProp(t);
+	}
+
+	public objectAssign(obj: ICourse) {
+		Object.assign(this, obj);
+		return this;
+	}
+
+	public setTeacherProp(teacher: Teacher): void {
+		this.teacherProp = teacher;
+	}
+
+	public getTeacherProp(): Teacher {
+		return this.teacherProp;
+	}
 
 	public toPOJO(): ICourse {
 		return {
@@ -45,12 +70,39 @@ export class Course implements ICourse {
 				updated: currentDate,
 				deleted: currentDate
 			},
-			detail
+			detail,
+			['Group 1', 'Group 2', 'Group 3']
 		);
 	}
 }
-export const courseStates: Course[] =  [
-	Course.createInstance('Subject 1', 'Subject Details'),
-	Course.createInstance('Course 1 ', 'Course Details 2'),
-	Course.createInstance('Course 2', 'Course Details 3')
-];
+export const courseStates: Writable<ICourse[]> = writable([
+	// generate mock Course object data
+	{
+		courseId: 'C101',
+		courseCode: 'MATH101',
+		teacherId: '101',
+		imgSrc: 'https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg?w=2000',
+		label: 'Mathematics 101',
+		curd: {
+			created: new Date('2023-09-15'),
+			updated: undefined, // Optional
+			deleted: undefined // Optional
+		},
+		detail: 'Introduction to basic mathematics concepts.',
+		group: ['A', 'B']
+	},
+	{
+		courseId: 'C202',
+		courseCode: 'HIST202',
+		teacherId: '102',
+		imgSrc: 'https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg?w=2000',
+		label: 'History 202',
+		curd: {
+			created: new Date('2023-09-20'),
+			updated: undefined, // Optional
+			deleted: undefined // Optional
+		},
+		detail: 'Advanced study of historical events.',
+		group: ['A']
+	}
+]);

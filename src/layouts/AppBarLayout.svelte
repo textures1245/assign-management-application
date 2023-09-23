@@ -20,7 +20,12 @@
 </script>
 
 <section class="text-surface-100">
-	<AppBar>
+	<!-- write AapBar css glass transparent background with blur filter -->
+
+	<AppBar
+		class="border-b border-slate-50/[0.1]"
+		background="bg-gradient-to-r via-surface-800 to-secondary-900 from-surface-900 backdrop-filter"
+	>
 		<svelte:fragment slot="lead">
 			<Workspace size={32} />
 		</svelte:fragment>

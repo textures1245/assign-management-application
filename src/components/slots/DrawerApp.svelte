@@ -23,9 +23,8 @@
 </script>
 
 <Drawer
-	bgBackdrop=""
-	bgDrawer="bg-surface-500/80"
-	class=" backdrop-blur-sm   border-gray-100  text-surface-100"
+	bgDrawer="shadow-none bg-gradient-to-br to-50% from-surface-500"
+	class=" backdrop-blur-sm shadow-none   border-gray-100  text-surface-100"
 >
 	{#if $openDrawerObs.drawerId === 'setting-route-app'}
 		<p class="text-white">asdsd</p>

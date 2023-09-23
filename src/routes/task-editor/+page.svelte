@@ -38,7 +38,7 @@
 						name="courseId"
 						class="select text-sm"
 					>
-						{#each courseStates as c}
+						{#each $courseStates as c}
 							<option value={c.courseId}> {c.label}</option>
 						{/each}
 					</select>

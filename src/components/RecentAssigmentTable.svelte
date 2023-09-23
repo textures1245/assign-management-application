@@ -20,7 +20,7 @@
 				<tr>
 					<td>{i + 1}</td>
 					<td>{assign.title}</td>
-					<td>{assign.curd.updated.toDateString() ?? new Date().toDateString()}</td>
+					<td>{assign.curd.updated ? assign.curd.updated : new Date().toDateString()}</td>
 				</tr>
 			{/each}
 		</tbody>

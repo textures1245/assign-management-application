@@ -1,4 +1,5 @@
 import { skeleton } from '@skeletonlabs/tw-plugin';
+import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -47,6 +48,22 @@ module.exports = {
 					{ name: 'modern', enhancements: true }
 				]
 			}
+		}),
+		plugin(function ({ addUtilities }) {
+			addUtilities({
+				'.scrollbar-hide': {
+					/* IE and Edge */
+					'-ms-overflow-style': 'none',
+
+					/* Firefox */
+					'scrollbar-width': 'none',
+
+					/* Safari and Chrome */
+					'&::-webkit-scrollbar': {
+						display: 'none'
+					}
+				}
+			});
 		})
 	]
 };

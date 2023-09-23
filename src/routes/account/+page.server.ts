@@ -45,7 +45,7 @@ export const actions: Actions = {
 			console.error(err);
 			return fail(400, { message: 'Could not login user.' });
 		}
-		throw redirect(302, '/overviews');
+		throw redirect(302, '/');
 	},
 
 	signUp: async ({ request, cookies }) => {

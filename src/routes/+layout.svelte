@@ -24,8 +24,10 @@
 			<AppRailLayout />
 		</svelte:fragment>
 
-		<div class="flex bg-surface-900 h-full place-content-center">
-			<div class="container my-10 primary-font">
+		<div
+			class="flex bg-gradient-to-r via-surface-800 to-secondary-800 from-surface-900 h-full place-content-center"
+		>
+			<div class="container overflow-y-auto scrollbar-hide  my-10 primary-font">
 				<slot />
 			</div>
 		</div>

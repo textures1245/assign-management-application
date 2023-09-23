@@ -4,7 +4,7 @@
 	import Chart from './Chart.svelte';
 	import type { AssignmentProp } from '$lib/state/assignmentStore';
 	import dayjs from 'dayjs';
-	export let assignment: AssignmentProp;
+	export let assignmentProp: AssignmentProp;
 
 	const prefixConfig = {
 		overview: {
@@ -29,7 +29,7 @@
 	</Tab>
 	<Tab bind:group={tabSet} active="bg-secondary-800" name="tab2" value={1}>Detail</Tab>
 	<Tab bind:group={tabSet} active="bg-secondary-800" name="tab3" value={2}>Deadline</Tab>
-	{#if assignment.fileAttached}
+	{#if assignmentProp.assignment.fileAttached}
 		<Tab bind:group={tabSet} active="bg-secondary-800" name="tab3" value={3}>File Attaches</Tab>
 	{/if}
 	<!-- Tab Panels --->
@@ -39,7 +39,7 @@
 				<Chart
 					extraOpt={{ color: '#fff' }}
 					size={{ width: 218, height: 400 }}
-					config={assignment.config}
+					config={assignmentProp.config}
 				/>
 			</div>
 			<div class="col-span-full lg:col-span-5 w-full">
@@ -47,14 +47,14 @@
 					<article class="prose prose-neutral prose-blockquote:font-bold prose-sm">
 						<section class="flex flex-col justify-between">
 							<div class="">
-								<h2 class="!text-white">{assignment.title}</h2>
+								<h2 class="!text-white">{assignmentProp.title}</h2>
 								<blockquote class="!text-surface-50">
 									{prefixConfig.overview.course}
-									{assignment.description}
+									{assignmentProp.assignment.description}
 								</blockquote>
 								<blockquote class="!text-surface-50">
 									{prefixConfig.overview.courseCode}
-									{assignment.course.courseCode}
+									{assignmentProp.course.courseCode}
 								</blockquote>
 							</div>
 							<blockquote class="!text-surface-50">
@@ -62,11 +62,11 @@
 								<div class="flex items-center gap-6">
 									<Avatar
 										width="w-8"
-										initials={assignment.teacher.name[0]}
-										src={assignment.teacher.imgAvatar}
+										initials={assignmentProp.teacher.name[0]}
+										src={assignmentProp.teacher.imgAvatar}
 										background="bg-primary-500"
 									/>
-									<span class="!text-white">{assignment.teacher.name}</span>
+									<span class="!text-white">{assignmentProp.teacher.name}</span>
 								</div>
 							</blockquote>
 						</section>
@@ -76,7 +76,7 @@
 						<section class="flex flex-col justify-between">
 							<div class="">
 								<h2 class="!text-white">Assignment Detail</h2>
-								<blockquote class="!text-surface-50">{assignment.description}</blockquote>
+								<blockquote class="!text-surface-50">{assignmentProp.assignment.description}</blockquote>
 							</div>
 						</section>
 					</article>
@@ -85,7 +85,7 @@
 						<div class="text-center flex flex-col gap-3">
 							<h2 class="font-bold">Assignment Deadline</h2>
 							<span class="chip variant-filled-primary text-lg"
-								>{new Date(assignment.deadline).toDateString()}</span
+								>{new Date(assignmentProp.assignment.deadline).toDateString()}</span
 							>
 						</div>
 						<div class="!text-xs shadow-xl border-4 rounded-lg">
@@ -106,7 +106,7 @@
 							/> -->
 
 							<Datepicker
-								end={new Date(assignment.deadline)}
+								end={new Date(assignmentProp.assignment.deadline)}
 								style="border-radius: 10rem; font-size: 2px !important;"
 								alwaysOpen
 								highlightColor="#f91a5d"

@@ -1,5 +1,5 @@
 import { type Readable, readable, writable } from 'svelte/store';
-import type { Route } from '../../libs/types';
+import type { Route } from '$lib/types';
 import {
 	Course,
 	Menu,
@@ -56,19 +56,19 @@ export const courseMenuLeads: Readable<Route[]> = readable([
 		carbonIcon: { icon: Home, size: 24 },
 		label: 'Overview',
 		name: 'overviews',
-		path: '/overviews'
+		path: '/'
 	},
 	{
 		carbonIcon: { icon: ExpandAll, size: 24 },
 		label: 'Feeds',
 		name: 'course-feeds',
-		path: '/course-feed-list'
+		path: '/course-feeds'
 	},
 	{
 		carbonIcon: { icon: TaskComplete, size: 24 },
 		label: 'Task Completes',
 		name: 'task-completes',
-		path: '/task-complete-list'
+		path: '/task-completes'
 	}
 ]);
 

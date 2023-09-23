@@ -15,11 +15,15 @@ import { DEV_MODE } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const userData: AccountUserProp = locals.userData;
-	if (!userData) throw fail(401, { message: 'Unauthorized' });
+	if (!userData) {
+		// generate throw redirect in svelte/kit to /account page with 302 status
+		throw redirect(303, '/account');
+	}
 
 	if (DEV_MODE === 'true') {
 		if (userData.assignments) {
 			assignmentStates.set([]);
+
 			userData.assignments.forEach((nAssign) =>
 				assignmentStates.update((oldAssigns) => [
 					...oldAssigns,

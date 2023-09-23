@@ -6,7 +6,7 @@
 	let mode: 'SIGN_UP' | 'SIGN_IN' = 'SIGN_IN';
 </script>
 
-<div class="bg-surface-500 h-full w-full primary-font">
+<div class="bg-surface-900 h-full w-full primary-font">
 	<div class="grid grid-cols-7 h-screen">
 		<img
 			class="h-full w-full absolute md:relative col-span-3 object-cover"

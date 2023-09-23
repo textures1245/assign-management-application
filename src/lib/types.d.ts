@@ -46,11 +46,27 @@ export interface ICourse {
 	label: string;
 	curd: {
 		created: Date;
-		updated: Date;
-		deleted: Date;
+		updated?: Date;
+		deleted?: Date;
 	};
 	detail?: string;
 	group?: string[];
+}
+
+export interface ICourseTeacher {
+	courseId: string;
+	courseCode: string;
+	teacherId: string;
+	imgSrc: string;
+	label: string;
+	curd: {
+		created: Date;
+		updated?: Date;
+		deleted?: Date;
+	};
+	detail?: string;
+	group?: string[];
+	teacher: ITeacher;
 }
 //covert ICourse to z.object
 export const courseSchema = z.object({
@@ -79,8 +95,8 @@ export interface IAssignment {
 	isCompleted: boolean;
 	curd: {
 		created: Date;
-		updated: Date;
-		deleted: Date;
+		updated?: Date;
+		deleted?: Date;
 	};
 	fileAttached?: File | File[];
 	score?: number; // Optional property for the assignment grade
@@ -91,8 +107,8 @@ export interface ITeacher {
 	name: string;
 	curd: {
 		created: Date;
-		updated: Date;
-		deleted: Date;
+		updated?: Date;
+		deleted?: Date;
 	};
 	imgAvatar?: string;
 	info?: string;

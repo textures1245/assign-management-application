@@ -53,7 +53,7 @@
 				<label for="name"> Select Course's Instructor </label>
 				<span>Select</span>
 				<select name="teacherId" class="select text-sm">
-					{#each teacherStates as t}
+					{#each $teacherStates as t}
 						<option value={t.teacherId}>
 							<Avatar src={t.imgAvatar} />
 							{t.name}</option

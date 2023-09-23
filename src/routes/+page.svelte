@@ -11,13 +11,13 @@
 </script>
 
 <section class="flex flex-col gap-10">
-	<div id="heading" class="flex flex-col md:flex-row justify-between gap-10 items-center">
+	<div id="heading" class="flex flex-col lg:flex-row justify-between gap-5 items-center">
 		<article class="prose prose-sm md:prose-md prose-neutral">
 			<h1>Dashboard Overview</h1>
 			<blockquote class="">Last Online: 21/5/2022</blockquote>
 		</article>
 
-		<div class="logo-cloud grid-cols-1 lg:!grid-cols-3 gap-1">
+		<div class="logo-cloud grid-cols-1 md:grid-cols-3 gap-1">
 			<a class="logo-item border-b-2 border-secondary-600 p-10" href="/">
 				<TaskAssetView size="28" />
 				<div class="flex flex-col gap-1">
@@ -53,8 +53,8 @@
 					<RecentAssignmentTable
 						data={$assignmentStates
 							.filter((assign) => assign.isCompleted) // Filter for completed assignments
-							.sort((a, b) => b.curd.updated.getTime() - a.curd.updated.getTime()) // Sort by 'updated' in descending order
-							.slice(5)}
+							.sort((a, b) => b.curd.updated.getTime() - a.curd.updated.getTime())
+							.slice(0, 5)}
 					/>
 				</div>
 			</div>
