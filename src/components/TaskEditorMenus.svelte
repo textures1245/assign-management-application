@@ -24,7 +24,7 @@
 	<div class="flex gap-2 items-center">
 		<span class="chip p-2 variant-filled-secondary w-full">Number Of Assignment </span>
 		|
-		<span class="chip px-3 variant-filled-success w-full"> {assignmentStates.length} </span>
+		<span class="chip px-3 variant-filled-success w-full"> {$assignmentStates.length} </span>
 	</div>
 	<a href="task-editor" class="chip variant-filled-primary p-2">
 		Add New Assignment <Add />

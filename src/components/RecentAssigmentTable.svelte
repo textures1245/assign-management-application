@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { Assignment } from '$lib/state/assignmentStore';
+	import type { IAssignment } from '$lib/types';
 
-	export let data: Assignment[];
+	export let data: IAssignment[];
 </script>
 
 <!-- Responsive Container (recommended) -->
@@ -9,9 +10,9 @@
 	<!-- Native Table Element -->
 	<table class="table table-hover">
 		<thead>
-			<tr>
-				<th />
-				<th>Title</th>
+			<tr
+				><th />
+				<th>Recent done assignments</th>
 				<th>Completed</th>
 			</tr>
 		</thead>
@@ -21,6 +22,10 @@
 					<td>{i + 1}</td>
 					<td>{assign.title}</td>
 					<td>{assign.curd.updated ? assign.curd.updated : new Date().toDateString()}</td>
+				</tr>
+			{:else}
+				<tr>
+					<td colspan="3" class="text-center">No data</td>
 				</tr>
 			{/each}
 		</tbody>

@@ -44,7 +44,7 @@ function createAssignmentProps(
 			plugins: {
 				centerText: {
 					text: `${datasets.datasets[0].data[1]} Days left`, // You can change this to any desired text
-					color: '#000', // Text color
+					color: '#fff', // Text color
 					fontStyle: 'bold', // Font style (normal, italic, etc.)
 					backgroundColor: '#fff', // Background color
 					fontSize: 12, // Font size

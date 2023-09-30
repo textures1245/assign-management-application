@@ -8,7 +8,7 @@
 	<div class="flex gap-2 items-center">
 		<span class="chip p-2 variant-filled-secondary w-full">Number Of Teachers </span>
 		|
-		<span class="chip px-3 variant-filled-success w-full"> {teacherStates.length} </span>
+		<span class="chip px-3 variant-filled-success w-full"> {$teacherStates.length} </span>
 	</div>
 	<a href="instructor-editor" class="chip variant-filled-primary p-2">
 		Add New Teacher <Add />
@@ -18,7 +18,7 @@
 <!-- Responsive Container (recommended) -->
 <div class="table-container text-sm">
 	<!-- Native Table Element -->
-	{#if teacherStates.length < 0}
+	{#if $teacherStates.length < 0}
 		<table class="table table-hover">
 			<p class="text-lg p-10 text-center">State not found</p>
 		</table>
@@ -34,7 +34,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each teacherStates as t, i (t.teacherId)}
+				{#each $teacherStates as t, i (t.teacherId)}
 					<tr>
 						<td class="grid place-content-center">
 							<Avatar src={t.imgAvatar} width="w-12" />

@@ -8,7 +8,7 @@
 	<div class="flex gap-2 items-center">
 		<span class="chip p-2 variant-filled-secondary w-full">Amount of Courses</span>
 		|
-		<span class="chip px-3 variant-filled-success w-full"> {courseStates.length} </span>
+		<span class="chip px-3 variant-filled-success w-full"> {$courseStates.length} </span>
 	</div>
 	<a href="/course-editor" class="chip variant-filled-primary p-2">
 		Add New Course <Add />
@@ -16,7 +16,7 @@
 </section>
 <div class="table-container text-sm">
 	<!-- Native Table Element -->
-	{#if courseStates.length < 0}
+	{#if $courseStates.length < 0}
 		<table class="table table-hover">
 			<p class="text-lg p-10 text-center">State not found</p>
 		</table>
@@ -31,7 +31,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each courseStates as c, i}
+				{#each $courseStates as c, i}
 					<tr>
 						<td class="h-full px-auto">{c.label}</td>
 						<td class="my-auto">{c.courseCode ?? '-'}</td>

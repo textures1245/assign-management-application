@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { Course } from '$lib/state/courseStore';
-	import type { ICourse, ITeacher } from '$lib/types';
+	import type { ICourseTeacher } from '$lib/types';
+	import { Avatar } from '@skeletonlabs/skeleton';
 
-	export let course: ICourse & { teacher: ITeacher };
+	export let course: ICourseTeacher;
 </script>
 
 <a class="card bg-initial w-80 card-hover overflow-hidden" href="/elements/cards"
@@ -31,9 +32,10 @@
 			class="avatar flex aspect-square text-surface-50 font-semibold justify-center items-center overflow-hidden isolate bg-surface-400-500-token w-8 rounded-full"
 			data-testid="avatar"
 		>
-			<img
-				class="avatar-image w-full h-full object-cover"
-				src={course.teacher.imgSrc}
+			<Avatar
+				initials={course.teacher.name[0]}
+				class="avatar-image bg-surface-300 w-full h-full object-cover"
+				src={course.teacher.imgAvatar}
 				alt="teacherAvatarSrc"
 			/>
 		</figure>

@@ -170,7 +170,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	};
 
 	return {
-		user: <IAccountUser>{ ...userData },
+		userData: userData,
 		dataset: <AssignmentDataVisualize>{
 			assignments: assignmentData,
 			doneAssignments: doneAssignmentData,

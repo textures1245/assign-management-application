@@ -25,11 +25,12 @@ export const load: PageServerLoad = async (event) => {
 	const form = await superValidate(event, courseSchema);
 
 	// Always return { form } in load and form actions.
-	return { form };
+	return { form, status: 201 };
 };
 
 export const actions: Actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
+		if (!locals.userData) throw fail(401, { message: 'Unauthorized' });
 		const form = await superValidate(request, courseSchema);
 		console.log('POST', form.data);
 
@@ -37,8 +38,27 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
+		const { teacherId, courseCode, label, curd, imgSrc, detail, group } = form.data;
+
+		try {
+			await _prisma.course.create({
+				data: {
+					teacherId,
+					courseCode,
+					label,
+					imgSrc: imgSrc ?? '',
+					detail: detail ?? '',
+					group: group ?? [],
+					accountUserId: locals.userData.id
+				}
+			});
+		} catch (err) {
+			console.error(err);
+			return fail(500, { message: "Could't create instructor." });
+		}
+
 		// TODO: Do something with the validated data
 
-		return { form };
+		return { form, status: 201 };
 	}
 };

@@ -7,9 +7,9 @@
 	export let data: PageData;
 </script>
 
-{#if $courseStates.length > 0}
+{#if data.courses.length > 0}
 	<div class="flex flex-wrap gap-6 justify-evenly">
-		{#each $courseStates as course (course.courseId)}
+		{#each data.courses as course (course.courseId)}
 			<CourseCard {course} />
 		{/each}
 	</div>

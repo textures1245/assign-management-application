@@ -21,7 +21,7 @@
 </script>
 
 <TabGroup
-	class="primary-thai-font bg-surface-500 text-white shadow-surface-lg   border-r-8 border-b-8 border-surface-900  p-4  rounded-xl"
+	class="primary-thai-font bg-surface-800   text-white shadow-surface-lg   border-l-4 border-secondary-600  p-4  rounded-xl"
 >
 	<Tab bind:group={tabSet} active="bg-secondary-800" name="tab1" value={0}>
 		<svelte:fragment slot="lead" />
@@ -34,20 +34,22 @@
 	{/if}
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
-		<div class="grid grid-cols-7 mt-8 md:mt-0 gap-y-6">
-			<div class="col-span-full lg:col-span-2 flex place-content-center">
-				<Chart
-					extraOpt={{ color: '#fff' }}
-					size={{ width: 218, height: 400 }}
-					config={assignmentProp.config}
-				/>
+		<div class="grid grid-cols-7 place-items-center h-full min-h-[21rem] mt-8 md:mt-0 gap-y-6">
+			<div class="col-span-full lg:col-span-2 flex items-center justify-center">
+				<div class="card flex p-4">
+					<Chart
+						extraOpt={{ color: '#fff' }}
+						size={{ width: 218, height: 400 }}
+						config={assignmentProp.config}
+					/>
+				</div>
 			</div>
 			<div class="col-span-full lg:col-span-5 w-full">
 				{#if tabSet === 0}
 					<article class="prose prose-neutral prose-blockquote:font-bold prose-sm">
 						<section class="flex flex-col justify-between">
 							<div class="">
-								<h2 class="!text-white">{assignmentProp.title}</h2>
+								<h2 class="!text-white">{assignmentProp.assignment.title}</h2>
 								<blockquote class="!text-surface-50">
 									{prefixConfig.overview.course}
 									{assignmentProp.assignment.description}
@@ -76,7 +78,9 @@
 						<section class="flex flex-col justify-between">
 							<div class="">
 								<h2 class="!text-white">Assignment Detail</h2>
-								<blockquote class="!text-surface-50">{assignmentProp.assignment.description}</blockquote>
+								<blockquote class="!text-surface-50">
+									{assignmentProp.assignment.description}
+								</blockquote>
 							</div>
 						</section>
 					</article>
@@ -107,7 +111,7 @@
 
 							<Datepicker
 								end={new Date(assignmentProp.assignment.deadline)}
-								style="border-radius: 10rem; font-size: 2px !important;"
+								style="border-radius: 10rem; font-size: 1px !important;"
 								alwaysOpen
 								highlightColor="#f91a5d"
 							/>

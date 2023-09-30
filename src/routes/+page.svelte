@@ -1,13 +1,20 @@
 <script lang="ts">
-	import { Avatar } from '@skeletonlabs/skeleton';
 	import { TaskAssetView, TaskApproved, TaskRemove } from 'carbon-icons-svelte';
 	import Chart from '../components/Chart.svelte';
 	import type { PageData } from './$types';
 	import RecentAssignmentTable from '../components/RecentAssigmentTable.svelte';
+	import { onMount } from 'svelte';
 	import { assignmentStates } from '$lib/state/assignmentStore';
-	import { updated } from '$app/stores';
+	import { courseStates } from '$lib/state/courseStore';
+	import { teacherStates } from '$lib/state/teacherStore';
 
 	export let data: PageData;
+
+	onMount(() => {
+		assignmentStates.set(data.userData.assignments ?? []);
+		courseStates.set(data.userData.course ?? []);
+		teacherStates.set(data.userData.teachers ?? []);
+	});
 </script>
 
 <section class="flex flex-col gap-10">
@@ -53,7 +60,11 @@
 					<RecentAssignmentTable
 						data={$assignmentStates
 							.filter((assign) => assign.isCompleted) // Filter for completed assignments
-							.sort((a, b) => b.curd.updated.getTime() - a.curd.updated.getTime())
+							.sort((a, b) => {
+								const aTime = a.curd.updated?.getTime() ?? 0;
+								const bTime = b.curd.updated?.getTime() ?? 0;
+								return bTime - aTime;
+							})
 							.slice(0, 5)}
 					/>
 				</div>
