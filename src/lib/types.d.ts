@@ -39,7 +39,7 @@ export interface IWebpageConfig {
 }
 
 export interface ICourse {
-	courseId: string;
+	id: string;
 	courseCode: string;
 	teacherId: string;
 	imgSrc: string;
@@ -54,7 +54,7 @@ export interface ICourse {
 }
 
 export interface ICourseTeacher {
-	courseId: string;
+	id: string;
 	courseCode: string;
 	teacherId: string;
 	imgSrc: string;
@@ -85,7 +85,7 @@ export const courseSchema = z.object({
 });
 
 export interface IAssignment {
-	assignmentId: string;
+	id: string;
 	teacherId: string;
 	courseId: string; // The ID of the course to which this assignment belongs
 	title: string;
@@ -103,7 +103,7 @@ export interface IAssignment {
 	submissionDetail?: string; // Optional property for the submission details
 }
 export interface ITeacher {
-	teacherId: string;
+	id: string;
 	name: string;
 	curd: {
 		created: Date;

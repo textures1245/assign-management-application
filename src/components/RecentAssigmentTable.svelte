@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { Assignment } from '$lib/state/assignmentStore';
 	import type { IAssignment } from '$lib/types';
 
 	export let data: IAssignment[];

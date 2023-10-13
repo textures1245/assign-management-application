@@ -21,7 +21,10 @@
 
 <AppShell>
 	<svelte:fragment slot="sidebarLeft">
-		<AppRail background="to-60% bg-gradient-to-br from-surface-500"  class="shadow-lg ring-8 ring-primary-400">
+		<AppRail
+			background="to-60% bg-gradient-to-br from-surface-500"
+			class="shadow-lg ring-8 ring-primary-400"
+		>
 			<svelte:fragment slot="lead">
 				<AppRailAnchor>
 					<div class="grid place-items-center">
@@ -50,8 +53,6 @@
 
 		{#if currentTile === 0}
 			<InstuctorEditorMenus />
-		{:else if currentTile === 1}{:else}
-			<!-- else content here -->
 		{/if}
 	</div>
 </AppShell>

@@ -1,16 +1,12 @@
-import { TemperatureMax } from 'carbon-icons-svelte';
 import {
 	Assignment,
 	AssignmentData,
 	type AssignmentDataVisualize
 } from '$lib/state/assignmentStore';
 import type { PageServerLoad } from './$types';
-import { fail, redirect } from '@sveltejs/kit';
+import {  redirect } from '@sveltejs/kit';
 import type { AccountUserProp } from '$lib/state/accountUser';
-import type { IAccountUser } from '$lib/types';
 import { assignmentStates } from '$lib/state/assignmentStore';
-import { teacherStates } from '$lib/state/teacherStore';
-import { courseStates } from '$lib/state/courseStore';
 import { DEV_MODE } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -28,7 +24,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 				assignmentStates.update((oldAssigns) => [
 					...oldAssigns,
 					new Assignment(
-						nAssign.assignmentId,
+						nAssign.id,
 						nAssign.teacherId,
 						nAssign.courseId,
 						nAssign.title,

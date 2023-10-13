@@ -69,7 +69,7 @@
 						class="select text-sm"
 					>
 						{#each $teacherStates as t}
-							<option value={t.teacherId}>
+							<option value={t.id}>
 								<Avatar src={t.imgAvatar} />
 								{t.name}</option
 							>

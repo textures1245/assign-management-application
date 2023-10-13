@@ -1,6 +1,5 @@
 <script lang="ts">
 	import CourseCard from './../../components/CourseCard.svelte';
-	import { courseStates } from '$lib/state/courseStore';
 	import type { PageData } from './$types';
 	import StateNotFound from '../../components/StateNotFound.svelte';
 
@@ -9,7 +8,7 @@
 
 {#if data.courses.length > 0}
 	<div class="flex flex-wrap gap-6 justify-evenly">
-		{#each data.courses as course (course.courseId)}
+		{#each data.courses as course (course.id)}
 			<CourseCard {course} />
 		{/each}
 	</div>

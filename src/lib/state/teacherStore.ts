@@ -3,7 +3,7 @@ import { writable, type Writable } from 'svelte/store';
 
 export class Teacher implements ITeacher {
 	constructor(
-		public teacherId: string = '',
+		public id: string = '',
 		public name: string = '',
 		public curd: { created: Date; updated?: Date; deleted?: Date } = {
 			created: new Date(),
@@ -22,7 +22,7 @@ export class Teacher implements ITeacher {
 
 	public toPOJO(): ITeacher {
 		return {
-			teacherId: this.teacherId,
+			id: this.id,
 			name: this.name,
 			curd: this.curd,
 			imgAvatar: this.imgAvatar,
@@ -34,7 +34,7 @@ export class Teacher implements ITeacher {
 
 export const teacherStates: Writable<ITeacher[]> = writable([
 	{
-		teacherId: '1',
+		id: '1',
 		name: 'John Doe',
 		curd: {
 			created: new Date(),
@@ -46,7 +46,7 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 		rank: 'Professor'
 	},
 	{
-		teacherId: '2',
+		id: '2',
 		name: 'Jane Doe',
 		curd: {
 			created: new Date(),
@@ -58,7 +58,7 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 		rank: 'Professor'
 	},
 	{
-		teacherId: '3',
+		id: '3',
 		name: 'John Doe',
 		curd: {
 			created: new Date(),
@@ -70,7 +70,7 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 		rank: 'Professor'
 	},
 	{
-		teacherId: '4',
+		id: '4',
 		name: 'Jane Doe',
 		curd: {
 			created: new Date(),
@@ -82,7 +82,7 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 		rank: 'Professor'
 	},
 	{
-		teacherId: '5',
+		id: '5',
 		name: 'John Doe',
 		curd: {
 			created: new Date(),
@@ -94,7 +94,7 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 		rank: 'Professor'
 	},
 	{
-		teacherId: '6',
+		id: '6',
 		name: 'Jane Doe',
 		curd: {
 			created: new Date(),

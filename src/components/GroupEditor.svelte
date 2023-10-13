@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
-	import { courseMenuLeads } from '../layouts/states/layoutState';
 	import { teacherStates } from '$lib/state/teacherStore';
 
 	function onCompleteHandler(e: Event): void {}
@@ -54,7 +53,7 @@
 				<span>Select</span>
 				<select name="teacherId" class="select text-sm">
 					{#each $teacherStates as t}
-						<option value={t.teacherId}>
+						<option value={t.id}>
 							<Avatar src={t.imgAvatar} />
 							{t.name}</option
 						>

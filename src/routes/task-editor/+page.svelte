@@ -39,7 +39,7 @@
 						class="select text-sm"
 					>
 						{#each $courseStates as c}
-							<option value={c.courseId}> {c.label}</option>
+							<option value={c.id}> {c.label}</option>
 						{/each}
 					</select>
 					<p class="error-text">{$errors.courseId ?? ''}</p>
@@ -58,7 +58,7 @@
 					<p class="error-text">{$errors.title ?? ''}</p>
 				</div>
 				<div class="space-y-2 text-sm">
-					<label for="name"> Course Code </label>
+					<label for="name">Description </label>
 					<input
 						bind:value={$form.description}
 						{...$constraints.description}

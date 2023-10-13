@@ -1,7 +1,10 @@
 <script lang="ts">
-	import AssignmentCard from '../../components/AssignmentCard.svelte';
+	import AssignmentCard from '../../../components/AssignmentCard.svelte';
 	import type { PageData } from './$types';
-	import StateNotFound from '../../components/StateNotFound.svelte';
+	import StateNotFound from '../../../components/StateNotFound.svelte';
+
+	// Subscribe to the writable store to get the data
+
 	export let data: PageData;
 </script>
 

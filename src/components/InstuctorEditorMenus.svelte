@@ -34,7 +34,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each $teacherStates as t, i (t.teacherId)}
+				{#each $teacherStates as t, i (t.id)}
 					<tr>
 						<td class="grid place-content-center">
 							<Avatar src={t.imgAvatar} width="w-12" />

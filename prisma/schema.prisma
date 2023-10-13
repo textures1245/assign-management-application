@@ -45,7 +45,7 @@ model Assignment {
   courseId         String
   title            String
   description      String
-  deadline         Int
+  deadline         DateTime
   priority         String
   isCompleted      Boolean
   fileAttached     String[]
@@ -75,7 +75,7 @@ model Enrollment {
   id             String      @id @default(uuid())
   userId         String
   courseId       String
-  enrollmentDate Int
+  enrollmentDate DateTime     @default(now())
   user           AccountUser @relation(fields: [userId], references: [id])
   course         Course      @relation(fields: [courseId], references: [id])
   created        DateTime    @default(now())
@@ -86,7 +86,7 @@ model Notification {
   id        String      @id @default(uuid())
   userId    String
   message   String
-  timestamp Int
+  timestamp DateTime     @default(now())
   isRead    Boolean
   user      AccountUser @relation(fields: [userId], references: [id])
 }

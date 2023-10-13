@@ -12,7 +12,7 @@
 
 	onMount(() => {
 		assignmentStates.set(data.userData.assignments ?? []);
-		courseStates.set(data.userData.course ?? []);
+		courseStates.set(data.userData.courses ?? []);
 		teacherStates.set(data.userData.teachers ?? []);
 	});
 </script>

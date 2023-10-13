@@ -6,7 +6,7 @@ import { teacherStates } from './teacherStore';
 export class Course implements ICourse {
 	protected teacherProp: Teacher = {} as Teacher;
 	constructor(
-		public courseId: string = '',
+		public id: string = '',
 		public teacherId: string = '',
 		public courseCode: string = '',
 		public imgSrc: string = '',
@@ -40,7 +40,7 @@ export class Course implements ICourse {
 
 	public toPOJO(): ICourse {
 		return {
-			courseId: this.courseId,
+			id: this.id,
 			courseCode: this.courseCode,
 			teacherId: this.teacherId,
 			imgSrc: this.imgSrc,
@@ -77,32 +77,32 @@ export class Course implements ICourse {
 }
 export const courseStates: Writable<ICourse[]> = writable([
 	// generate mock Course object data
-	{
-		courseId: 'C101',
-		courseCode: 'MATH101',
-		teacherId: '101',
-		imgSrc: 'https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg?w=2000',
-		label: 'Mathematics 101',
-		curd: {
-			created: new Date('2023-09-15'),
-			updated: undefined, // Optional
-			deleted: undefined // Optional
-		},
-		detail: 'Introduction to basic mathematics concepts.',
-		group: ['A', 'B']
-	},
-	{
-		courseId: 'C202',
-		courseCode: 'HIST202',
-		teacherId: '102',
-		imgSrc: 'https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg?w=2000',
-		label: 'History 202',
-		curd: {
-			created: new Date('2023-09-20'),
-			updated: undefined, // Optional
-			deleted: undefined // Optional
-		},
-		detail: 'Advanced study of historical events.',
-		group: ['A']
-	}
+	// {
+	// 	id: 'C101',
+	// 	courseCode: 'MATH101',
+	// 	teacherId: '101',
+	// 	imgSrc: 'https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg?w=2000',
+	// 	label: 'Mathematics 101',
+	// 	curd: {
+	// 		created: new Date('2023-09-15'),
+	// 		updated: undefined, // Optional
+	// 		deleted: undefined // Optional
+	// 	},
+	// 	detail: 'Introduction to basic mathematics concepts.',
+	// 	group: ['A', 'B']
+	// },
+	// {
+	// 	id: 'C202',
+	// 	courseCode: 'HIST202',
+	// 	teacherId: '102',
+	// 	imgSrc: 'https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg?w=2000',
+	// 	label: 'History 202',
+	// 	curd: {
+	// 		created: new Date('2023-09-20'),
+	// 		updated: undefined, // Optional
+	// 		deleted: undefined // Optional
+	// 	},
+	// 	detail: 'Advanced study of historical events.',
+	// 	group: ['A']
+	// }
 ]);

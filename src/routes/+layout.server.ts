@@ -1,7 +1,7 @@
 import type { AccountUserProp } from '$lib/state/accountUser';
 import type { IAccountUser } from '$lib/types';
-import { fail, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import { AccountUserProp } from '../lib/state/accountUser';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	return {

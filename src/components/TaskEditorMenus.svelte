@@ -26,7 +26,7 @@
 		|
 		<span class="chip px-3 variant-filled-success w-full"> {$assignmentStates.length} </span>
 	</div>
-	<a href="task-editor" class="chip variant-filled-primary p-2">
+	<a href="/task-editor" class="chip variant-filled-primary p-2">
 		Add New Assignment <Add />
 	</a>
 </section>
