@@ -44,11 +44,9 @@ export interface ICourse {
 	teacherId: string;
 	imgSrc: string;
 	label: string;
-	curd: {
-		created: Date;
-		updated?: Date;
-		deleted?: Date;
-	};
+	created: Date;
+	updated?: Date;
+	deleted?: Date;
 	detail?: string;
 	group?: string[];
 }
@@ -59,11 +57,9 @@ export interface ICourseTeacher {
 	teacherId: string;
 	imgSrc: string;
 	label: string;
-	curd: {
-		created: Date;
-		updated?: Date;
-		deleted?: Date;
-	};
+	created: Date;
+	updated?: Date;
+	deleted?: Date;
 	detail?: string;
 	group?: string[];
 	teacher: ITeacher;
@@ -93,11 +89,9 @@ export interface IAssignment {
 	deadline: Date;
 	priority: 'MOST' | 'DECENT' | 'LOW';
 	isCompleted: boolean;
-	curd: {
-		created: Date;
-		updated?: Date;
-		deleted?: Date;
-	};
+	created: Date;
+	updated?: Date;
+	deleted?: Date;
 	fileAttached?: File | File[];
 	score?: number; // Optional property for the assignment grade
 	submissionDetail?: string; // Optional property for the submission details
@@ -105,11 +99,9 @@ export interface IAssignment {
 export interface ITeacher {
 	id: string;
 	name: string;
-	curd: {
-		created: Date;
-		updated?: Date;
-		deleted?: Date;
-	};
+	created: Date;
+	updated?: Date;
+	deleted?: Date;
 	imgAvatar?: string;
 	info?: string;
 	rank?: string;
@@ -154,36 +146,36 @@ export type AccountUser = z.infer<typeof AccountUserSchema>;
 
 // Zod object for ICourse interface
 
-// Zod object for IAssignment interface
-export const assignmentSchema = z.object({
-	assignmentId: z.string(),
-	teacherId: z.string(),
-	courseId: z.string(),
-	title: z.string(),
-	description: z.string(),
-	deadline: z.number(),
-	priority: z.enum(['MOST', 'DECENT', 'LOW']),
-	isCompleted: z.boolean(),
-	curd: z.object({
-		created: z.number(),
-		updated: z.number(),
-		deleted: z.number()
-	}),
-	fileAttached: z.union([z.instanceof(File), z.array(z.instanceof(File))]).optional(),
-	grade: z.number().optional(),
-	submission: z.string().optional()
-});
+// // Zod object for IAssignment interface
+// export const assignmentSchema = z.object({
+// 	assignmentId: z.string(),
+// 	teacherId: z.string(),
+// 	courseId: z.string(),
+// 	title: z.string(),
+// 	description: z.string(),
+// 	deadline: z.number(),
+// 	priority: z.enum(['MOST', 'DECENT', 'LOW']),
+// 	isCompleted: z.boolean(),
+// 	curd: z.object({
+// 		created: z.number(),
+// 		updated: z.number(),
+// 		deleted: z.number()
+// 	}),
+// 	fileAttached: z.union([z.instanceof(File), z.array(z.instanceof(File))]).optional(),
+// 	grade: z.number().optional(),
+// 	submission: z.string().optional()
+// });
 
-// Zod object for ITeacher interface
-export const teacherSchema = z.object({
-	teacherId: z.string(),
-	name: z.string(),
-	curd: z.object({
-		created: z.date(),
-		updated: z.date().optional(),
-		deleted: z.date().optional()
-	}),
-	imgAvatar: z.string().optional(),
-	info: z.string().optional(),
-	rank: z.string().optional()
-});
+// // Zod object for ITeacher interface
+// export const teacherSchema = z.object({
+// 	teacherId: z.string(),
+// 	name: z.string(),
+// 	curd: z.object({
+// 		created: z.date(),
+// 		updated: z.date().optional(),
+// 		deleted: z.date().optional()
+// 	}),
+// 	imgAvatar: z.string().optional(),
+// 	info: z.string().optional(),
+// 	rank: z.string().optional()
+// });

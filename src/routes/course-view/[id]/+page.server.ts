@@ -9,12 +9,12 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 	if (!userData) throw fail(401, { message: 'Unauthorized' });
 
 	let assignmentProps: AssignmentProp[] = [];
-    console.log(userData.assignments)
 
 	assignmentProps =
 		userData.assignments
 			.filter((assign) => assign.courseId === params.id)
 			.map((a) => {
+				console.log(a)
 				return createAssignmentProps(a, userData);
 			}) ?? [];
 

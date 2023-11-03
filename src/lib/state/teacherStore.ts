@@ -5,11 +5,9 @@ export class Teacher implements ITeacher {
 	constructor(
 		public id: string = '',
 		public name: string = '',
-		public curd: { created: Date; updated?: Date; deleted?: Date } = {
-			created: new Date(),
-			updated: undefined,
-			deleted: undefined
-		},
+		public created = new Date(),
+		public updated?: Date,
+		public deleted?: Date,
 		public imgAvatar?: string,
 		public info?: string,
 		public rank?: string
@@ -24,7 +22,9 @@ export class Teacher implements ITeacher {
 		return {
 			id: this.id,
 			name: this.name,
-			curd: this.curd,
+			created: this.created,
+			updated: this.updated,
+			deleted: this.deleted,
 			imgAvatar: this.imgAvatar,
 			info: this.info,
 			rank: this.rank
@@ -36,11 +36,9 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 	{
 		id: '1',
 		name: 'John Doe',
-		curd: {
-			created: new Date(),
-			updated: undefined,
-			deleted: undefined
-		},
+		created: new Date(),
+		updated: undefined,
+		deleted: undefined,
 		imgAvatar: 'https://i.pravatar.cc/300',
 		info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
 		rank: 'Professor'
@@ -48,11 +46,9 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 	{
 		id: '2',
 		name: 'Jane Doe',
-		curd: {
-			created: new Date(),
-			updated: undefined,
-			deleted: undefined
-		},
+		created: new Date(),
+		updated: undefined,
+		deleted: undefined,
 		imgAvatar: 'https://i.pravatar.cc/300',
 		info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
 		rank: 'Professor'
@@ -60,11 +56,9 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 	{
 		id: '3',
 		name: 'John Doe',
-		curd: {
-			created: new Date(),
-			updated: undefined,
-			deleted: undefined
-		},
+		created: new Date(),
+		updated: undefined,
+		deleted: undefined,
 		imgAvatar: 'https://i.pravatar.cc/300',
 		info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
 		rank: 'Professor'
@@ -72,11 +66,9 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 	{
 		id: '4',
 		name: 'Jane Doe',
-		curd: {
-			created: new Date(),
-			updated: undefined,
-			deleted: undefined
-		},
+		created: new Date(),
+		updated: undefined,
+		deleted: undefined,
 		imgAvatar: 'https://i.pravatar.cc/300',
 		info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
 		rank: 'Professor'
@@ -84,11 +76,9 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 	{
 		id: '5',
 		name: 'John Doe',
-		curd: {
-			created: new Date(),
-			updated: undefined,
-			deleted: undefined
-		},
+		created: new Date(),
+		updated: undefined,
+		deleted: undefined,
 		imgAvatar: 'https://i.pravatar.cc/300',
 		info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
 		rank: 'Professor'
@@ -96,11 +86,9 @@ export const teacherStates: Writable<ITeacher[]> = writable([
 	{
 		id: '6',
 		name: 'Jane Doe',
-		curd: {
-			created: new Date(),
-			updated: undefined,
-			deleted: undefined
-		},
+		created: new Date(),
+		updated: undefined,
+		deleted: undefined,
 		imgAvatar: 'https://i.pravatar.cc/300'
 	}
 ]);

@@ -1,13 +1,10 @@
 import {
-	Assignment,
 	AssignmentData,
 	type AssignmentDataVisualize
 } from '$lib/state/assignmentStore';
 import type { PageServerLoad } from './$types';
-import {  redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import type { AccountUserProp } from '$lib/state/accountUser';
-import { assignmentStates } from '$lib/state/assignmentStore';
-import { DEV_MODE } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const userData: AccountUserProp = locals.userData;
@@ -16,31 +13,33 @@ export const load: PageServerLoad = async ({ locals }) => {
 		throw redirect(303, '/account');
 	}
 
-	if (DEV_MODE === 'true') {
-		if (userData.assignments) {
-			assignmentStates.set([]);
+	// if (DEV_MODE === 'true') {
+	// 	if (userData.assignments) {
+	// 		assignmentStates.set([]);
 
-			userData.assignments.forEach((nAssign) =>
-				assignmentStates.update((oldAssigns) => [
-					...oldAssigns,
-					new Assignment(
-						nAssign.id,
-						nAssign.teacherId,
-						nAssign.courseId,
-						nAssign.title,
-						nAssign.description,
-						nAssign.deadline,
-						nAssign.priority,
-						nAssign.isCompleted,
-						nAssign.curd,
-						nAssign.fileAttached,
-						nAssign.score,
-						nAssign.submissionDetail
-					)
-				])
-			);
-		}
-	}
+	// 		userData.assignments.forEach((nAssign) =>
+	// 			assignmentStates.update((oldAssigns) => [
+	// 				...oldAssigns,
+	// 				new Assignment(
+	// 					nAssign.id,
+	// 					nAssign.teacherId,
+	// 					nAssign.courseId,
+	// 					nAssign.title,
+	// 					nAssign.description,
+	// 					nAssign.deadline,
+	// 					nAssign.priority,
+	// 					nAssign.isCompleted,
+	// 					nAssign.created,
+	// 					nAssign.updated,
+	// 					nAssign.deleted,
+	// 					nAssign.fileAttached,
+	// 					nAssign.score,
+	// 					nAssign.submissionDetail
+	// 				)
+	// 			])
+	// 		);
+	// 	}
+	// }
 
 	const assignmentData = {
 		type: 'doughnut',

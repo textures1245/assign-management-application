@@ -61,8 +61,8 @@
 						data={$assignmentStates
 							.filter((assign) => assign.isCompleted) // Filter for completed assignments
 							.sort((a, b) => {
-								const aTime = a.curd.updated?.getTime() ?? 0;
-								const bTime = b.curd.updated?.getTime() ?? 0;
+								const aTime = a.updated?.getTime() ?? 0;
+								const bTime = b.updated?.getTime() ?? 0;
 								return bTime - aTime;
 							})
 							.slice(0, 5)}

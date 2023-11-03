@@ -13,14 +13,14 @@ import { Course } from './courseStore';
 import { Teacher } from './teacherStore';
 
 export function createAssignmentProps(
-	assignment: IAssignment | Assignment,
+	assignment: IAssignment,
 	userData?: AccountUserProp
 ): AssignmentProp {
 	let teacher: ITeacher | null = {} as ITeacher;
 	let course: ICourse | null = {} as ICourse;
 
 	const dateDataset = {
-		start: assignment.curd.created.getDay(),
+		start: assignment.created.getDay(),
 		end: assignment.deadline.getDay()
 	};
 
@@ -71,13 +71,8 @@ export function createAssignmentProps(
 
 	// get teacher and course from userData
 	if (userData) {
-		const iTeacher = userData.teachers.find((t) => t.id === assignment.teacherId);
-		const iCourse = userData.courses.find((c) => c.id === assignment.courseId);
-
-		if (iTeacher && iCourse) {
-			teacher = new Teacher().objectAssign(iTeacher);
-			course = new Course().objectAssign(iCourse);
-		}
+		teacher = userData.teachers.find((t) => t.id === assignment.teacherId) ?? null;
+		course = userData.courses.find((c) => c.id === assignment.courseId) ?? null;
 	}
 
 	if (!teacher) throw new Error('Teacher not found');
@@ -111,11 +106,9 @@ export class Assignment implements IAssignment {
 		public deadline: Date = new Date(),
 		public priority: 'MOST' | 'DECENT' | 'LOW' = 'MOST',
 		public isCompleted: boolean = false,
-		public curd: { created: Date; updated?: Date; deleted?: Date } = {
-			created: new Date(),
-			updated: undefined,
-			deleted: undefined
-		},
+		public created = new Date(),
+		public updated?: Date,
+		public deleted?: Date,
 		public fileAttached?: File | File[],
 		public score?: number,
 		public submissionDetail?: string
@@ -137,7 +130,9 @@ export class Assignment implements IAssignment {
 			deadline: this.deadline,
 			priority: this.priority,
 			isCompleted: this.isCompleted,
-			curd: this.curd,
+			created: this.created,
+			updated: this.updated,
+			deleted: this.deleted,
 			fileAttached: this.fileAttached,
 			score: this.score,
 			submissionDetail: this.submissionDetail

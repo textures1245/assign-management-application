@@ -5,8 +5,6 @@ import { z } from 'zod';
 import type { AccountUserProp } from '$lib/state/accountUser';
 
 const assignmentSchema = z.object({
-	assignmentId: z.string(),
-	teacherId: z.string(),
 	courseId: z.string(),
 	title: z.string(),
 	description: z.string(),
@@ -19,8 +17,8 @@ const assignmentSchema = z.object({
 		deleted: z.date().optional()
 	}),
 	fileAttached: z.union([z.instanceof(File), z.array(z.instanceof(File))]).optional(),
-	grade: z.number().optional(),
-	submission: z.string().optional()
+	score: z.number().optional(),
+	submissionDetail: z.string().optional()
 });
 export const load: PageServerLoad = async (event) => {
 	const form = await superValidate(event, assignmentSchema);
@@ -47,34 +45,35 @@ export const actions: Actions = {
 			priority,
 			isCompleted,
 			fileAttached,
-			grade,
-			submission
+			score,
+			submissionDetail
 		} = form.data;
 
 		const teacherId =
 			(locals.userData as AccountUserProp)?.courses.find((c) => c?.id === courseId)?.teacherId ??
 			null;
 
-		if (!teacherId) return fail(500, { message: "Could't find teacher." });
+		if (!teacherId) return fail(400, { message: "Could't find teacher." });
 
 		try {
 			await _prisma.assignment.create({
 				data: {
 					teacherId,
 					title,
+					courseId,
 					description,
 					deadline: new Date(deadline),
 					priority,
 					isCompleted,
 					fileAttached: [],
-					grade: grade ?? 0,
-					submission,
+					submissionDetail,
+					score,
 					accountUserId: locals.userData.id
 				}
 			});
 		} catch (err) {
 			console.error(err);
-			return fail(500, { message: "Could't create instructor." });
+			return fail(500, { message: "Could't create assignment." });
 		}
 
 		// TODO: Do something with the validated data

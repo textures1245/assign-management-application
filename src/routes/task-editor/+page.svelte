@@ -125,7 +125,7 @@
 				<div class="space-y-2 text-sm">
 					<label for="grade">Grade </label>
 					<input
-						bind:value={$form.grade}
+						bind:value={$form.score}
 						class="input"
 						title="Grade"
 						name="grade"
@@ -136,7 +136,7 @@
 				<div class="space-y-2 text-sm">
 					<label for="info">Submission</label>
 					<input
-						bind:value={$form.submission}
+						bind:value={$form.submissionDetail}
 						class="input"
 						name="submission"
 						title="Submission"

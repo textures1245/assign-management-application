@@ -1,7 +1,6 @@
 import type { ICourse } from '$lib/types';
 import { writable, type Writable } from 'svelte/store';
 import type { Teacher } from './teacherStore';
-import { teacherStates } from './teacherStore';
 
 export class Course implements ICourse {
 	protected teacherProp: Teacher = {} as Teacher;
@@ -11,9 +10,9 @@ export class Course implements ICourse {
 		public courseCode: string = '',
 		public imgSrc: string = '',
 		public label: string = '',
-		public curd: { created: Date; updated?: Date; deleted?: Date } = {
-			created: new Date()
-		},
+		public created = new Date(),
+		public updated?: Date,
+		public deleted?: Date,
 		public detail?: string,
 		public group?: string[]
 	) {
@@ -45,7 +44,9 @@ export class Course implements ICourse {
 			teacherId: this.teacherId,
 			imgSrc: this.imgSrc,
 			label: this.label,
-			curd: this.curd,
+			created: new Date(),
+			updated: undefined,
+			deleted: undefined,
 			detail: this.detail,
 			group: this.group
 		};
@@ -65,11 +66,9 @@ export class Course implements ICourse {
 			genCourseCode,
 			imageSrc,
 			label,
-			{
-				created: currentDate,
-				updated: currentDate,
-				deleted: currentDate
-			},
+			currentDate,
+			currentDate,
+			currentDate,
 			detail,
 			['Group 1', 'Group 2', 'Group 3']
 		);
