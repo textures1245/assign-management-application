@@ -66,7 +66,7 @@ export interface ICourseTeacher {
 }
 //covert ICourse to z.object
 export const courseSchema = z.object({
-	courseId: z.string(),
+	id: z.string(),
 	teacherId: z.string(),
 	courseCode: z.string(),
 	imgSrc: z.string(),
@@ -147,35 +147,35 @@ export type AccountUser = z.infer<typeof AccountUserSchema>;
 // Zod object for ICourse interface
 
 // // Zod object for IAssignment interface
-// export const assignmentSchema = z.object({
-// 	assignmentId: z.string(),
-// 	teacherId: z.string(),
-// 	courseId: z.string(),
-// 	title: z.string(),
-// 	description: z.string(),
-// 	deadline: z.number(),
-// 	priority: z.enum(['MOST', 'DECENT', 'LOW']),
-// 	isCompleted: z.boolean(),
-// 	curd: z.object({
-// 		created: z.number(),
-// 		updated: z.number(),
-// 		deleted: z.number()
-// 	}),
-// 	fileAttached: z.union([z.instanceof(File), z.array(z.instanceof(File))]).optional(),
-// 	grade: z.number().optional(),
-// 	submission: z.string().optional()
-// });
+export const assignmentSchema = z.object({
+	id: z.string(),
+	teacherId: z.string(),
+	courseId: z.string(),
+	title: z.string(),
+	description: z.string(),
+	deadline: z.string(),
+	priority: z.enum(['MOST', 'DECENT', 'LOW']),
+	isCompleted: z.boolean(),
+	curd: z.object({
+		created: z.date(),
+		updated: z.date().optional(),
+		deleted: z.date().optional()
+	}),
+	fileAttached: z.union([z.instanceof(File), z.array(z.instanceof(File))]).optional(),
+	grade: z.number().optional(),
+	submission: z.string().optional()
+});
 
 // // Zod object for ITeacher interface
-// export const teacherSchema = z.object({
-// 	teacherId: z.string(),
-// 	name: z.string(),
-// 	curd: z.object({
-// 		created: z.date(),
-// 		updated: z.date().optional(),
-// 		deleted: z.date().optional()
-// 	}),
-// 	imgAvatar: z.string().optional(),
-// 	info: z.string().optional(),
-// 	rank: z.string().optional()
-// });
+export const teacherSchema = z.object({
+	id: z.string(),
+	name: z.string(),
+	curd: z.object({
+		created: z.date(),
+		updated: z.date().optional(),
+		deleted: z.date().optional()
+	}),
+	imgAvatar: z.string().optional(),
+	info: z.string().optional(),
+	rank: z.string().optional()
+});

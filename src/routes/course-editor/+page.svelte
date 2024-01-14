@@ -9,6 +9,8 @@
 	import { enhance } from '$app/forms';
 	import { fade, slide } from 'svelte/transition';
 	import FormEditor from '../../components/slots/FormEditor.svelte';
+	import type { SuperValidated } from 'sveltekit-superforms';
+	import type { courseSchema } from '$lib/types';
 
 	function onStepHandler(e: {
 		detail: { state: { current: number; total: number }; step: number };
@@ -16,9 +18,16 @@
 
 	export let data: PageData;
 	let showDebug = false;
-	const { form, errors, constraints } = superForm(data.form);
+	const { form, errors, constraints } = superForm(
+		data.form ?? ({} as SuperValidated<typeof courseSchema>)
+	);
+
+	function deleteTag<T>(arr: T[], index: number) {
+		return arr.filter((_, i) => i !== index);
+	}
 
 	$: groupTags = 1;
+	$: groupTagArray = Array(groupTags);
 </script>
 
 <FormEditor pathname="course-editor" formName="Course">
@@ -34,6 +43,17 @@
 						<hr class="flex-grow bg-white" />
 					</div>
 				</svelte:fragment>
+				{#if data.editMode}
+					<input
+						bind:value={$form.id}
+						class="input text-sm"
+						hidden
+						name="id"
+						title="label"
+						type="text"
+						placeholder="Input here"
+					/>
+				{/if}
 				<div class="space-y-2 text-sm">
 					<label for="name"> Course Label </label>
 					<input
@@ -118,20 +138,60 @@
 					</div>
 
 					<div class="space-y-2">
-						{#each Array(groupTags) as _, i}
-							<input
-								class="input"
-								name="group"
-								title="group"
-								type="text"
-								placeholder="Input here"
-							/>
+						{#each $form.group ?? [] as tag, i}
+							<div class="flex gap-2">
+								<input
+									class="input"
+									name="group"
+									bind:value={tag}
+									title="group"
+									type="text"
+									placeholder="Input here"
+								/>
+								<button
+									type="button"
+									on:click={() => ($form.group = deleteTag($form.group ?? [], i))}
+									class="variant-filled-error btn">-</button
+								>
+							</div>
+						{/each}
+						{#each groupTagArray as _, i}
+							<div class="flex gap-2">
+								<input
+									class="input"
+									name="group"
+									title="group"
+									type="text"
+									placeholder="Input here"
+								/>
+								<button
+									type="button"
+									on:click={() => (groupTagArray = deleteTag(groupTagArray, i))}
+									class="btn variant-filled-error">-</button
+								>
+							</div>
 						{/each}
 					</div>
 				</div>
-				<button class="float-right chip variant-filled-primary px-5 py-2" type="submit"
-					>Submit</button
-				>
+
+				{#if data.editMode}
+					<div class="float-right">
+						<button type="submit" formaction="?/delete" class=" chip variant-filled-error px-5 py-2"
+							>Delete</button
+						>
+						<button
+							type="submit"
+							formaction="?/update"
+							class="chip variant-filled-primary px-5 py-2">Update</button
+						>
+					</div>
+				{:else}
+					<button
+						formaction="?/create"
+						class="float-right chip variant-filled-primary px-5 py-2"
+						type="submit">Submit</button
+					>
+				{/if}
 			</Step>
 		</form>
 	</div>

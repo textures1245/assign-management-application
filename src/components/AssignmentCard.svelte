@@ -97,7 +97,6 @@
 						dayBackgroundColor="#374b5e"
 						dayTextColor="#fff"
 						dayBorderColor="#5f75ce"
-						start={new Date()}
 						end={new Date(assignmentProp.assignment.deadline)}
 						dayHighlightedBackgroundColor="#d93856"
 						dayHighlightedTextColor="#fff"

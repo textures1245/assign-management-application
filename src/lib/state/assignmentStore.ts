@@ -9,8 +9,20 @@ import type {
 } from 'chart.js';
 import { writable, type Writable } from 'svelte/store';
 import type { AccountUserProp } from './accountUser';
-import { Course } from './courseStore';
-import { Teacher } from './teacherStore';
+
+function covertDateToDataset<Dataset extends { start: number; end: number }>(
+	dateRecord: Dataset,
+	date = new Date()
+) {
+	const start = new Date(date.getFullYear(), 0, 0);
+	const diff = date.getTime() - start.getTime();
+	const oneDay = 1000 * 60 * 60 * 24;
+	const day = Math.floor(diff / oneDay);
+
+	const totalDays = Math.round((dateRecord['end'] - dateRecord['start']) / (1000 * 60 * 60 * 24));
+
+	return { totalDays, day };
+}
 
 export function createAssignmentProps(
 	assignment: IAssignment,
@@ -20,15 +32,17 @@ export function createAssignmentProps(
 	let course: ICourse | null = {} as ICourse;
 
 	const dateDataset = {
-		start: assignment.created.getDay(),
-		end: assignment.deadline.getDay()
+		start: +assignment.created.getTime(),
+		end: +assignment.deadline.getTime()
 	};
+
+	const { totalDays, day: currentDay } = covertDateToDataset(dateDataset);
 
 	const datasets = new AssignmentData(
 		[
 			{
 				label: 'Assignment Data Visualization',
-				data: [dateDataset.start, dateDataset.end],
+				data: [currentDay, totalDays],
 				backgroundColor: ['#F1C93B', '#1A5D1A'],
 				hoverOffset: 4,
 				borderWidth: 0

@@ -2,6 +2,14 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import { teacherStates } from '$lib/state/teacherStore';
 	import { RowDelete, EditOff, Add } from 'carbon-icons-svelte';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+
+	function onUpdate(instructorId: string) {
+		const baseUrl = new URL($page.url);
+		baseUrl.searchParams.set('onUpdateId', instructorId);
+		goto(`/instructor-editor?${baseUrl.searchParams.toString()}`);
+	}
 </script>
 
 <section class="flex flex-col md:flex-row gap-2 justify-between">
@@ -43,9 +51,10 @@
 						<td class="my-auto">{t.rank ?? '-'}</td>
 						<td class="my-auto">{t.info ?? '-'}</td>
 						<td class="space-y-2"
-							><span class="chip variant-filled-secondary w-20"><RowDelete /> Edit </span> <br />
-							<span class="chip variant-filled-error w-20"><EditOff /> Delete</span>
-						</td>
+						><button on:click={() => onUpdate(t.id)} class="chip variant-filled-secondary w-20"
+							><RowDelete /> Edit
+						</button> <br />
+					</td>
 					</tr>
 				{/each}
 			</tbody>

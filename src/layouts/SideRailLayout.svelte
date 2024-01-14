@@ -31,7 +31,7 @@
 			{/each}
 		</svelte:fragment>
 		<!-- --- -->
-		{#each $courseStates as course, i (course.courseId)}
+		{#each $courseStates as course, i (course.id)}
 			<AppRailTile
 				class="flex p-1"
 				bind:group={currentTile}
@@ -40,14 +40,12 @@
 				title={course.label}
 			>
 				<svelte:fragment slot="lead">
-					<a href={`/${course.courseId}`}>
+					<a href={`/course-view/${course.id}`}>
 						<div class="flex justify-center">
 							<Avatar
 								src={course.imgSrc}
 								width="w-14"
-								rounded={$page.url.pathname === `/${course.courseId}`
-									? 'rounded-md'
-									: 'rounded-full'}
+								rounded={$page.url.pathname === `/course-view/${course.id}` ? 'rounded-md' : 'rounded-full'}
 								class="expand-image-hover-animation"
 							/>
 						</div>

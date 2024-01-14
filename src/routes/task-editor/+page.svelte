@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { superValidate } from 'sveltekit-superforms/server';
 	import { Step, Avatar, FileDropzone } from '@skeletonlabs/skeleton';
 	import { courseStates } from '$lib/state/courseStore';
 	import { Upload, FileStorage } from 'carbon-icons-svelte';
@@ -7,13 +8,18 @@
 	import type { PageData } from './$types';
 	import { enhance } from '$app/forms';
 	import FormEditor from '../../components/slots/FormEditor.svelte';
+	import type { assignmentSchema } from '$lib/types';
+	import type { SuperValidated } from 'sveltekit-superforms/index.d.ts';
 
 	function onStepHandler(e: {
 		detail: { state: { current: number; total: number }; step: number };
 	}): void {}
 
 	export let data: PageData;
-	const { form, errors, constraints } = superForm(data.form, { dataType: 'json' });
+	const { form, errors, constraints } = superForm(
+		data.form || ({} as SuperValidated<typeof assignmentSchema>),
+		{ dataType: 'json' }
+	);
 </script>
 
 <FormEditor pathname="task-editor" formName="Task">
@@ -29,7 +35,27 @@
 						<hr class="flex-grow bg-white" />
 					</div>
 				</svelte:fragment>
-				<div class="space-y-2 text-sm">
+				{#if data.editMode}
+					<input
+						bind:value={$form.id}
+						class="input text-sm"
+						hidden
+						name="id"
+						title="label"
+						type="text"
+						placeholder="Input here"
+					/>
+					<input
+						bind:value={$form.teacherId}
+						class="input text-sm"
+						hidden
+						name="teacherId"
+						title="label"
+						type="text"
+						placeholder="Input here"
+					/>
+				{/if}
+				<div class:hidden={data.editMode} class="space-y-2 text-sm">
 					<label for="name"> Select Course's Instructor </label>
 					<span>Select</span>
 					<select
@@ -125,7 +151,7 @@
 				<div class="space-y-2 text-sm">
 					<label for="grade">Grade </label>
 					<input
-						bind:value={$form.score}
+						bind:value={$form.grade}
 						class="input"
 						title="Grade"
 						name="grade"
@@ -136,7 +162,7 @@
 				<div class="space-y-2 text-sm">
 					<label for="info">Submission</label>
 					<input
-						bind:value={$form.submissionDetail}
+						bind:value={$form.submission}
 						class="input"
 						name="submission"
 						title="Submission"
@@ -144,9 +170,24 @@
 						placeholder="Input here"
 					/>
 				</div>
-				<button class="float-right chip variant-filled-primary px-5 py-2" type="submit"
-					>Submit</button
-				>
+				{#if data.editMode}
+					<div class="float-right">
+						<button type="submit" formaction="?/delete" class=" chip variant-filled-error px-5 py-2"
+							>Delete</button
+						>
+						<button
+							type="submit"
+							formaction="?/update"
+							class="chip variant-filled-primary px-5 py-2">Update</button
+						>
+					</div>
+				{:else}
+					<button
+						formaction="?/create"
+						class="float-right chip variant-filled-primary px-5 py-2"
+						type="submit">Submit</button
+					>
+				{/if}
 			</Step>
 		</form>
 	</div>

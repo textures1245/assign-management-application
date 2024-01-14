@@ -1,7 +1,14 @@
 <script lang="ts">
-	import { Avatar } from '@skeletonlabs/skeleton';
 	import { courseStates } from '$lib/state/courseStore';
 	import { RowDelete, EditOff, Add } from 'carbon-icons-svelte';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+
+	function onUpdate(courseId: string) {
+		const baseUrl = new URL($page.url);
+		baseUrl.searchParams.set('onUpdateId', courseId);
+		goto(`/course-editor?${baseUrl.searchParams.toString()}`);
+	}
 </script>
 
 <section class="flex flex-col md:flex-row gap-2 justify-between">
@@ -37,8 +44,9 @@
 						<td class="my-auto">{c.courseCode ?? '-'}</td>
 						<td class="my-auto">{c.detail ?? '-'}</td>
 						<td class="space-y-2"
-							><span class="chip variant-filled-secondary w-20"><RowDelete /> Edit </span> <br />
-							<span class="chip variant-filled-error w-20"><EditOff /> Delete</span>
+							><button on:click={() => onUpdate(c.id)} class="chip variant-filled-secondary w-20"
+								><RowDelete /> Edit
+							</button> <br />
 						</td>
 					</tr>
 				{/each}

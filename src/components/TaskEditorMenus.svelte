@@ -1,23 +1,14 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import { assignmentStates } from '$lib/state/assignmentStore';
 	import { RowDelete, EditOff, Add } from 'carbon-icons-svelte';
 
-	// assignmentId: string;
-	// teacherId: string;
-	// courseId: string; // The ID of the course to which this assignment belongs
-	// title: string;
-	// description: string;
-	// deadline: Date;
-	// priority: 'MOST' | 'DECENT' | 'LOW';
-	// isCompleted: boolean;
-	// curd: {
-	// 	created: Date;
-	// 	updated: Date;
-	// 	deleted: Date;
-	// };
-	// fileAttached?: File | File[];
-	// score?: number; // Optional property for the assignment grade
-	// submissionDetail?: string; // Optional property for the submission details
+	function onUpdate(taskId: string) {
+		const baseUrl = new URL($page.url);
+		baseUrl.searchParams.set('onUpdateId', taskId);
+		goto(`/task-editor?${baseUrl.searchParams.toString()}`);
+	}
 </script>
 
 <section class="flex flex-col md:flex-row gap-2 justify-between">
@@ -59,9 +50,10 @@
 						<td class=" my-auto">{!a.isCompleted ? 'Done' : 'Not Done'}</td>
 						<td class="my-auto">{a.score ?? '0'}</td>
 						<td class="space-y-2"
-							><span class="chip variant-filled-secondary w-20"><RowDelete /> Edit </span> <br />
-							<span class="chip variant-filled-error w-20"><EditOff /> Delete</span>
-						</td>
+						><button on:click={() => onUpdate(a.id)} class="chip variant-filled-secondary w-20"
+							><RowDelete /> Edit
+						</button> <br />
+					</td>
 					</tr>
 				{/each}
 			</tbody>

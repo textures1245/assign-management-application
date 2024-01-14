@@ -1,5 +1,5 @@
 <script lang="ts">
-	import InstructorView from './../../views/InstructorView.svelte';
+	import type { teacherSchema } from './../../lib/types.d.ts';
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
 	import { enhance } from '$app/forms';
 
@@ -7,13 +7,16 @@
 	import FormEditor from '../../components/slots/FormEditor.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import type { PageData } from './$types';
+	import type { SuperValidated } from 'sveltekit-superforms/index.d.ts';
 
 	function onStepHandler(e: {
 		detail: { state: { current: number; total: number }; step: number };
 	}): void {}
 
 	export let data: PageData;
-	const { form, errors, constraints } = superForm(data.form);
+	const { form, errors, constraints } = superForm(
+		data.form || ({} as SuperValidated<typeof teacherSchema>)
+	);
 </script>
 
 <FormEditor pathname="instructor-editor" formName="Instructor">
@@ -26,6 +29,17 @@
 				<svelte:fragment slot="header">
 					<span class="chip variant-filled-primary text-sm"> Instructor Information </span>
 				</svelte:fragment>
+				{#if data.editMode}
+				<input
+					bind:value={$form.id}
+					class="input text-sm"
+					hidden
+					name="id"
+					title="label"
+					type="text"
+					placeholder="Input here"
+				/>
+			{/if}
 				<div class="space-y-2 text-sm">
 					<label for="name"> Teacher Name </label>
 					<input
@@ -85,9 +99,24 @@
 					/>
 					<p class="error-text">{$errors.rank ?? ''}</p>
 				</div>
-				<button class="float-right chip variant-filled-primary px-5 py-2" type="submit"
-					>Submit</button
-				>
+				{#if data.editMode}
+					<div class="float-right">
+						<button type="submit" formaction="?/delete" class=" chip variant-filled-error px-5 py-2"
+							>Delete</button
+						>
+						<button
+							type="submit"
+							formaction="?/update"
+							class="chip variant-filled-primary px-5 py-2">Update</button
+						>
+					</div>
+				{:else}
+					<button
+						formaction="?/create"
+						class="float-right chip variant-filled-primary px-5 py-2"
+						type="submit">Submit</button
+					>
+				{/if}
 			</Step>
 		</form>
 	</div>
