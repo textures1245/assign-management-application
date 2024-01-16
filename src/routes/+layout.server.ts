@@ -1,7 +1,6 @@
 import type { AccountUserProp } from '$lib/state/accountUser';
 import type { IAccountUser } from '$lib/types';
 import type { PageServerLoad } from './$types';
-import { AccountUserProp } from '../lib/state/accountUser';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	return {

@@ -2,7 +2,7 @@ import type { PageServerLoad } from './$types';
 import { type AssignmentProp, createAssignmentProps } from '$lib/state/assignmentStore';
 
 import type { AccountUserProp } from '$lib/state/accountUser';
-import { fail } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
 	const userData: AccountUserProp = locals.userData;
@@ -12,11 +12,35 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 
 	assignmentProps =
 		userData.assignments
-			.filter((assign) => assign.courseId === params.id)
+			.filter((assign) => assign.courseId === params.id && !assign.isCompleted)
 			.map((a) => {
-				console.log(a)
 				return createAssignmentProps(a, userData);
 			}) ?? [];
 
 	return { assignmentProps };
+};
+
+export const actions: Actions = {
+	returnAssignment: async ({ locals, request }) => {
+		if (!locals.userData) throw fail(401, { message: 'Unauthorized' });
+
+		const id = await request.formData().then((data) => data.get('id') as string);
+
+		if (!id) throw fail(400, { message: 'Bad Request, cant find request id' });
+
+		try {
+			await _prisma.assignment.update({
+				where: {
+					id
+				},
+				data: {
+					isCompleted: true
+				}
+			});
+		} catch (err) {
+			return fail(500, { message: `Could't return completed to assignment ID ${id}.` });
+		}
+
+		return { status: 201 };
+	}
 };

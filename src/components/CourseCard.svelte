@@ -6,7 +6,7 @@
 	export let course: ICourseTeacher;
 </script>
 
-<a class="card bg-initial w-80 card-hover overflow-hidden" href="{`/course-view/${course.id}`}"
+<a class="card bg-initial w-80 card-hover overflow-hidden" href={`/course-view/${course.id}`}
 	><header>
 		<img src={course.imgSrc} class=" bg-black/50" alt="Post" />
 	</header>

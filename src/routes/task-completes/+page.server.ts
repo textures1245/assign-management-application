@@ -8,9 +8,11 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (!userData) throw fail(401, { message: 'Unauthorized' });
 	let assignmentProps: AssignmentProp[] = [];
 
-	assignmentProps = userData.assignments.map((a) => {
-		return createAssignmentProps(a, userData);
-	});
+	assignmentProps = userData.assignments
+		.map((a) => {
+			return createAssignmentProps(a, userData);
+		})
+		.filter((a) => a.assignment.isCompleted);
 
 	return { assignmentProps };
 };

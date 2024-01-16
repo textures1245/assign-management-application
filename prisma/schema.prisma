@@ -25,7 +25,7 @@ model AccountUser {
 model Course {
   id            String       @id @default(uuid())
   courseCode    String
-  teacherId     String       @unique
+  teacherId     String      
   imgSrc        String
   label         String
   detail        String?

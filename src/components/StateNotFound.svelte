@@ -9,7 +9,7 @@
 		class="card shadow-xl bg-gradient-to-b via-secondary-900 to-tertiary-900 from-surface-900 p-10 z-10"
 	>
 		<div class="flex justify-between items-center">
-			<h1 class="text-2xl">State not found</h1>
+			<h1 class="text-2xl">Empty State</h1>
 			<lottie-player
 				src="https://lottie.host/659197fb-cf47-48bb-8e74-b3a94945b71f/aKOT6sKChT.json"
 				background="transparent"

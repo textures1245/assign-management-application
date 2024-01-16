@@ -10,7 +10,7 @@
 	import { fade, slide } from 'svelte/transition';
 	import FormEditor from '../../components/slots/FormEditor.svelte';
 	import type { SuperValidated } from 'sveltekit-superforms';
-	import type { courseSchema } from '$lib/types';
+	import type { courseSchema } from '$lib/types.ts';
 
 	function onStepHandler(e: {
 		detail: { state: { current: number; total: number }; step: number };

@@ -1,6 +1,5 @@
-import type { CarbonIcon, Course } from 'carbon-icons-svelte';
+import type { CarbonIcon } from 'carbon-icons-svelte';
 import type { Prisma } from 'prisma';
-import m from 'moment';
 import * as z from 'zod';
 
 export const RouteAppSchema = z.object({

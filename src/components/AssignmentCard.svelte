@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { TabGroup, Tab, TabAnchor, Avatar } from '@skeletonlabs/skeleton';
 	import Datepicker from 'svelte-calendar-resurrected';
 	import Chart from './Chart.svelte';
@@ -32,6 +33,16 @@
 	{/if}
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
+		<div class="relative">
+			<div class="absolute -top-14 right-0">
+				<form use:enhance method="POST">
+					<input type="text" hidden name="id" value={assignmentProp.assignment.id} />
+					<button formaction="?/returnAssignment" class="btn btn-sm variant-filled-success"
+						>Return</button
+					>
+				</form>
+			</div>
+		</div>
 		<div class="grid grid-cols-7 place-items-center h-full min-h-[21rem] mt-8 md:mt-0 gap-y-6">
 			<div class="col-span-full lg:col-span-2 flex items-center justify-center">
 				<div class="card col-span-full lg:col-span-2 flex p-4">
