@@ -3,6 +3,7 @@ import type { PageServerLoad } from './$types';
 import { fail, type Actions } from '@sveltejs/kit';
 import { z } from 'zod';
 import type { SuperValidated } from 'sveltekit-superforms';
+import { _prisma } from '$lib/servers/prisma';
 
 //covert ICourse to z.object
 const courseSchema = z.object({

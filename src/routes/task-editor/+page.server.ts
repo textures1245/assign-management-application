@@ -4,6 +4,7 @@ import { fail, type Actions } from '@sveltejs/kit';
 import { z } from 'zod';
 import type { AccountUserProp } from '$lib/state/accountUser';
 import type { SuperValidated } from 'sveltekit-superforms';
+import { _prisma } from '$lib/servers/prisma';
 
 const assignmentSchema = z.object({
 	id: z.string(),

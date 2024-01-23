@@ -15,6 +15,3 @@ declare global {
 
 	/// <reference types="lucia-auth" />
 }
-
-export {};
-

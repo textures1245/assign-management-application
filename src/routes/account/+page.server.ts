@@ -1,5 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions } from './$types';
 
 import bcrypt from 'bcrypt';
 import { HASH_KEY, JWT_ACCESS_SECRET } from '$env/static/private';
@@ -56,7 +56,7 @@ export const actions: Actions = {
 
 		console.log(HASH_KEY);
 		try {
-			const user = await prisma.accountUser.create({
+			const user = await _prisma.accountUser.create({
 				data: {
 					name,
 					email,

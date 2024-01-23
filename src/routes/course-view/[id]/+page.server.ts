@@ -3,6 +3,7 @@ import { type AssignmentProp, createAssignmentProps } from '$lib/state/assignmen
 
 import type { AccountUserProp } from '$lib/state/accountUser';
 import { fail, type Actions } from '@sveltejs/kit';
+import { _prisma } from '$lib/servers/prisma';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
 	const userData: AccountUserProp = locals.userData;
