@@ -1,11 +1,10 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { Prisma } from '@prisma/client';
 
 import bcrypt from 'bcrypt';
 import { HASH_KEY, JWT_ACCESS_SECRET } from '$env/static/private';
 import jwt from 'jsonwebtoken';
-import { prisma } from '$lib/servers/prisma';
+import { _prisma } from '$lib/servers/prisma';
 
 export const actions: Actions = {
 	signIn: async ({ request, cookies }) => {
@@ -15,7 +14,7 @@ export const actions: Actions = {
 		};
 
 		try {
-			const user = await prisma.accountUser.findUnique({
+			const user = await _prisma.accountUser.findUnique({
 				where: {
 					email
 				}

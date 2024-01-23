@@ -6,4 +6,4 @@ if (env.NODE_ENV !== 'production') {
 	global._prisma = _prisma;
 }
 
-export default _prisma;
+export { _prisma };
