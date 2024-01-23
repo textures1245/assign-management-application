@@ -12,9 +12,9 @@ declare global {
 	}
 	// eslint-disable-next-line no-var
 	const _prisma = global.prisma || new PrismaClient({ log: ['info'] });
-	if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
+	if (process.env.NODE_ENV !== 'production') global.prisma = _prisma;
 
 	/// <reference types="lucia-auth" />
 }
 
-export {};
+export default _prisma;
