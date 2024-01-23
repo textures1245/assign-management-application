@@ -1,10 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import { env } from '$env/dynamic/private';
 
-const prisma = global._prisma || new PrismaClient();
-
-if (env.NODE_ENV === 'development') {
-	global._prisma = prisma;
+const _prisma = global._prisma || new PrismaClient({ log: ['info'] });
+if (env.NODE_ENV !== 'production') {
+	global._prisma = _prisma;
 }
 
-export { prisma };
+export default _prisma;
