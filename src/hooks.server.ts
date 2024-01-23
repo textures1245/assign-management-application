@@ -2,7 +2,7 @@ import { JWT_ACCESS_SECRET } from '$env/static/private';
 import jwt from 'jsonwebtoken';
 
 import type { AccountUserPayload } from '$lib/types';
-import { prisma } from '$lib/servers/prisma';
+import { _prisma } from '$lib/servers/prisma';
 import { fail } from '@sveltejs/kit';
 
 export const handle = async ({ event, resolve }) => {
@@ -12,7 +12,7 @@ export const handle = async ({ event, resolve }) => {
 		const token = authCookie.split(' ')[1];
 		try {
 			const jwtUser = jwt.verify(token, JWT_ACCESS_SECRET);
-			const user: AccountUserPayload = await prisma.accountUser.findUnique({
+			const user: AccountUserPayload = await _prisma.accountUser.findUnique({
 				where: {
 					id: (jwtUser as jwt.JwtPayload).id
 				},
