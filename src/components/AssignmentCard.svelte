@@ -61,7 +61,7 @@
 								<h2 class="!text-white">{assignmentProp.assignment.title}</h2>
 								<blockquote class="!text-surface-50">
 									{prefixConfig.overview.course}
-									{assignmentProp.assignment.description}
+									{assignmentProp.assignment.title}
 								</blockquote>
 								<blockquote class="!text-surface-50">
 									{prefixConfig.overview.courseCode}
@@ -69,7 +69,7 @@
 								</blockquote>
 								<h2 class="!text-white">Assignment Detail</h2>
 								<blockquote class="!text-surface-50">
-									{assignmentProp.assignment.description}
+									{assignmentProp.assignment.description.slice(0, 100) + '...'}
 								</blockquote>
 							</div>
 							<blockquote class="!text-surface-50">
