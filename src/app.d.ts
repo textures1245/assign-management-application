@@ -11,10 +11,10 @@ declare global {
 		// interface Platform {}
 	}
 	// eslint-disable-next-line no-var
-	var _prisma: PrismaClient;
+	const _prisma = global.prisma || new PrismaClient({ log: ['info'] });
+	if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
 
 	/// <reference types="lucia-auth" />
 }
 
 export {};
-

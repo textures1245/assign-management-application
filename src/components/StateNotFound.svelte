@@ -3,7 +3,7 @@
 </script>
 
 <div class="">
-	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+	<script src="ahttps://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 	<div
 		class="card shadow-xl bg-gradient-to-b via-secondary-900 to-tertiary-900 from-surface-900 p-10 z-10"

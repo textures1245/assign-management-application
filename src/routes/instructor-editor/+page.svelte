@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { teacherSchema } from './../../lib/types.d.ts';
+	import type { teacherSchema } from '../../lib/types.js';
 	import { Stepper, Step, Avatar } from '@skeletonlabs/skeleton';
 	import { enhance } from '$app/forms';
 
